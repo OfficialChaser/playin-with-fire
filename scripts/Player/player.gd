@@ -9,7 +9,7 @@ class_name Player
 
 func _physics_process(_delta):
 	handle_movement()
-	#handle_animations()
+	handle_animations()
 
 
 func handle_movement():
@@ -23,9 +23,9 @@ func handle_movement():
 func handle_animations():
 	if velocity != Vector2.ZERO:
 		animated_sprite_2d.animation = 'run'
-		if velocity > Vector2.ZERO: 
-			animated_sprite_2d.flip_h = false
-		elif velocity < Vector2.ZERO:
-			animated_sprite_2d.flip_h = true
+		#if velocity > Vector2.ZERO: 
+			#animated_sprite_2d.flip_h = false
+		#elif velocity < Vector2.ZERO:
+			#animated_sprite_2d.flip_h = true
 	else:
 		animated_sprite_2d.animation = 'idle'
