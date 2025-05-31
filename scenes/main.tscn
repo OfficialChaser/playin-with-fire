@@ -12,10 +12,4 @@
 [node name="Fires" type="Node2D" parent="."]
 
 [node name="Fire" parent="Fires" instance=ExtResource("2_0wfyh")]
-position = Vector2(163, -96)
-
-[node name="Fire2" parent="Fires" instance=ExtResource("2_0wfyh")]
-position = Vector2(172, -16)
-
-[node name="Fire3" parent="Fires" instance=ExtResource("2_0wfyh")]
-position = Vector2(130, 91)
+position = Vector2(256, -20)

@@ -1,67 +1,69 @@
 extends CharacterBody2D
 class_name Player
 
-@export var move_speed := 200
+# Player vars
 @export var max_health := 3
+@export var move_speed := 200
+@export var acc := 0.5
 
+@export var hose_knockback := 200
+
+# Onreadys
+@onready var hose = $Hose
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
-@onready var hose_tracker: Marker2D = $HoseTracker
-@onready var spray_particles: GPUParticles2D = $HoseTracker/Hose/SprayParticles
-@onready var hose_ray: RayCast2D = $HoseTracker/Hose/HoseRay
 
-
-var spraying : bool = false
-@export var hose_knockback : float = 50.0
-
-func _process(_delta):
-	## Target hose to mouse
-	var mouse_pos = get_global_mouse_position()
-	hose_tracker.look_at(mouse_pos)
-	
-	##Handle Inputs
-	## Spraying Hose
+func _process(delta):
+	# Handling Input
 	if Input.is_action_just_pressed('spray'):
-		spraying = true
-		spray_particles.emitting = true
-
-		hose_ray.force_raycast_update()
-		if hose_ray.is_colliding():
-			var target = hose_ray.get_collider()
-			if target:
-				target.queue_free() 
-	
-	## Stopping Spray
+		hose.spray()
 	if Input.is_action_just_released('spray'):
-		spraying = false
-		spray_particles.emitting = false
+		hose.spray(false)
 
-	handle_movement()
+	handle_movement(delta)
 	handle_animations()
 
 
-func handle_movement():
-	## Can't Move while spraying/only apply knockback
-	if spraying:
-		var mouse_pos = get_global_mouse_position()
-		var spray_direction = -(mouse_pos- global_position).normalized()
-		velocity = spray_direction*hose_knockback
+func handle_movement(delta):
+	# Get input
+	var mouse_pos = get_global_mouse_position()
+	var input_vector = Vector2(
+		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
+		Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
+	).normalized()
+	
+	if hose.spraying:
+		var spray_direction = (global_position - mouse_pos).normalized()
+		
+		# Weight values: tweak these to tune how much movement vs. knockback matters
+		# Probably wanna make sure they add up to one
+		var knockback_weight = 0.8
+		var move_weight = 0.2
+		
+		# Tried messing around with a jitter to make the knockback more random
+		# You can get rid of this if you dont want it
+		var combined_direction = (spray_direction * knockback_weight + input_vector * move_weight).normalized()
+		var jitter = Vector2(randf_range(-5, 5), randf_range(-5, 5)) * 100
+		velocity = velocity.move_toward((combined_direction * hose_knockback) + jitter, 600 * delta)
+
 	else:
-		## do movement
-		var input_vector = Vector2(
-			Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
-			Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
-		).normalized()
-		velocity = input_vector * move_speed
+		velocity = lerp(velocity, input_vector * move_speed, acc)
+
 	move_and_slide()
 
+
 func handle_animations():
-	## Fix this so it only does while walking. Make a different case for spraying
 	if velocity != Vector2.ZERO:
 		animated_sprite_2d.animation = 'run'
-		## Add sprite flip later, currently the sprite is asymmetric so it doesn't look right
-		#if velocity > Vector2.ZERO: 
-			#animated_sprite_2d.flip_h = false
-		#elif velocity < Vector2.ZERO:
-			#animated_sprite_2d.flip_h = true
 	else:
 		animated_sprite_2d.animation = 'idle'
+	
+	# this doesnt work with your sprite sheet, but i kept
+	# the animated sprite node (the slicing of the sprite sheet
+	# threw things off)
+	if hose.sprite.global_position > global_position: 
+		animated_sprite_2d.flip_h = false
+		hose.sprite.flip_v = false
+	elif hose.sprite.global_position < global_position:
+		animated_sprite_2d.flip_h = true
+		hose.sprite.flip_v = true
+	
