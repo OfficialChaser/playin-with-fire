@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://vml5tly1xvrj"]
+
+[ext_resource type="Texture2D" uid="uid://r52hemnrer8m" path="res://assets/fire_placeholder_pleasereplacemeisuckatfire.png" id="1_52nqi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_52nqi"]
+size = Vector2(32, 32)
+
+[node name="Fire" type="Area2D"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_52nqi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_52nqi")

@@ -1,7 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://cgqtkixpnivjh"]
+[gd_scene load_steps=3 format=3 uid="uid://cgqtkixpnivjh"]
 
 [ext_resource type="PackedScene" uid="uid://ciigmew78bdo4" path="res://scenes/Player/player.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://vml5tly1xvrj" path="res://scenes/fire.tscn" id="2_0wfyh"]
 
 [node name="Main" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_o5qli")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Fires" type="Node2D" parent="."]
+
+[node name="Fire" parent="Fires" instance=ExtResource("2_0wfyh")]
+position = Vector2(163, -96)
+
+[node name="Fire2" parent="Fires" instance=ExtResource("2_0wfyh")]
+position = Vector2(172, -16)
+
+[node name="Fire3" parent="Fires" instance=ExtResource("2_0wfyh")]
+position = Vector2(130, 91)
