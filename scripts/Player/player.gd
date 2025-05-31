@@ -6,7 +6,10 @@ class_name Player
 @export var move_speed := 200
 @export var acc := 0.5
 
+# Hose effects on player
 @export var hose_knockback := 200
+@export var hose_jitter_magnitude := 5
+@export var hose_jitter_power := 100
 
 # Onreadys
 @onready var hose = $Hose
@@ -42,8 +45,15 @@ func handle_movement(delta):
 		# Tried messing around with a jitter to make the knockback more random
 		# You can get rid of this if you dont want it
 		var combined_direction = (spray_direction * knockback_weight + input_vector * move_weight).normalized()
-		var jitter = Vector2(randf_range(-5, 5), randf_range(-5, 5)) * 100
-		velocity = velocity.move_toward((combined_direction * hose_knockback) + jitter, 600 * delta)
+		var jitter = Vector2(
+			randf_range(-hose_jitter_magnitude, hose_jitter_magnitude), 
+			randf_range(-hose_jitter_magnitude, hose_jitter_magnitude)
+			) * hose_jitter_power
+			
+		velocity = velocity.move_toward(
+			(combined_direction * hose_knockback) + jitter, 
+			6 * hose_jitter_power * delta
+			)
 
 	else:
 		velocity = lerp(velocity, input_vector * move_speed, acc)
