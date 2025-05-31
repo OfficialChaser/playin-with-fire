@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cgqtkixpnivjh"]
+[gd_scene load_steps=3 format=4 uid="uid://cgqtkixpnivjh"]
 
 [ext_resource type="PackedScene" uid="uid://ciigmew78bdo4" path="res://scenes/Player/player.tscn" id="1_o5qli"]
-[ext_resource type="PackedScene" uid="uid://vml5tly1xvrj" path="res://scenes/fire.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://n501m6cj6l5u" path="res://scenes/game_tiles.tscn" id="2_0wfyh"]
 
 [node name="Main" type="Node2D"]
 
@@ -9,7 +9,5 @@
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Fires" type="Node2D" parent="."]
-
-[node name="Fire" parent="Fires" instance=ExtResource("2_0wfyh")]
-position = Vector2(256, -20)
+[node name="GameTiles" parent="." instance=ExtResource("2_0wfyh")]
+tile_map_data = PackedByteArray("AADs/wUAAAAAAAAAAADs/wYAAAAAAAAAAADs/wcAAAAAAAAAAADs/wgAAAAAAAAAAADs/wkAAAAAAAAAAADs/woAAAAAAAAAAADt/woAAAAAAAAAAADu/woAAAAAAAAAAADv/woAAAAAAAAAAADw/woAAAAAAAAAAADx/woAAAAAAAAAAADy/woAAAAAAAAAAADz/woAAAAAAAAAAAD0/woAAAAAAAAAAAD6/woAAAAAAAAAAAD7/woAAAAAAAAAAAD8/woAAAAAAAAAAAAEAAoAAAAAAAAAAAAFAAoAAAAAAAAAAAAPAAoAAAAAAAAAAAAQAAoAAAAAAAAAAAARAAoAAAAAAAAAAAASAAoAAAAAAAAAAAATAAoAAAAAAAAAAAATAAkAAAAAAAAAAAATAAgAAAAAAAAAAAATAAcAAAAAAAAAAAATAAYAAAAAAAAAAAA=")

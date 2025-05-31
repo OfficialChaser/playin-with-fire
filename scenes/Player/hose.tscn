@@ -1,22 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://canolbex08enh"]
+[gd_scene load_steps=3 format=3 uid="uid://canolbex08enh"]
 
 [ext_resource type="Texture2D" uid="uid://drapotw6jm7mg" path="res://assets/hose_placeholder.png" id="1_o0wqt"]
 [ext_resource type="Script" uid="uid://c6qy37ce5nydb" path="res://scripts/Hose/hose.gd" id="1_q6cj2"]
-[ext_resource type="Script" uid="uid://dulmpbxfyuvj3" path="res://scripts/Hose/hose_stream.gd" id="4_he5br"]
-[ext_resource type="Texture2D" uid="uid://bsuhy268klumw" path="res://assets/placeholder.png" id="4_y28yv"]
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_he5br"]
-particle_flag_disable_z = true
-spread = 5.0
-initial_velocity_min = 100.0
-initial_velocity_max = 150.0
-gravity = Vector3(0, 0, 0)
-scale_min = 0.2
-scale_max = 0.4
-color = Color(0.0470588, 0.184314, 1, 1)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3mpnf"]
-size = Vector2(10, 5)
 
 [node name="Hose" type="Node2D"]
 script = ExtResource("1_q6cj2")
@@ -24,22 +9,3 @@ script = ExtResource("1_q6cj2")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(14, 0)
 texture = ExtResource("1_o0wqt")
-
-[node name="HoseStream" type="Area2D" parent="."]
-position = Vector2(21, 0)
-script = ExtResource("4_he5br")
-
-[node name="WaterParticles" type="GPUParticles2D" parent="HoseStream"]
-position = Vector2(3, 0)
-emitting = false
-amount = 500
-texture = ExtResource("4_y28yv")
-lifetime = 2.0
-speed_scale = 4.0
-process_material = SubResource("ParticleProcessMaterial_he5br")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HoseStream"]
-position = Vector2(5, 0.5)
-shape = SubResource("RectangleShape2D_3mpnf")
-
-[connection signal="area_entered" from="HoseStream" to="HoseStream" method="_on_area_entered"]
