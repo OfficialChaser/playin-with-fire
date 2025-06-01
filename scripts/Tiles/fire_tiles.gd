@@ -42,7 +42,7 @@ func add_fire():
 	# Vector2i(0, 0) represents the first tile in the tileset (the fire)
 	set_cell(new_coord_pair, 0, Vector2i(0, 0))
 	fire_health[new_coord_pair] = starting_health
-	add_fire_zone_area(new_coord_pair)
+	add_fire_sprite(new_coord_pair)
 
 func update_cell_health(coord_pair: Vector2i, damage: float):
 	# If it isn't a cell with fire health for whatever reason,
@@ -52,13 +52,14 @@ func update_cell_health(coord_pair: Vector2i, damage: float):
 	
 	# Apply damage
 	fire_health[coord_pair] -= damage
-	#Spawn smoke
-	var smoke = SMOKE_PARTICLES.instantiate()
-	smoke.global_position = 16*coord_pair + Vector2i(8,8)
-	get_tree().current_scene.add_child(smoke)
-	smoke.emitting = true
+	
 	
 	if fire_health[coord_pair] <= 0:
+		# Spawn smoke
+		var smoke = SMOKE_PARTICLES.instantiate()
+		smoke.global_position = 16*coord_pair + Vector2i(8,8)
+		get_tree().current_scene.add_child(smoke)
+		smoke.emitting = true
 		# Remove from list
 		fire_health.erase(coord_pair)
 		# End sequence (right now, just turn the cell off)
@@ -86,8 +87,8 @@ func find_open_surrounding_tiles(coord_pair: Vector2i):
 	return possible_coord_pairs
 
 
-func add_fire_zone_area(coords: Vector2i):
-	var new_fire_area : Area2D = FIRE_DAMAGE_ZONE.instantiate()
+func add_fire_sprite(coords: Vector2i):
+	var new_fire_area : AnimatedSprite2D = FIRE_DAMAGE_ZONE.instantiate()
 	var offset : Vector2i = Vector2i(8,8)
 	fire_areas[coords] = new_fire_area
 	new_fire_area.position = coords*16 + offset

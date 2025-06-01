@@ -1,9 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://bjv8yittm4a6l"]
+[gd_scene load_steps=11 format=3 uid="uid://bjv8yittm4a6l"]
 
 [ext_resource type="Texture2D" uid="uid://cj0wlhxadp2qn" path="res://assets/fire_fx_v1.0/png/orange/loops/burning_loop_1.png" id="1_v6ndn"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qw64f"]
-size = Vector2(16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b5usf"]
 atlas = ExtResource("1_v6ndn")
@@ -37,7 +34,7 @@ region = Rect2(144, 0, 24, 32)
 atlas = ExtResource("1_v6ndn")
 region = Rect2(168, 0, 24, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_lsnw8"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_v6ndn"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -66,17 +63,9 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 10.0
+"speed": 5.0
 }]
 
-[node name="FireDamageZone" type="Area2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_qw64f")
-debug_color = Color(0.891308, 0.311548, 0.238252, 0.42)
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -4)
-sprite_frames = SubResource("SpriteFrames_lsnw8")
+[node name="FireDamageZone" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_v6ndn")
 autoplay = "default"
-frame_progress = 0.44781

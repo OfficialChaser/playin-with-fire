@@ -42,7 +42,7 @@ func handle_movement(delta):
 		var knockback_weight = 0.8
 		var move_weight = 0.2
 		
-		# Tried messing around with a jitter to make the knockback more random
+		# Tried messing around with a jitter to make the knockback morew random
 		# You can get rid of this if you dont want it
 		var combined_direction = (spray_direction * knockback_weight + input_vector * move_weight).normalized()
 		var jitter = Vector2(
