@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://caw1spmbfilqt"]
+
+[ext_resource type="Texture2D" uid="uid://bkh2fk7o3piix" path="res://assets/pixel-art-house.png" id="1_d7po0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qtlar"]
+size = Vector2(70, 92)
+
+[node name="House" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_d7po0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qtlar")

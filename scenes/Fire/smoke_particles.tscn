@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://81jb02r2ed47"]
+
+[ext_resource type="Texture2D" uid="uid://bsuhy268klumw" path="res://assets/placeholder.png" id="1_7o28k"]
+
+[sub_resource type="Gradient" id="Gradient_of41q"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yiq52"]
+gradient = SubResource("Gradient_of41q")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_btntx"]
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 60.0
+initial_velocity_min = 10.0
+initial_velocity_max = 30.0
+gravity = Vector3(0, -100, 0)
+scale_min = 0.25
+scale_max = 0.5
+color = Color(0.279421, 0.237729, 0.229991, 1)
+color_ramp = SubResource("GradientTexture1D_yiq52")
+
+[node name="SmokeParticles" type="GPUParticles2D"]
+emitting = false
+amount = 20
+texture = ExtResource("1_7o28k")
+lifetime = 0.5
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_btntx")

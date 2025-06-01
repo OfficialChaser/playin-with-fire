@@ -1,0 +1,82 @@
+[gd_scene load_steps=12 format=3 uid="uid://bjv8yittm4a6l"]
+
+[ext_resource type="Texture2D" uid="uid://cj0wlhxadp2qn" path="res://assets/fire_fx_v1.0/png/orange/loops/burning_loop_1.png" id="1_v6ndn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qw64f"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b5usf"]
+atlas = ExtResource("1_v6ndn")
+region = Rect2(0, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xaj34"]
+atlas = ExtResource("1_v6ndn")
+region = Rect2(24, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v27jw"]
+atlas = ExtResource("1_v6ndn")
+region = Rect2(48, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gw550"]
+atlas = ExtResource("1_v6ndn")
+region = Rect2(72, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_140km"]
+atlas = ExtResource("1_v6ndn")
+region = Rect2(96, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fpci2"]
+atlas = ExtResource("1_v6ndn")
+region = Rect2(120, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8guf"]
+atlas = ExtResource("1_v6ndn")
+region = Rect2(144, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_syasb"]
+atlas = ExtResource("1_v6ndn")
+region = Rect2(168, 0, 24, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lsnw8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b5usf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xaj34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v27jw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gw550")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_140km")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fpci2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e8guf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_syasb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="FireDamageZone" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qw64f")
+debug_color = Color(0.891308, 0.311548, 0.238252, 0.42)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -4)
+sprite_frames = SubResource("SpriteFrames_lsnw8")
+autoplay = "default"
+frame_progress = 0.369049

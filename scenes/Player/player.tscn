@@ -39,7 +39,5 @@ offset = Vector2(-8, -8)
 
 [node name="Hose" parent="." instance=ExtResource("5_uiqp4")]
 
-[node name="HoseTracker" type="Marker2D" parent="."]
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_mtuoh")
