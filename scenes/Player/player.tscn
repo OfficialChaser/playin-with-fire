@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://ciigmew78bdo4"]
+[gd_scene load_steps=7 format=3 uid="uid://ciigmew78bdo4"]
 
 [ext_resource type="Script" uid="uid://bu3d0qr8bjdp4" path="res://scripts/Player/player.gd" id="1_mtuoh"]
 [ext_resource type="Texture2D" uid="uid://bsuhy268klumw" path="res://assets/placeholder.png" id="2_gqjuk"]
+[ext_resource type="Script" uid="uid://drt4ta5uq2ft7" path="res://scripts/Managers/player_collision_manager.gd" id="4_c4h5g"]
 [ext_resource type="PackedScene" uid="uid://canolbex08enh" path="res://scenes/HoseAndWater/hose.tscn" id="5_uiqp4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fcwna"]
@@ -27,7 +28,7 @@ animations = [{
 radius = 6.0
 height = 18.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_mtuoh")
 hose_knockback = 125
 
@@ -41,3 +42,12 @@ offset = Vector2(-8, -8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_mtuoh")
+
+[node name="PlayerCollisionManager" type="Node" parent="."]
+script = ExtResource("4_c4h5g")
+
+[node name="KnockbackCooldown" type="Timer" parent="PlayerCollisionManager"]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="PlayerCollisionManager/KnockbackCooldown" to="PlayerCollisionManager" method="_on_knockback_cooldown_timeout"]

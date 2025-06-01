@@ -1,5 +1,5 @@
 extends TileMapLayer
-
+class_name FireTiles
 # Data dictionaries
 var fire_health = {}
 var fire_areas = {}
@@ -21,22 +21,35 @@ func _ready():
 	# Give each starting fire cell a health
 	for coords in get_used_cells():
 		fire_health[coords] = starting_health
+	
+	player = get_tree().get_first_node_in_group("player")
 
 func _on_cooldown_timer_timeout():
 	add_fire()
 
 func add_fire():
-	var coord_pair
-	var possible_coord_pairs
-	# Make sure the tile chosen is a fire tile
-	# If the map is full this will crash
-	while true:
-		coord_pair = get_used_cells().pick_random()
-		possible_coord_pairs = find_open_surrounding_tiles(coord_pair)
-		if get_cell_tile_data(coord_pair) and get_cell_tile_data(coord_pair).get_custom_data("fire"):
-			if possible_coord_pairs.size() > 0:
-				break
-				
+	var possible_coord_pairs = []
+
+	var player_cell = local_to_map(to_local(player.global_position))
+
+	var fire_cells = []
+	for cell in get_used_cells():
+		if get_cell_tile_data(cell) and get_cell_tile_data(cell).get_custom_data("fire"):
+			fire_cells.append(cell)
+
+	fire_cells.shuffle()
+
+	for fire_cell in fire_cells:
+		var neighbors = find_open_surrounding_tiles(fire_cell)
+		if neighbors.has(player_cell):
+			neighbors.erase(player_cell)
+
+		if neighbors.size() > 0:
+			possible_coord_pairs = neighbors
+			break
+
+	if possible_coord_pairs.size() == 0:
+		return
 	var new_coord_pair = possible_coord_pairs.pick_random()
 	
 	# Vector2i(0, 0) represents the first tile in the tileset (the fire)
@@ -69,6 +82,8 @@ func update_cell_health(coord_pair: Vector2i, damage: float):
 		if fire_areas.has(coord_pair):
 			fire_areas[coord_pair].queue_free()
 			fire_areas.erase(coord_pair)
+	elif fire_areas.has(coord_pair):
+		fire_areas[coord_pair].play_hit_flash()
 
 
 func find_open_surrounding_tiles(coord_pair: Vector2i):
@@ -89,7 +104,7 @@ func find_open_surrounding_tiles(coord_pair: Vector2i):
 
 func add_fire_sprite(coords: Vector2i):
 	var new_fire_area : AnimatedSprite2D = FIRE_DAMAGE_ZONE.instantiate()
-	var offset : Vector2i = Vector2i(8,8)
+	var offset : Vector2i = Vector2i(8,0)
 	fire_areas[coords] = new_fire_area
 	new_fire_area.position = coords*16 + offset
 	get_tree().current_scene.add_child(new_fire_area)

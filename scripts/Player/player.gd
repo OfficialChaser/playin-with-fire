@@ -2,9 +2,9 @@ extends CharacterBody2D
 class_name Player
 
 # Player vars
-@export var max_health := 3
-@export var move_speed := 200
+@export var move_speed := 75
 @export var acc := 0.5
+var input_enabled := true
 
 # Hose effects on player
 @export var hose_knockback := 200
@@ -15,14 +15,19 @@ class_name Player
 @onready var hose = $Hose
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
-func _process(delta):
-	# Handling Input
-	if Input.is_action_just_pressed('spray'):
-		hose.spray()
-	if Input.is_action_just_released('spray'):
+func _physics_process(delta):
+	if input_enabled:
+		# Handling Input
+		if Input.is_action_just_pressed('spray'):
+			hose.spray()
+		if Input.is_action_just_released('spray'):
+			hose.spray(false)
+		
+		handle_movement(delta)
+	else:
 		hose.spray(false)
-
-	handle_movement(delta)
+		
+	move_and_slide()
 	handle_animations()
 
 
