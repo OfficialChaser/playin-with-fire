@@ -79,4 +79,4 @@ debug_color = Color(0.891308, 0.311548, 0.238252, 0.42)
 position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_lsnw8")
 autoplay = "default"
-frame_progress = 0.369049
+frame_progress = 0.44781

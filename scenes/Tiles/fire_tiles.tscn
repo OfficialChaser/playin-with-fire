@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://n501m6cj6l5u"]
+[gd_scene load_steps=7 format=3 uid="uid://n501m6cj6l5u"]
 
 [ext_resource type="Texture2D" uid="uid://ddbh0vufyeebh" path="res://assets/placeholder_tileset.png" id="1_40keo"]
+[ext_resource type="Texture2D" uid="uid://bb5wtmiarob6c" path="res://assets/placeholder_tileset_nofire.png" id="2_0utal"]
 [ext_resource type="Script" uid="uid://bwg25hb0u05xa" path="res://scripts/Tiles/fire_tiles.gd" id="2_40keo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5ese0"]
@@ -10,6 +11,13 @@ texture = ExtResource("1_40keo")
 0:0/0/custom_data_0 = true
 3:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b07pa"]
+texture = ExtResource("2_0utal")
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_5ese0"]
 physics_layer_0/collision_layer = 3
 physics_layer_0/collision_mask = 0
@@ -18,6 +26,7 @@ custom_data_layer_0/type = 1
 custom_data_layer_1/name = "boundary"
 custom_data_layer_1/type = 1
 sources/0 = SubResource("TileSetAtlasSource_5ese0")
+sources/1 = SubResource("TileSetAtlasSource_b07pa")
 
 [node name="FireTiles" type="TileMapLayer" groups=["tiles"]]
 tile_set = SubResource("TileSet_5ese0")
