@@ -95,8 +95,7 @@ func find_open_surrounding_tiles(coord_pair: Vector2i):
 			var cell_coord_pair = coord_pair + Vector2i(x, y)
 
 			# If the tile is open, add it to the list
-			var distance_to_player =  cell_coord_pair.distance_to(player.global_position)
-			if get_cell_tile_data(cell_coord_pair) == null and distance_to_player > 4:
+			if get_cell_tile_data(cell_coord_pair) == null:
 				possible_coord_pairs.append(cell_coord_pair)
 	
 	return possible_coord_pairs

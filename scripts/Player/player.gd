@@ -3,7 +3,9 @@ class_name Player
 
 # Player vars
 @export var move_speed := 75
-@export var acc := 0.5
+@export var starting_acc := 0.5
+var acc := 0.5
+
 var input_enabled := true
 
 # Hose effects on player
@@ -17,6 +19,11 @@ var input_enabled := true
 
 func _physics_process(delta):
 	if input_enabled:
+		
+		# lerping acceleration back to normal if knockback reset it
+		if acc < starting_acc:
+			acc = lerp(acc, starting_acc, 0.01)
+		
 		# Handling Input
 		if Input.is_action_just_pressed('spray'):
 			hose.spray()
