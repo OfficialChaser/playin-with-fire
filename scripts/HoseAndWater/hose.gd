@@ -14,9 +14,10 @@ var spawn_accumulator := 0.0
 # Onreadys
 @onready var sprite = $Sprite2D
 @onready var water_drop = preload("res://scenes/HoseAndWater/water_drop.tscn")
+var main_camera : MainCamera
 
 func _ready():
-	pass
+	main_camera = get_tree().get_first_node_in_group("main_camera")
 
 func _process(delta):
 	look_at(get_global_mouse_position())

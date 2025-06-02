@@ -26,9 +26,16 @@ func handle_fire_collision():
 		
 	var collider = collision.get_collider()
 	if collider is FireTiles:
+		# Initiate knockback
 		knockback_dir = (player.global_position - collision.get_position()).normalized()
 		knockback_cooldown.start()
 		player.input_enabled = false
+		
+		# Update camera
+		player.main_camera.apply_shake(3, 6)
+		player.main_camera.play_red_tint_anim()
+		
+		# Add damage to player
 		GameManager.damage_player(fire_damage)
 
 func _on_knockback_cooldown_timeout():

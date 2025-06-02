@@ -15,7 +15,12 @@ var input_enabled := true
 
 # Onreadys
 @onready var hose = $Hose
-@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var sprite_animation_player = $Sprite2D/AnimationPlayer
+var main_camera : MainCamera
+
+func _ready():
+	main_camera = get_tree().get_first_node_in_group("main_camera")
 
 func _physics_process(delta):
 	if input_enabled:
@@ -27,6 +32,7 @@ func _physics_process(delta):
 		# Handling Input
 		if Input.is_action_just_pressed('spray'):
 			hose.spray()
+			main_camera.apply_shake(2, 10)
 		if Input.is_action_just_released('spray'):
 			hose.spray(false)
 		
@@ -36,7 +42,6 @@ func _physics_process(delta):
 		
 	move_and_slide()
 	handle_animations()
-
 
 func handle_movement(delta):
 	# Get input
@@ -72,19 +77,20 @@ func handle_movement(delta):
 
 	move_and_slide()
 
-
 func handle_animations():
-	if velocity != Vector2.ZERO:
-		animated_sprite_2d.animation = 'run'
+	if !input_enabled:
+		sprite_animation_player.play("stunned")
+	elif velocity.length() > 0.01:
+		sprite_animation_player.play("run")
 	else:
-		animated_sprite_2d.animation = 'idle'
+		sprite_animation_player.play("idle")
 	
 	# this doesnt work with your sprite sheet, but i kept
 	# the animated sprite node (the slicing of the sprite sheet
 	# threw things off)
 	if hose.sprite.global_position > global_position: 
-		animated_sprite_2d.flip_h = false
+		sprite_2d.flip_h = false
 		hose.sprite.flip_v = false
 	elif hose.sprite.global_position < global_position:
-		animated_sprite_2d.flip_h = true
+		sprite_2d.flip_h = true
 		hose.sprite.flip_v = true

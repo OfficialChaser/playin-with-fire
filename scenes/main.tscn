@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://cgqtkixpnivjh"]
+[gd_scene load_steps=10 format=4 uid="uid://cgqtkixpnivjh"]
 
 [ext_resource type="PackedScene" uid="uid://ciigmew78bdo4" path="res://scenes/Player/player.tscn" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://15jwuaapa63q" path="res://scenes/Tiles/background_tiles.tscn" id="1_sugp2"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cd2ttlh6t7sgg" path="res://scenes/Tiles/midground_tiles.tscn" id="2_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://duimloaabghuk" path="res://assets/placeholder_decoration_tiles.png" id="3_tbgi4"]
 [ext_resource type="Script" uid="uid://b2xxeikhodw4a" path="res://scripts/Tiles/midground_tiles.gd" id="4_tefeu"]
+[ext_resource type="PackedScene" uid="uid://hn24gwwehgdg" path="res://scenes/main_camera.tscn" id="7_o6xl0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tefeu"]
 texture = ExtResource("3_tbgi4")
@@ -50,4 +51,4 @@ player = NodePath("../Player")
 position = Vector2(0, 56)
 collision_layer = 0
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="MainCamera" parent="." instance=ExtResource("7_o6xl0")]
