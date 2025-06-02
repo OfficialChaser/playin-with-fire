@@ -189,7 +189,7 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -94.0
-offset_bottom = 97.0
+offset_bottom = 91.0
 grow_horizontal = 0
 texture = ExtResource("1_efmwq")
 
@@ -224,8 +224,8 @@ vertical_alignment = 1
 
 [node name="TimerPanel" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 94.0
-offset_bottom = 63.0
+offset_right = 96.0
+offset_bottom = 59.0
 texture = ExtResource("1_efmwq")
 
 [node name="TimerLabel" type="Label" parent="TimerPanel"]
