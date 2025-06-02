@@ -1,15 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://ciigmew78bdo4"]
+[gd_scene load_steps=9 format=3 uid="uid://ciigmew78bdo4"]
 
 [ext_resource type="Script" uid="uid://bu3d0qr8bjdp4" path="res://scripts/Player/player.gd" id="1_mtuoh"]
 [ext_resource type="Texture2D" uid="uid://bsuhy268klumw" path="res://assets/placeholder.png" id="2_gqjuk"]
+[ext_resource type="Texture2D" uid="uid://cuvcihyqxvx4a" path="res://assets/fireman_placeholder.png" id="2_uiqp4"]
 [ext_resource type="Script" uid="uid://drt4ta5uq2ft7" path="res://scripts/Managers/player_collision_manager.gd" id="4_c4h5g"]
 [ext_resource type="PackedScene" uid="uid://canolbex08enh" path="res://scenes/HoseAndWater/hose.tscn" id="5_uiqp4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvfru"]
+atlas = ExtResource("2_uiqp4")
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fcwna"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_gqjuk")
+"texture": SubResource("AtlasTexture_hvfru")
 }],
 "loop": true,
 "name": &"idle",

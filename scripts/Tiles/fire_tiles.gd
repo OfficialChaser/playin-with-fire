@@ -9,6 +9,7 @@ var fire_areas = {}
 
 # Onreadys
 @onready var cooldown_timer = $CooldownTimer
+@onready var midground_tiles: MidgroundLayer = $"../MidgroundTiles"
 
 # Fire Damge Zone Scene - For body detection, animations, etc
 const FIRE_DAMAGE_ZONE = preload("res://scenes/Fire/fire_damage_zone.tscn")
@@ -50,8 +51,17 @@ func add_fire():
 
 	if possible_coord_pairs.size() == 0:
 		return
-	var new_coord_pair = possible_coord_pairs.pick_random()
 	
+	var new_coord_pair = possible_coord_pairs.pick_random()
+
+	if midground_tiles.tree_coverage.has(new_coord_pair):
+		var mid_tile_data = midground_tiles.get_cell_tile_data(new_coord_pair)
+		if mid_tile_data and !mid_tile_data.get_custom_data('burning'):
+			# First time this tree is burning
+			mid_tile_data.set_custom_data('burning',true)
+			print(midground_tiles.get_cell_atlas_coords(new_coord_pair))
+
+
 	# Vector2i(0, 0) represents the first tile in the tileset (the fire)
 	set_cell(new_coord_pair, 0, Vector2i(0, 0))
 	fire_health[new_coord_pair] = starting_health

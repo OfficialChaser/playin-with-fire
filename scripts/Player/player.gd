@@ -88,4 +88,3 @@ func handle_animations():
 	elif hose.sprite.global_position < global_position:
 		animated_sprite_2d.flip_h = true
 		hose.sprite.flip_v = true
-	
