@@ -58,3 +58,4 @@ collision_layer = 0
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GUI" parent="CanvasLayer" instance=ExtResource("8_tipki")]
+visible = false

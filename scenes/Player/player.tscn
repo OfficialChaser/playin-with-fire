@@ -2,155 +2,58 @@
 
 [ext_resource type="Script" uid="uid://bu3d0qr8bjdp4" path="res://scripts/Player/player.gd" id="1_mtuoh"]
 [ext_resource type="Shader" uid="uid://dnv5d7khiv3x5" path="res://misc/shaders/hit_flash.tres" id="2_hvfru"]
-[ext_resource type="Texture2D" uid="uid://cuvcihyqxvx4a" path="res://assets/fireman_placeholder.png" id="2_uiqp4"]
 [ext_resource type="Script" uid="uid://drt4ta5uq2ft7" path="res://scripts/Managers/player_collision_manager.gd" id="4_c4h5g"]
+[ext_resource type="Texture2D" uid="uid://yl1yaiys4mwk" path="res://assets/fireman/fireman-sheet.png" id="4_hvfru"]
 [ext_resource type="PackedScene" uid="uid://canolbex08enh" path="res://scenes/HoseAndWater/hose.tscn" id="5_uiqp4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a06cl"]
 shader = ExtResource("2_hvfru")
-shader_parameter/enabled = true
-shader_parameter/tint = Color(1, 0.196078, 0, 1)
+shader_parameter/enabled = false
+shader_parameter/tint = Color(1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_uiqp4"]
+resource_name = "run"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4]
+}
 
 [sub_resource type="Animation" id="Animation_hvfru"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture")
+tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [null]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:material:shader_parameter/enabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:material:shader_parameter/tint")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 0.196078, 0, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_uiqp4"]
-resource_name = "idle"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_uiqp4")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:material:shader_parameter/enabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_a06cl"]
-resource_name = "run"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_uiqp4")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:material:shader_parameter/enabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
+resource_name = "idle"
 
 [sub_resource type="Animation" id="Animation_dl1wr"]
 resource_name = "stunned"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_uiqp4")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:material:shader_parameter/enabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:material:shader_parameter/tint")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 0.196078, 0, 1)]
-}
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_wwtew"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a06cl"]
 _data = {
 &"RESET": SubResource("Animation_hvfru"),
-&"idle": SubResource("Animation_uiqp4"),
-&"run": SubResource("Animation_a06cl"),
+&"idle": SubResource("Animation_a06cl"),
+&"run": SubResource("Animation_uiqp4"),
 &"stunned": SubResource("Animation_dl1wr")
 }
 
@@ -164,14 +67,17 @@ hose_knockback = 50
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_a06cl")
+position = Vector2(8, 7)
+scale = Vector2(2, 2)
+texture = ExtResource("4_hvfru")
 centered = false
 offset = Vector2(-8, -8)
+hframes = 20
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
 libraries = {
-&"": SubResource("AnimationLibrary_wwtew")
+&"": SubResource("AnimationLibrary_a06cl")
 }
-autoplay = "idle"
 
 [node name="Hose" parent="." instance=ExtResource("5_uiqp4")]
 
