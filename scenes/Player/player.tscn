@@ -59,6 +59,23 @@ tracks/0/keys = {
 "values": [1, 2, 3, 4]
 }
 
+[sub_resource type="Animation" id="Animation_uiqp4"]
+resource_name = "run"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4]
+}
+
 [sub_resource type="Animation" id="Animation_dl1wr"]
 resource_name = "stunned"
 
@@ -71,8 +88,8 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mtuoh"]
-radius = 6.0
-height = 18.0
+radius = 3.0
+height = 14.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_mtuoh")
@@ -95,6 +112,7 @@ libraries = {
 [node name="Hose" parent="." instance=ExtResource("5_uiqp4")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_mtuoh")
 
 [node name="PlayerCollisionManager" type="Node" parent="."]
