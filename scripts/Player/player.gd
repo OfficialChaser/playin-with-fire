@@ -23,6 +23,9 @@ func _ready():
 	main_camera = get_tree().get_first_node_in_group("main_camera")
 
 func _physics_process(delta):
+	if not GameManager.in_game:
+		hose.spray(false)
+		return
 	if input_enabled:
 		
 		# lerping acceleration back to normal if knockback reset it

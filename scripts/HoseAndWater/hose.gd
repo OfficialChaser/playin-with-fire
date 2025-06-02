@@ -20,6 +20,9 @@ func _ready():
 	main_camera = get_tree().get_first_node_in_group("main_camera")
 
 func _process(delta):
+	if not GameManager.in_game:
+		return
+		
 	look_at(get_global_mouse_position())
 
 	manage_water_spawning(spraying, delta)

@@ -13,6 +13,8 @@ func _ready():
 	player = get_parent()
 
 func _physics_process(delta):
+	if not GameManager.in_game:
+		return
 	handle_fire_collision()
 	
 	# If player movement disabled, apply knockback to player
@@ -26,17 +28,29 @@ func handle_fire_collision():
 		
 	var collider = collision.get_collider()
 	if collider is FireTiles:
-		# Initiate knockback
+		# Move into the tile that was actually hit
+		var offset = -collision.get_normal() * 8.0  # Half-tile offset
+		var adjusted_pos = collision.get_position() + offset
+		var local_pos = collider.to_local(adjusted_pos)
+		var tile_coords = collider.local_to_map(local_pos)
+
+		var tile_data = collider.get_cell_tile_data(tile_coords)
+		if !tile_data or tile_data and tile_data.get_custom_data("fire") == false:
+			return  # Safe tile, skip
+
+		# Apply knockback
 		knockback_dir = (player.global_position - collision.get_position()).normalized()
 		knockback_cooldown.start()
 		player.input_enabled = false
 		
-		# Update camera
+		# Camera effects
 		player.main_camera.apply_shake(3, 6)
 		player.main_camera.play_red_tint_anim()
 		
-		# Add damage to player
+		# Add damage
 		GameManager.damage_player(fire_damage)
+
+
 
 func _on_knockback_cooldown_timeout():
 	player.acc = 0

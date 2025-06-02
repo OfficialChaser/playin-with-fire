@@ -16,17 +16,24 @@ const FIRE_DAMAGE_ZONE = preload("res://scenes/Fire/fire_damage_zone.tscn")
 const SMOKE_PARTICLES = preload("res://scenes/Fire/smoke_particles.tscn")
 
 @export var player : Player
+@export var gui : GUI
 
 
 func _ready():
 	# Give each starting fire cell a health
 	for coords in get_used_cells():
-		fire_health[coords] = starting_health
+		if get_cell_tile_data(coords).get_custom_data("fire"):
+			fire_health[coords] = starting_health
+			add_fire_sprite(coords)
+	
+	# None of the tile textures need to be seen
+	visible = false
 	
 	player = get_tree().get_first_node_in_group("player")
 
 func _on_cooldown_timer_timeout():
-	add_fire()
+	if GameManager.in_game:
+		add_fire()
 
 func add_fire():
 	var possible_coord_pairs = []
@@ -74,7 +81,8 @@ func update_cell_health(coord_pair: Vector2i, damage: float):
 		return
 	
 	# Apply damage
-	fire_health[coord_pair] -= damage
+	if GameManager.in_game:
+		fire_health[coord_pair] -= damage
 	
 	
 	if fire_health[coord_pair] <= 0:
@@ -92,6 +100,9 @@ func update_cell_health(coord_pair: Vector2i, damage: float):
 		if fire_areas.has(coord_pair):
 			fire_areas[coord_pair].queue_free()
 			fire_areas.erase(coord_pair)
+		
+		if fire_areas.size() == 0:
+			gui.day_over_sequence("fire bonus")
 	elif fire_areas.has(coord_pair):
 		fire_areas[coord_pair].play_hit_flash()
 
@@ -116,4 +127,4 @@ func add_fire_sprite(coords: Vector2i):
 	var offset : Vector2i = Vector2i(8,0)
 	fire_areas[coords] = new_fire_area
 	new_fire_area.position = coords*16 + offset
-	get_tree().current_scene.add_child(new_fire_area)
+	get_tree().current_scene.add_child.call_deferred(new_fire_area)

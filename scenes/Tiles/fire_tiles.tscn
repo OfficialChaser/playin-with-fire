@@ -10,6 +10,7 @@ texture = ExtResource("1_40keo")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 8, 8, -8, 8, -8, -8)
 0:0/0/custom_data_0 = true
 3:0/0 = 0
+3:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b07pa"]
 texture = ExtResource("2_0utal")
@@ -21,6 +22,8 @@ texture = ExtResource("2_0utal")
 [sub_resource type="TileSet" id="TileSet_5ese0"]
 physics_layer_0/collision_layer = 3
 physics_layer_0/collision_mask = 0
+physics_layer_1/collision_layer = 1
+physics_layer_1/collision_mask = 0
 custom_data_layer_0/name = "fire"
 custom_data_layer_0/type = 1
 custom_data_layer_1/name = "boundary"
@@ -33,7 +36,8 @@ tile_set = SubResource("TileSet_5ese0")
 script = ExtResource("2_40keo")
 
 [node name="CooldownTimer" type="Timer" parent="."]
-wait_time = 0.04
+process_callback = 0
+wait_time = 0.05
 autostart = true
 
 [connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
