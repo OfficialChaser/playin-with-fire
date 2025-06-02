@@ -25,6 +25,12 @@ window/size/viewport_width=640
 window/size/viewport_height=360
 window/stretch/mode="viewport"
 
+[gui]
+
+theme/custom_font="uid://b82diaeapk85u"
+theme/default_font_antialiasing=0
+theme/default_font_subpixel_positioning=0
+
 [input]
 
 move_left={

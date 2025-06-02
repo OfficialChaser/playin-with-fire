@@ -19,3 +19,6 @@ func damage_player(damage: int):
 func day_completed(_way: String):
 	player_health = 100
 	in_game = false
+	day += 1
+	get_tree().reload_current_scene()
+	in_game = true

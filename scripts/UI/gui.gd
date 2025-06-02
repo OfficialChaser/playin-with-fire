@@ -11,6 +11,8 @@ class_name GUI
 
 
 func _ready():
+	blur_animation_player.play("RESET")
+	transition_animation_player.play("fade_out")
 	day_timer.start()
 
 func _process(_delta):
@@ -28,7 +30,7 @@ func update_timer_label():
 	timer_label.text = str(minutes) + ":" + str(seconds).pad_zeros(2)
 
 func update_health_label():
-	hp_label.text = "Health: " + str(GameManager.player_health)
+	hp_label.text = "HP: " + str(GameManager.player_health)
 
 func update_day_label():
 	day_label.text = "Day " + str(GameManager.day)
@@ -41,7 +43,7 @@ func day_over_sequence(way: String = "time out"):
 	day_timer.stop()
 	await get_tree().create_timer(0.5).timeout
 	blur_animation_player.play("blur_in")
-	await get_tree().create_timer(5).timeout
+	await get_tree().create_timer(2).timeout
 	
 	transition_animation_player.play("fade_in")
 	

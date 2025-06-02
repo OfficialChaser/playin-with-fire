@@ -160,7 +160,7 @@ height = 18.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_mtuoh")
-hose_knockback = 125
+hose_knockback = 50
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_a06cl")
