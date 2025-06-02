@@ -1,7 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://bjv8yittm4a6l"]
+[gd_scene load_steps=11 format=3 uid="uid://bjv8yittm4a6l"]
 
 [ext_resource type="Shader" uid="uid://dnv5d7khiv3x5" path="res://misc/shaders/hit_flash.tres" id="1_b5usf"]
-[ext_resource type="Texture2D" uid="uid://cj0wlhxadp2qn" path="res://assets/fire_fx_v1.0/png/orange/loops/burning_loop_1.png" id="1_v6ndn"]
+[ext_resource type="Texture2D" uid="uid://c2arsfadqcngv" path="res://assets/fire-sheet.png" id="2_xaj34"]
 [ext_resource type="Script" uid="uid://dunm781e3pr6i" path="res://scripts/Fire/fire_damage_zone.gd" id="3_xaj34"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xaj34"]
@@ -10,69 +10,43 @@ shader = ExtResource("1_b5usf")
 shader_parameter/enabled = false
 shader_parameter/tint = Color(1, 1, 1, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_b5usf"]
-atlas = ExtResource("1_v6ndn")
-region = Rect2(0, 0, 24, 32)
+[sub_resource type="Animation" id="Animation_140km"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xaj34"]
-atlas = ExtResource("1_v6ndn")
-region = Rect2(24, 0, 24, 32)
+[sub_resource type="Animation" id="Animation_fpci2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_v27jw"]
-atlas = ExtResource("1_v6ndn")
-region = Rect2(48, 0, 24, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gw550"]
-atlas = ExtResource("1_v6ndn")
-region = Rect2(72, 0, 24, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_140km"]
-atlas = ExtResource("1_v6ndn")
-region = Rect2(96, 0, 24, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fpci2"]
-atlas = ExtResource("1_v6ndn")
-region = Rect2(120, 0, 24, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e8guf"]
-atlas = ExtResource("1_v6ndn")
-region = Rect2(144, 0, 24, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_syasb"]
-atlas = ExtResource("1_v6ndn")
-region = Rect2(168, 0, 24, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_v6ndn"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b5usf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xaj34")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_v27jw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gw550")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_140km")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fpci2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e8guf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_syasb")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e8guf"]
+_data = {
+&"RESET": SubResource("Animation_fpci2"),
+&"idle": SubResource("Animation_140km")
+}
 
 [sub_resource type="Animation" id="Animation_gw550"]
 length = 0.001
@@ -111,15 +85,20 @@ _data = {
 &"hit_flash": SubResource("Animation_v27jw")
 }
 
-[node name="FireDamageZone" type="AnimatedSprite2D"]
+[node name="FireDamageZone" type="Sprite2D"]
 material = SubResource("ShaderMaterial_xaj34")
-sprite_frames = SubResource("SpriteFrames_v6ndn")
-autoplay = "default"
-frame = 4
-frame_progress = 0.133752
+scale = Vector2(2, 2)
+texture = ExtResource("2_xaj34")
+hframes = 4
 script = ExtResource("3_xaj34")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_e8guf")
+}
+autoplay = "idle"
+
+[node name="ShaderAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_140km")
 }

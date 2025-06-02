@@ -123,7 +123,7 @@ func find_open_surrounding_tiles(coord_pair: Vector2i):
 
 
 func add_fire_sprite(coords: Vector2i):
-	var new_fire_area : AnimatedSprite2D = FIRE_DAMAGE_ZONE.instantiate()
+	var new_fire_area : Sprite2D = FIRE_DAMAGE_ZONE.instantiate()
 	var offset : Vector2i = Vector2i(8,0)
 	fire_areas[coords] = new_fire_area
 	new_fire_area.position = coords*16 + offset
