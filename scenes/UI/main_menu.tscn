@@ -65,6 +65,7 @@ grow_vertical = 2
 color = Color(0.439216, 0.219608, 0.262745, 1)
 
 [node name="BackButton" type="Button" parent="SettingsMenu"]
+layout_mode = 0
 offset_left = 13.0
 offset_top = 10.0
 offset_right = 53.0
