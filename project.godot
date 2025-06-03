@@ -13,6 +13,8 @@ config_version=5
 config/name="Major Jam 7"
 run/main_scene="uid://bossmfp1bwrd"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+boot_splash/bg_color=Color(0.34902, 0.560784, 0.313726, 1)
+boot_splash/image="uid://bkh2fk7o3piix"
 config/icon="uid://bsuhy268klumw"
 
 [autoload]
@@ -24,6 +26,7 @@ Transition="*res://scenes/UI/transition.tscn"
 
 window/size/viewport_width=640
 window/size/viewport_height=360
+window/size/mode=4
 window/stretch/mode="viewport"
 
 [file_customization]
