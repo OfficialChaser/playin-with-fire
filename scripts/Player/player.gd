@@ -12,7 +12,7 @@ var input_enabled := true
 @export var hose_knockback := 200
 @export var hose_jitter_magnitude := 5
 @export var hose_jitter_power := 100
-
+@export var hose_shake_strength := 1.0
 # Onreadys
 @onready var hose = $Hose
 @onready var sprite_2d: Sprite2D = $Sprite2D
@@ -35,7 +35,7 @@ func _physics_process(delta):
 		# Handling Input
 		if Input.is_action_just_pressed('spray'):
 			hose.spray()
-			main_camera.apply_shake(2, 10)
+			main_camera.apply_shake(hose_shake_strength, 10)
 		if Input.is_action_just_released('spray'):
 			hose.spray(false)
 		
@@ -45,6 +45,9 @@ func _physics_process(delta):
 		
 	move_and_slide()
 	handle_animations()
+	
+	if Input.is_action_just_pressed('restart'):
+		get_tree().reload_current_scene()
 
 func handle_movement(delta):
 	# Get input
