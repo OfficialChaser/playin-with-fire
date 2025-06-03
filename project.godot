@@ -27,7 +27,6 @@ Transition="*res://scenes/UI/transition.tscn"
 
 window/size/viewport_width=480
 window/size/viewport_height=360
-window/size/mode=4
 window/stretch/mode="viewport"
 
 [file_customization]
