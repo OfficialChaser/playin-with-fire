@@ -1,6 +1,6 @@
 extends Node2D
 
-const LIGHTNING = preload("res://scenes/lightning.tscn")
+const LIGHTNING = preload("res://scenes/Objects/lightning.tscn")
 
 @onready var fire_tiles: FireTiles = $"../FireTiles"
 @export var max_lightning : int = 5

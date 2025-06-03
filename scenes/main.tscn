@@ -57,7 +57,6 @@ collision_layer = 0
 [node name="MainCamera" parent="." instance=ExtResource("7_o6xl0")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="GUI" parent="CanvasLayer" instance=ExtResource("8_tipki")]
 
