@@ -15,9 +15,11 @@ var spawn_accumulator := 0.0
 @onready var sprite = $Sprite2D
 @onready var water_drop = preload("res://scenes/HoseAndWater/water_drop.tscn")
 var main_camera : MainCamera
+var player : Player
 
 func _ready():
 	main_camera = get_tree().get_first_node_in_group("main_camera")
+	player = get_tree().get_first_node_in_group("player")
 
 func _process(delta):
 	if not GameManager.in_game:
@@ -28,8 +30,8 @@ func _process(delta):
 		Input.get_action_strength("look_down") - Input.get_action_strength("look_up")
 	).normalized()
 	if (controller.length_squared() > 0):
-		look_at(self.get_parent().get_parent().position + controller)
-		print_debug(self.get_parent().get_parent().position)
+		
+		look_at(player.global_position + controller)
 	else:
 		look_at(get_global_mouse_position())
 
