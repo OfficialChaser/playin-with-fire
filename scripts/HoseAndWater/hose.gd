@@ -23,7 +23,15 @@ func _process(delta):
 	if not GameManager.in_game:
 		return
 		
-	look_at(get_global_mouse_position())
+	var controller = Vector2(
+		Input.get_action_strength("look_right") - Input.get_action_strength("look_left"),
+		Input.get_action_strength("look_down") - Input.get_action_strength("look_up")
+	).normalized()
+	if (controller.length_squared() > 0):
+		look_at(self.get_parent().get_parent().position + controller)
+		print_debug(self.get_parent().get_parent().position)
+	else:
+		look_at(get_global_mouse_position())
 
 	manage_water_spawning(spraying, delta)
 	

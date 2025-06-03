@@ -55,15 +55,23 @@ func _physics_process(delta):
 
 
 func handle_movement(delta):
-	# Get input
 	var mouse_pos = get_global_mouse_position()
+	# Get input
+	var controller = Vector2(
+	 	Input.get_action_strength("look_right") - Input.get_action_strength("look_left"),
+	 	Input.get_action_strength("look_down") - Input.get_action_strength("look_up")
+	).normalized()
+	
 	var input_vector = Vector2(
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
 		Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	).normalized()
 	
 	if hose.spraying:
-		var spray_direction = (global_position - mouse_pos).normalized()
+		var spray_direction = controller
+		if not (controller.length_squared() > 0):
+			spray_direction = (global_position - mouse_pos).normalized()
+			
 		
 		# Weight values: tweak these to tune how much movement vs. knockback matters
 		# Probably wanna make sure they add up to one
