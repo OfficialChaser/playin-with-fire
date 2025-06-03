@@ -4,7 +4,7 @@ extends Node
 var player : CharacterBody2D
 
 # Fire knockback variables
-var fire_knockback_force := 3000.0
+var fire_knockback_force := 10000.0
 var fire_damage := 10
 var knockback_dir
 @onready var knockback_cooldown = $KnockbackCooldown
@@ -17,8 +17,8 @@ func _physics_process(delta):
 		return
 	handle_fire_collision()
 	
-	# If player movement disabled, apply knockback to player
-	if !player.input_enabled:
+	# If player knockback enabled, apply knockback to player
+	if player.knockback_enabled:
 		player.velocity = knockback_dir * fire_knockback_force * delta
 
 func handle_fire_collision():
@@ -39,9 +39,9 @@ func handle_fire_collision():
 			return  # Safe tile, skip
 
 		# Apply knockback
-		knockback_dir = (player.global_position - collision.get_position()).normalized()
+		knockback_dir = (player.position - local_pos).normalized()
 		knockback_cooldown.start()
-		player.input_enabled = false
+		player.knockback_enabled = true
 		
 		# Camera effects
 		player.main_camera.apply_shake(3, 6)
@@ -54,4 +54,5 @@ func handle_fire_collision():
 
 func _on_knockback_cooldown_timeout():
 	player.acc = 0
-	player.input_enabled = true
+	player.velocity = Vector2.ZERO
+	player.knockback_enabled = false

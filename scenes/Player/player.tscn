@@ -131,7 +131,7 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mtuoh"]
-radius = 4.0
+radius = 5.0
 height = 16.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
@@ -162,7 +162,7 @@ shape = SubResource("CapsuleShape2D_mtuoh")
 script = ExtResource("4_c4h5g")
 
 [node name="KnockbackCooldown" type="Timer" parent="PlayerCollisionManager"]
-wait_time = 0.1
+wait_time = 0.3
 one_shot = true
 
 [connection signal="timeout" from="PlayerCollisionManager/KnockbackCooldown" to="PlayerCollisionManager" method="_on_knockback_cooldown_timeout"]

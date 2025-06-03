@@ -20,6 +20,7 @@ const SMOKE_PARTICLES = preload("res://scenes/Fire/smoke_particles.tscn")
 
 
 func _ready():
+	get_cell_source_id(Vector2i(0, 0))
 	fire_areas.clear()
 	fire_health.clear()
 	# Give each starting fire cell a health

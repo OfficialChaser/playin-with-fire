@@ -15,15 +15,21 @@ var damage := 20.0
 
 # Onreadys
 @onready var sprite_2d = $Sprite2D
-
+var fire_tiles
 
 func _ready():
 	damage = starting_damage
 	velocity = Vector2.RIGHT.rotated(rotation + deg_to_rad(randf_range(-10, 10))) * speed
 	
-	# Delete the drop if it goes its whole lifetime without colliding with anything
+	# PREWARM: Touch tile data so HTML5 loads it early - this still doesnt really work exactly right
+	fire_tiles = get_node("/root/Main/FireTiles")
+	var test_data = fire_tiles.get_cell_tile_data(Vector2i(0, 0))
+	if test_data:
+		var _i = test_data.get_custom_data("fire")
+
+	# Start decay countdown
 	await get_tree().create_timer(lifetime).timeout
-	queue_free() # Just queuing free for now
+	queue_free()
 
 func _physics_process(delta):
 	global_position += velocity * delta
@@ -36,7 +42,7 @@ func manage_decay(delta):
 	damage = clamp(damage, 1, starting_damage)
 
 func _on_body_entered(body):
-	if body.name == "FireTiles":
+	if body == fire_tiles:
 		var tiles = body as TileMapLayer
 		
 		# Get coordinate of collision
@@ -57,7 +63,7 @@ func _on_body_entered(body):
 				if tiles.get_cell_tile_data(cell_coord).get_custom_data("fire"):
 					tiles.update_cell_health(cell_coord, damage)
 				
-				# End sequence for water drop (right now just queue free)
-				queue_free()
+		# End sequence for water drop (right now just queue free)
+		queue_free()
 	elif body.name == "MidgroundTiles":
 		queue_free()

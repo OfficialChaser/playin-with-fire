@@ -32,7 +32,7 @@ func spawn_lightning():
 	fire_tiles.fire_health[coord] = fire_tiles.starting_health
 	fire_tiles.add_fire_sprite(coord)
 	
-func get_empty_cells(tiles = fire_tiles, min_tile = Vector2i(-20,-5), max_tile = Vector2i(19,10)) -> Array:
+func get_empty_cells(_tiles = fire_tiles, min_tile = Vector2i(-20,-5), max_tile = Vector2i(19,10)) -> Array:
 	var possible_cells := []
 	
 	for x in range(min_tile.x, max_tile.x):

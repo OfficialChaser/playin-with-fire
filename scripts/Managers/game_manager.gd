@@ -28,15 +28,21 @@ func day_completed():
 	in_game = true
 
 func restart_game():
+	# Reset stats
 	player_health = 100
 	day = 1
 	fire_spawn_rate = 0.2
+	
+	# Play transition
+	Transition.play("fade_in")
+	await get_tree().create_timer(0.5).timeout
+	
+	# Reload scene and reset game vars
+	get_tree().reload_current_scene()
 	game_over = false
 	in_game = true
 	
-	Transition.play("fade_in")
-	await get_tree().create_timer(0.5).timeout
-	get_tree().reload_current_scene()
+	# Play animation
 	Transition.play("fade_out")
 
 func end_game():

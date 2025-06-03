@@ -6,7 +6,7 @@ class_name Player
 @export var starting_acc := 0.5
 var acc := 0.5
 
-var input_enabled := true
+var knockback_enabled := false
 var paused := false
 
 # Hose effects on player
@@ -14,6 +14,7 @@ var paused := false
 @export var hose_jitter_magnitude := 5
 @export var hose_jitter_power := 100
 @export var hose_shake_strength := 1.0
+
 # Onreadys
 @onready var hose = $Hose
 @onready var sprite_2d: Sprite2D = $Sprite2D
@@ -23,7 +24,7 @@ var main_camera : MainCamera
 
 func _ready():
 	main_camera = get_tree().get_first_node_in_group("main_camera")
-	input_enabled = true
+	knockback_enabled = false
 
 func _physics_process(delta):
 	if paused:
@@ -33,8 +34,7 @@ func _physics_process(delta):
 		hose.spray(false)
 		sprite_animation_player.play("idle")
 		return
-	if input_enabled:
-		
+	if !knockback_enabled:
 		# lerping acceleration back to normal if knockback reset it
 		if acc < starting_acc:
 			acc = lerp(acc, starting_acc, 0.01)
@@ -52,7 +52,6 @@ func _physics_process(delta):
 		
 	move_and_slide()
 	handle_animations()
-		
 
 
 func handle_movement(delta):
@@ -90,7 +89,7 @@ func handle_movement(delta):
 	move_and_slide()
 
 func handle_animations():
-	if !input_enabled:
+	if knockback_enabled:
 		sprite_animation_player.play("stunned")
 	elif velocity.length() > 0.01:
 		sprite_animation_player.play("run")
