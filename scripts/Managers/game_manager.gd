@@ -8,6 +8,14 @@ var game_over := false
 var player_health := 100
 var day := 1
 var fire_spawn_rate := 0.2
+var rerolls := 3
+
+func reroll():
+	if (rerolls > 1):
+		rerolls-=1
+		return true
+	else:
+		return false
 
 func damage_player(damage: int):
 	if in_game and not game_over:
@@ -32,6 +40,7 @@ func restart_game():
 	player_health = 100
 	day = 1
 	fire_spawn_rate = 0.2
+	rerolls = 3
 	
 	# Play transition
 	Transition.play("fade_in")
