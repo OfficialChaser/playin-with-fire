@@ -7,6 +7,7 @@ class_name Player
 var acc := 0.5
 
 var input_enabled := true
+var paused := false
 
 # Hose effects on player
 @export var hose_knockback := 200
@@ -19,35 +20,36 @@ var input_enabled := true
 @onready var sprite_animation_player = $Sprite2D/AnimationPlayer
 var main_camera : MainCamera
 
+
 func _ready():
 	main_camera = get_tree().get_first_node_in_group("main_camera")
 
 func _physics_process(delta):
-	if not GameManager.in_game:
-		hose.spray(false)
-		return
-	if input_enabled:
-		
-		# lerping acceleration back to normal if knockback reset it
-		if acc < starting_acc:
-			acc = lerp(acc, starting_acc, 0.01)
-		
-		# Handling Input
-		if Input.is_action_just_pressed('spray'):
-			hose.spray()
-			main_camera.apply_shake(hose_shake_strength, 10)
-		if Input.is_action_just_released('spray'):
+	if !paused:
+		if not GameManager.in_game:
 			hose.spray(false)
+			return
+		if input_enabled:
+			
+			# lerping acceleration back to normal if knockback reset it
+			if acc < starting_acc:
+				acc = lerp(acc, starting_acc, 0.01)
+			
+			# Handling Input
+			if Input.is_action_just_pressed('spray'):
+				hose.spray()
+				main_camera.apply_shake(hose_shake_strength, 10)
+			if Input.is_action_just_released('spray'):
+				hose.spray(false)
+			
+			handle_movement(delta)
+		else:
+			hose.spray(false)
+			
+		move_and_slide()
+		handle_animations()
 		
-		handle_movement(delta)
-	else:
-		hose.spray(false)
-		
-	move_and_slide()
-	handle_animations()
-	
-	if Input.is_action_just_pressed('restart'):
-		get_tree().reload_current_scene()
+
 
 func handle_movement(delta):
 	# Get input

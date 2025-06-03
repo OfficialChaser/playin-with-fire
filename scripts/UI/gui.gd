@@ -10,6 +10,7 @@ class_name GUI
 @onready var blur_animation_player = $ColorRect/AnimationPlayer
 
 
+
 func _ready():
 	blur_animation_player.play("RESET")
 	transition_animation_player.play("fade_out")

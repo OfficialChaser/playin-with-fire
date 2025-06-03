@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://cgqtkixpnivjh"]
+[gd_scene load_steps=13 format=4 uid="uid://cgqtkixpnivjh"]
 
 [ext_resource type="PackedScene" uid="uid://ciigmew78bdo4" path="res://scenes/Player/player.tscn" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://15jwuaapa63q" path="res://scenes/Tiles/background_tiles.tscn" id="1_sugp2"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://hn24gwwehgdg" path="res://scenes/main_camera.tscn" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://fp7rg4p75r5e" path="res://scenes/UI/gui.tscn" id="8_tipki"]
 [ext_resource type="Script" uid="uid://ca4a07lb1b3xr" path="res://scripts/Managers/lightning_handler.gd" id="9_85g3d"]
+[ext_resource type="Script" uid="uid://b0ivuqgs8lf53" path="res://scripts/UI/pause_menu.gd" id="9_choun"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tefeu"]
 texture = ExtResource("3_tbgi4")
@@ -59,6 +60,41 @@ collision_layer = 0
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GUI" parent="CanvasLayer" instance=ExtResource("8_tipki")]
+
+[node name="PauseMenu" type="Control" parent="CanvasLayer"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_choun")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.552941)
+
+[node name="Label" type="Label" parent="CanvasLayer/PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -92.5
+offset_top = -11.5
+offset_right = 92.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press a button to Unpause"
 
 [node name="LightningManager" type="Node2D" parent="."]
 script = ExtResource("9_85g3d")
