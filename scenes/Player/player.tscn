@@ -28,7 +28,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_a06cl"]
 resource_name = "idle"
-length = 5.3
+length = 8.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -36,7 +36,7 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.4, 0.6, 0.7, 1.2, 1.6, 2.3, 2.8, 3.4, 3.55, 4.55, 5.15),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4, 0.6, 0.7, 1.2, 1.6, 2.3, 2.8, 3.4, 3.55, 4.55, 5.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
@@ -59,10 +59,8 @@ tracks/0/keys = {
 "values": [1, 2, 3, 4]
 }
 
-[sub_resource type="Animation" id="Animation_uiqp4"]
-resource_name = "run"
-length = 0.6
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_dl1wr"]
+resource_name = "stunned"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -70,14 +68,11 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1, 2, 3, 4]
+"values": [6]
 }
-
-[sub_resource type="Animation" id="Animation_dl1wr"]
-resource_name = "stunned"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a06cl"]
 _data = {
