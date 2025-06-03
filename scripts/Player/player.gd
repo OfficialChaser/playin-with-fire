@@ -25,29 +25,32 @@ func _ready():
 	main_camera = get_tree().get_first_node_in_group("main_camera")
 
 func _physics_process(delta):
-	if !paused:
-		if not GameManager.in_game:
+	if paused:
+		return
+		
+	if not GameManager.in_game:
+		hose.spray(false)
+		sprite_animation_player.play("idle")
+		return
+	if input_enabled:
+		
+		# lerping acceleration back to normal if knockback reset it
+		if acc < starting_acc:
+			acc = lerp(acc, starting_acc, 0.01)
+		
+		# Handling Input
+		if Input.is_action_just_pressed('spray'):
+			hose.spray()
+			main_camera.apply_shake(hose_shake_strength, 10)
+		if Input.is_action_just_released('spray'):
 			hose.spray(false)
-			return
-		if input_enabled:
-			
-			# lerping acceleration back to normal if knockback reset it
-			if acc < starting_acc:
-				acc = lerp(acc, starting_acc, 0.01)
-			
-			# Handling Input
-			if Input.is_action_just_pressed('spray'):
-				hose.spray()
-				main_camera.apply_shake(hose_shake_strength, 10)
-			if Input.is_action_just_released('spray'):
-				hose.spray(false)
-			
-			handle_movement(delta)
-		else:
-			hose.spray(false)
-			
-		move_and_slide()
-		handle_animations()
+		
+		handle_movement(delta)
+	else:
+		hose.spray(false)
+		
+	move_and_slide()
+	handle_animations()
 		
 
 

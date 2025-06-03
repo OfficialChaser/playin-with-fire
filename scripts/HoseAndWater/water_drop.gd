@@ -36,28 +36,28 @@ func manage_decay(delta):
 	damage = clamp(damage, 1, starting_damage)
 
 func _on_body_entered(body):
-	if body is not TileMapLayer:
-		return
+	if body.name == "FireTiles":
+		var tiles = body as TileMapLayer
 		
-	var tiles = body as TileMapLayer
-	
-	# Get coordinate of collision
-	var coords = tiles.local_to_map(tiles.to_local(global_position))
-	
-	# Splash damage: check the neighboring 8 squares around the tile
-	# Just checking the tile at just the point of collision will give the wrong tile
-	# most of the time
-	for x in [-1, 0, 1]:
-		for y in [-1, 0, 1]:
-			var cell_coord = coords + Vector2i(x, y)
-			
-			# If the cell is empty or has no data, skip over it
-			if tiles.get_cell_source_id(cell_coord) == -1 or !tiles.get_cell_tile_data(cell_coord):
-				continue
-			
-			# If it is a fire tile, add the damage to it
-			if tiles.get_cell_tile_data(cell_coord).get_custom_data("fire"):
-				tiles.update_cell_health(cell_coord, damage)
-			
-			# End sequence for water drop (right now just queue free)
-			queue_free()
+		# Get coordinate of collision
+		var coords = tiles.local_to_map(tiles.to_local(global_position))
+		
+		# Splash damage: check the neighboring 8 squares around the tile
+		# Just checking the tile at just the point of collision will give the wrong tile
+		# most of the time
+		for x in [-1, 0, 1]:
+			for y in [-1, 0, 1]:
+				var cell_coord = coords + Vector2i(x, y)
+				
+				# If the cell is empty or has no data, skip over it
+				if tiles.get_cell_source_id(cell_coord) == -1 or !tiles.get_cell_tile_data(cell_coord):
+					continue
+				
+				# If it is a fire tile, add the damage to it
+				if tiles.get_cell_tile_data(cell_coord).get_custom_data("fire"):
+					tiles.update_cell_health(cell_coord, damage)
+				
+				# End sequence for water drop (right now just queue free)
+				queue_free()
+	elif body.name == "MidgroundTiles":
+		queue_free()

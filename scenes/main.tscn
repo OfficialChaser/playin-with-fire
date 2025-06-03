@@ -26,8 +26,8 @@ texture = ExtResource("3_tbgi4")
 8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-23.5, -22, -6.5, -32, 15.5, -23, 14.8163, 5.73536, 3.1046, 8, 4.79802, 20.8855, -9.08098, 20.3924, -8, 8, -21.8262, 4.77946)
 
 [sub_resource type="TileSet" id="TileSet_o6xl0"]
-physics_layer_0/collision_layer = 1
-physics_layer_0/collision_mask = 2
+physics_layer_0/collision_layer = 7
+physics_layer_0/collision_mask = 0
 custom_data_layer_0/name = "tree"
 custom_data_layer_0/type = 1
 custom_data_layer_1/name = "tree_size"
