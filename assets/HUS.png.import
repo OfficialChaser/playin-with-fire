@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwveiugwnlesp"
-path="res://.godot/imported/HUS.png-2a1fc656dad808ad6c748a0c35b7024d.ctex"
+uid="uid://dt1h5hr3845kc"
+path="res://.godot/imported/hus.png-061c35fedfed7e6fe709f8be2572afe1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/HUS.png"
-dest_files=["res://.godot/imported/HUS.png-2a1fc656dad808ad6c748a0c35b7024d.ctex"]
+source_file="res://assets/hus.png"
+dest_files=["res://.godot/imported/hus.png-061c35fedfed7e6fe709f8be2572afe1.ctex"]
 
 [params]
 
