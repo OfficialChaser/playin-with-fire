@@ -6,14 +6,14 @@ class_name GUI
 @onready var hp_label = $InfoPanel/VBoxContainer/HPLabel
 @onready var timer_label = $TimerPanel/TimerLabel
 
-@onready var transition_animation_player = $Transition/AnimationPlayer
 @onready var blur_animation_player = $ColorRect/AnimationPlayer
+@onready var day_success_animation_player = $DaySuccess/AnimationPlayer
 
 
 
 func _ready():
 	blur_animation_player.play("RESET")
-	transition_animation_player.play("fade_out")
+	Transition.play("fade_out")
 	day_timer.start()
 
 func _process(_delta):
@@ -22,6 +22,8 @@ func _process(_delta):
 	update_day_label()
 
 func update_timer_label():
+	if not GameManager.in_game:
+		day_timer.stop()
 	# Get the time left in seconds
 	var time_left = day_timer.time_left
 	# Calculate minutes and seconds
@@ -44,9 +46,11 @@ func day_over_sequence(way: String = "time out"):
 	day_timer.stop()
 	await get_tree().create_timer(0.5).timeout
 	blur_animation_player.play("blur_in")
-	await get_tree().create_timer(2).timeout
+	day_success_animation_player.play(way)
 	
-	transition_animation_player.play("fade_in")
+	await get_tree().create_timer(5).timeout
+	day_success_animation_player.play("RESET")
+	Transition.play("fade_in")
 	
-	await transition_animation_player.animation_finished
-	GameManager.day_completed(way)
+	await Transition.animation_finished
+	GameManager.day_completed()

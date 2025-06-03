@@ -23,6 +23,7 @@ var main_camera : MainCamera
 
 func _ready():
 	main_camera = get_tree().get_first_node_in_group("main_camera")
+	input_enabled = true
 
 func _physics_process(delta):
 	if paused:

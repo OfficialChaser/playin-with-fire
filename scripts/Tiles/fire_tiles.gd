@@ -20,6 +20,8 @@ const SMOKE_PARTICLES = preload("res://scenes/Fire/smoke_particles.tscn")
 
 
 func _ready():
+	fire_areas.clear()
+	fire_health.clear()
 	# Give each starting fire cell a health
 	for coords in get_used_cells():
 		if get_cell_tile_data(coords).get_custom_data("fire"):
@@ -29,7 +31,31 @@ func _ready():
 	# None of the tile textures need to be seen
 	visible = false
 	
+	cooldown_timer.wait_time = GameManager.fire_spawn_rate
+	
 	player = get_tree().get_first_node_in_group("player")
+
+func _process(_delta):
+	if fire_areas.size() < 30:
+		cooldown_timer.wait_time = GameManager.fire_spawn_rate * 4
+	elif fire_areas.size() < 50:
+		cooldown_timer.wait_time = GameManager.fire_spawn_rate * 2
+	else:
+		cooldown_timer.wait_time = GameManager.fire_spawn_rate
+	
+	check_house()
+
+func check_house():
+	var house_min = Vector2i(-2,-3)
+	var house_max = Vector2i(2,1)
+	
+	for x in range(house_min.x, house_max.x + 1):
+		for y in range(house_min.y, house_max.y + 1):
+				var house_coord = Vector2i(x, y)
+				if fire_areas.has(house_coord):
+					GameManager.end_game()
+					fire_areas.clear()
+					fire_health.clear()
 
 func _on_cooldown_timer_timeout():
 	if GameManager.in_game:
@@ -102,10 +128,9 @@ func update_cell_health(coord_pair: Vector2i, damage: float):
 			fire_areas.erase(coord_pair)
 		
 		if fire_areas.size() == 0:
-			gui.day_over_sequence("fire bonus")
+			gui.day_over_sequence("smokin' bonus")
 	elif fire_areas.has(coord_pair):
 		fire_areas[coord_pair].play_hit_flash()
-
 
 func find_open_surrounding_tiles(coord_pair: Vector2i):
 	var possible_coord_pairs = []

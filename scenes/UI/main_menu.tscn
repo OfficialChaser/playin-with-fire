@@ -34,16 +34,19 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "Untitled Fire Game"
 
 [node name="PlayButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 10
 text = "Play"
 
 [node name="Button2" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 10
 text = "Settings"
 
 [node name="SettingsMenu" type="Control" parent="."]
@@ -70,6 +73,7 @@ offset_left = 13.0
 offset_top = 10.0
 offset_right = 53.0
 offset_bottom = 41.0
+theme_override_font_sizes/font_size = 10
 text = "Back"
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_button_pressed"]
