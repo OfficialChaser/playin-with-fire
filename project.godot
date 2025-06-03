@@ -25,6 +25,24 @@ window/size/viewport_width=640
 window/size/viewport_height=360
 window/stretch/mode="viewport"
 
+[file_customization]
+
+folder_colors={
+"res://scenes/Fire/": "red",
+"res://scenes/HoseAndWater/": "blue",
+"res://scenes/Objects/": "orange",
+"res://scenes/Player/": "pink",
+"res://scenes/Tiles/": "purple",
+"res://scenes/UI/": "green",
+"res://scripts/Fire/": "red",
+"res://scripts/HoseAndWater/": "blue",
+"res://scripts/Managers/": "yellow",
+"res://scripts/Objects/": "orange",
+"res://scripts/Player/": "pink",
+"res://scripts/Tiles/": "purple",
+"res://scripts/UI/": "green"
+}
+
 [gui]
 
 theme/custom_font="uid://b82diaeapk85u"

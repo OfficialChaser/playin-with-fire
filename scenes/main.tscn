@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://b2xxeikhodw4a" path="res://scripts/Tiles/midground_tiles.gd" id="4_tefeu"]
 [ext_resource type="PackedScene" uid="uid://hn24gwwehgdg" path="res://scenes/main_camera.tscn" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://fp7rg4p75r5e" path="res://scenes/UI/gui.tscn" id="8_tipki"]
-[ext_resource type="Script" uid="uid://ca4a07lb1b3xr" path="res://scenes/lightning_handler.gd" id="9_85g3d"]
+[ext_resource type="Script" uid="uid://ca4a07lb1b3xr" path="res://scripts/Managers/lightning_handler.gd" id="9_85g3d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tefeu"]
 texture = ExtResource("3_tbgi4")
@@ -57,8 +57,9 @@ collision_layer = 0
 [node name="MainCamera" parent="." instance=ExtResource("7_o6xl0")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="GUI" parent="CanvasLayer" instance=ExtResource("8_tipki")]
 
-[node name="LightningHandler" type="Node2D" parent="."]
+[node name="LightningManager" type="Node2D" parent="."]
 script = ExtResource("9_85g3d")
