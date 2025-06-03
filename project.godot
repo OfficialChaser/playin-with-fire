@@ -14,7 +14,8 @@ config/name="Major Jam 7"
 run/main_scene="uid://bossmfp1bwrd"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 boot_splash/bg_color=Color(0.34902, 0.560784, 0.313726, 1)
-boot_splash/image="uid://bkh2fk7o3piix"
+boot_splash/use_filter=false
+boot_splash/image="uid://dt1h5hr3845kc"
 config/icon="uid://bsuhy268klumw"
 
 [autoload]
