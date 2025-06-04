@@ -182,6 +182,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.776471, 0.705882, 0.309804, 1)
 theme_override_font_sizes/font_size = 30
+text = "example text"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -261,6 +262,13 @@ theme_override_font_sizes/font_size = 15
 text = "second buff part"
 horizontal_alignment = 1
 
+[node name="Keys" type="Sprite2D" parent="TextureRect"]
+position = Vector2(144, 10)
+texture = ExtResource("2_a8mxd")
+hframes = 16
+frame = 2
+region_rect = Rect2(1, 0, 1, 0)
+
 [node name="RerollButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 3
@@ -311,16 +319,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_ph6hy")
 }
 
-[node name="Keys" type="Sprite2D" parent="."]
-position = Vector2(253, 134)
-texture = ExtResource("2_a8mxd")
-hframes = 16
-frame = 2
-region_rect = Rect2(1, 0, 1, 0)
-
 [node name="box" type="Sprite2D" parent="."]
-position = Vector2(239.667, 180.5)
-scale = Vector2(14.9583, 14.9583)
+position = Vector2(242, 230)
+scale = Vector2(10.7917, 10.7917)
 texture = ExtResource("3_ph6hy")
 hframes = 42
 region_rect = Rect2(1, 0, 1, 0)
