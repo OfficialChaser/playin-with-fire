@@ -1,5 +1,7 @@
 extends Node
 
+signal rule_selected
+
 # Game vars
 var in_game := true
 var game_over := false
@@ -10,12 +12,12 @@ var day := 1
 var fire_spawn_rate := 0.2
 var rerolls := 3
 
-func reroll():
-	if (rerolls > 1):
-		rerolls-=1
-		return true
-	else:
-		return false
+# Misc
+var lightning_delay_time = 1.0
+
+# Input
+enum InputMode { CONTROLLER, MOUSE }
+var input_mode = InputMode.MOUSE
 
 func damage_player(damage: int):
 	if in_game and not game_over:
@@ -29,10 +31,11 @@ func day_completed():
 	in_game = false
 	
 	# placeholder maybe
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(1).timeout
 	
 	# reload scene with updated stuff
 	get_tree().reload_current_scene()
+	await rule_selected
 	in_game = true
 
 func restart_game():

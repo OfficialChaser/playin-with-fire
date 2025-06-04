@@ -23,6 +23,7 @@ config/icon="uid://bsuhy268klumw"
 GameManager="*res://scripts/Managers/game_manager.gd"
 Transition="*res://scenes/UI/transition.tscn"
 MusicManager="*res://scenes/Audio/music_manager.tscn"
+RuleManager="*res://scripts/Managers/rule_manager.gd"
 
 [display]
 

@@ -42,7 +42,7 @@ script = ExtResource("2_40keo")
 
 [node name="CooldownTimer" type="Timer" parent="."]
 process_callback = 0
-wait_time = 0.05
+wait_time = 0.2
 autostart = true
 
 [connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]

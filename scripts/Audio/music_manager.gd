@@ -1,16 +1,26 @@
 extends AudioStreamPlayer
 
 # Preloads
-var game_music : AudioStream = preload("res://sounds/Fire Game Main Theme.wav")
+const GAME_MUSIC : AudioStream = preload("res://sounds/Fire Game Main Theme.wav")
+const MENU_MUSIC : AudioStream = preload("res://sounds/Fire Game Main Menu.wav")
+
 var current_music : AudioStream
 
-func play_music(music: String):
+func play_music(music: String = ""):
+	if not music:
+		playing = false
+		
 	if music == "game_music":
-		current_music = game_music
-		stream = game_music
+		volume_db = -10
+		current_music = GAME_MUSIC
+		stream = GAME_MUSIC
+		playing = true
+	if music == "menu_music":
+		volume_db = 3
+		current_music = MENU_MUSIC
+		stream = MENU_MUSIC
 		playing = true
 
-func _process(_delta):
-	if !playing:
-		playing = true
-	
+# loop
+func _on_finished():
+	playing = true

@@ -93,7 +93,6 @@ func add_fire():
 		if mid_tile_data and !mid_tile_data.get_custom_data('burning'):
 			# First time this tree is burning
 			mid_tile_data.set_custom_data('burning',true)
-			print(midground_tiles.get_cell_atlas_coords(new_coord_pair))
 
 
 	# Vector2i(0, 0) represents the first tile in the tileset (the fire)
@@ -118,15 +117,14 @@ func update_cell_health(coord_pair: Vector2i, damage: float):
 		smoke.global_position = 16*coord_pair + Vector2i(8,8)
 		get_tree().current_scene.add_child(smoke)
 		smoke.emitting = true
-		# Remove from list
-		fire_health.erase(coord_pair)
+		
 		# End sequence (right now, just turn the cell off)
 		set_cell(coord_pair, -1)
 		
 		# Remove Fire Area from scene and list
-		if fire_areas.has(coord_pair):
-			fire_areas[coord_pair].queue_free()
-			fire_areas.erase(coord_pair)
+		fire_areas[coord_pair].queue_free()
+		fire_health.erase(coord_pair)
+		fire_areas.erase(coord_pair)
 		
 		if fire_areas.size() == 0:
 			gui.day_over_sequence("smokin' bonus")
@@ -150,7 +148,7 @@ func find_open_surrounding_tiles(coord_pair: Vector2i):
 
 func add_fire_sprite(coords: Vector2i):
 	var new_fire_area : Sprite2D = FIRE_DAMAGE_ZONE.instantiate()
-	var offset : Vector2i = Vector2i(8,8)
 	fire_areas[coords] = new_fire_area
+	var offset : Vector2i = Vector2i(8,8)
 	new_fire_area.position = coords*16 + offset
 	get_tree().current_scene.add_child.call_deferred(new_fire_area)

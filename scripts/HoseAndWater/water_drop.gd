@@ -5,7 +5,7 @@ extends Area2D
 var velocity := Vector2.ZERO
 
 # Damage vars
-@export var starting_damage := 20
+@export var starting_damage := 15
 @export var damage_decay_rate := 30.0
 var damage := 20.0
 
@@ -37,9 +37,15 @@ func _physics_process(delta):
 
 # As water travels further, it becomes less visible and does less damage
 func manage_decay(delta):
-	sprite_2d.modulate.a -= opacity_decay_rate * delta
-	damage -= damage_decay_rate * delta
-	damage = clamp(damage, 1, starting_damage)
+	# Damage should go from starting_damage to 1.0 over `lifetime` seconds
+	var damage_decay_per_second = (starting_damage - 1.0) / lifetime
+	damage -= damage_decay_per_second * delta
+	damage = clamp(damage, 1.0, starting_damage)
+
+	# Opacity should go from 1.0 to 0.0 over `lifetime` seconds
+	var opacity_decay_per_second = 1.0 / lifetime
+	sprite_2d.modulate.a -= opacity_decay_per_second * delta
+	sprite_2d.modulate.a = clamp(sprite_2d.modulate.a, 0.0, 1.0)
 
 func _on_body_entered(body):
 	if body == fire_tiles:

@@ -1,0 +1,219 @@
+[gd_scene load_steps=5 format=3 uid="uid://nqudhcmrpx1g"]
+
+[ext_resource type="Script" uid="uid://baabppi4ibmx6" path="res://scripts/UI/rule_menu.gd" id="1_nor5v"]
+
+[sub_resource type="Animation" id="Animation_nor5v"]
+resource_name = "fade_out"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"ready_to_start"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_a8mxd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ph6hy"]
+_data = {
+&"RESET": SubResource("Animation_a8mxd"),
+&"fade_out": SubResource("Animation_nor5v")
+}
+
+[node name="RuleMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nor5v")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.247059, 0.172549, 0.231373, 1)
+
+[node name="TitleLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -187.0
+offset_top = 12.0
+offset_right = 187.0
+offset_bottom = 71.0
+grow_horizontal = 2
+theme_override_constants/line_separation = 20
+theme_override_font_sizes/normal_font_size = 15
+bbcode_enabled = true
+text = "Today's 
+Unpredictable rule"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RuleLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -171.0
+offset_top = -104.0
+offset_right = 171.0
+offset_bottom = -69.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.776471, 0.705882, 0.309804, 1)
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -131.0
+offset_top = -56.0
+offset_right = 131.0
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NerfLabel" type="Label" parent="TextureRect"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 128.0
+offset_bottom = 18.0
+theme_override_colors/font_color = Color(0.145098, 0.145098, 0.156863, 1)
+theme_override_font_sizes/font_size = 15
+text = "Nerf part"
+
+[node name="BuffLabel" type="Label" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -126.0
+offset_top = -18.0
+offset_bottom = -2.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.145098, 0.145098, 0.156863, 1)
+theme_override_font_sizes/font_size = 15
+text = "Buff part"
+
+[node name="InstructionsLabel" type="Label" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -121.5
+offset_top = 6.0
+offset_right = 121.5
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 10
+text = "Shoot to confirm"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RerollButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -96.0
+offset_top = -104.0
+offset_right = -21.0
+offset_bottom = -11.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="RerollLabel" type="Label" parent="RerollButton"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -40.0
+offset_top = -27.0
+offset_right = 40.0
+offset_bottom = -4.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 10
+text = "Rerolls: 3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="RerollButton"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -34.5
+offset_top = -36.0
+offset_right = 35.5
+offset_bottom = -20.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.439216, 0.219608, 0.262745, 1)
+theme_override_font_sizes/font_size = 5
+text = "(3 per game)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ph6hy")
+}
+
+[connection signal="pressed" from="RerollButton" to="." method="_on_reroll_button_pressed"]

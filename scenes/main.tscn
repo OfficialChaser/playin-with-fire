@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://cgqtkixpnivjh"]
+[gd_scene load_steps=15 format=4 uid="uid://cgqtkixpnivjh"]
 
 [ext_resource type="PackedScene" uid="uid://ciigmew78bdo4" path="res://scenes/Player/player.tscn" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://15jwuaapa63q" path="res://scenes/Tiles/background_tiles.tscn" id="1_sugp2"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://ca4a07lb1b3xr" path="res://scripts/Managers/lightning_handler.gd" id="9_85g3d"]
 [ext_resource type="Script" uid="uid://b0ivuqgs8lf53" path="res://scripts/UI/pause_menu.gd" id="9_choun"]
 [ext_resource type="PackedScene" uid="uid://7l2pcgp2c2la" path="res://scenes/UI/game_over.tscn" id="10_ya4ey"]
+[ext_resource type="PackedScene" uid="uid://nqudhcmrpx1g" path="res://scenes/UI/rule_menu.tscn" id="11_eb6dy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tefeu"]
 texture = ExtResource("3_tbgi4")
@@ -19,7 +20,7 @@ texture = ExtResource("3_tbgi4")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-38.6665, -31.6105, -6.5, -47, 26.248, -31.0461, 25.6836, 39.5132, -39.2309, 40.6421)
 5:0/size_in_atlas = Vector2i(3, 4)
 5:0/0 = 0
-5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-23.5, -22, -6.5, -32, 15.5, -23, 14.8163, 5.73536, 3.1046, 8, 4.79802, 20.8855, -9.08098, 20.3924, -8, 8, -21.8262, 4.77946)
+5:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-14.8163, 23.5787, 0.159313, 30.2699, 12.5859, 26.1277, 17.0467, 11.4707, 22.7821, -20.711, -3.66426, -31.5444, -23.5, -19)
 5:0/0/custom_data_0 = true
 5:0/0/custom_data_1 = Vector2i(3, 4)
 8:0/size_in_atlas = Vector2i(3, 4)
@@ -29,6 +30,8 @@ texture = ExtResource("3_tbgi4")
 [sub_resource type="TileSet" id="TileSet_o6xl0"]
 physics_layer_0/collision_layer = 7
 physics_layer_0/collision_mask = 0
+physics_layer_1/collision_layer = 5
+physics_layer_1/collision_mask = 0
 custom_data_layer_0/name = "tree"
 custom_data_layer_0/type = 1
 custom_data_layer_1/name = "tree_size"
@@ -98,6 +101,8 @@ grow_vertical = 2
 text = "Press a button to Unpause"
 
 [node name="GameOver" parent="CanvasLayer" instance=ExtResource("10_ya4ey")]
+
+[node name="RuleMenu" parent="CanvasLayer" instance=ExtResource("11_eb6dy")]
 
 [node name="LightningManager" type="Node2D" parent="."]
 script = ExtResource("9_85g3d")

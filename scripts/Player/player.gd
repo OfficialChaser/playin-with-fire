@@ -10,9 +10,11 @@ var knockback_enabled := false
 var paused := false
 
 # Hose effects on player
-@export var hose_knockback := 200
-@export var hose_jitter_magnitude := 5
+@export var hose_knockback := 5000
+@export var hose_jitter_magnitude := 2
 @export var hose_jitter_power := 100
+
+# Hose effects on camera
 @export var hose_shake_strength := 1.0
 
 # Onreadys
@@ -46,10 +48,11 @@ func _physics_process(delta):
 		if Input.is_action_just_released('spray'):
 			hose.spray(false)
 		
-		handle_movement(delta)
+		
 	else:
 		hose.spray(false)
-		
+	
+	handle_movement(delta)
 	move_and_slide()
 	handle_animations()
 
@@ -57,7 +60,7 @@ func _physics_process(delta):
 func handle_movement(delta):
 	var mouse_pos = get_global_mouse_position()
 	# Get input
-	var controller = Vector2(
+	var controller = -Vector2(
 	 	Input.get_action_strength("look_right") - Input.get_action_strength("look_left"),
 	 	Input.get_action_strength("look_down") - Input.get_action_strength("look_up")
 	).normalized()
@@ -69,14 +72,14 @@ func handle_movement(delta):
 	
 	if hose.spraying:
 		var spray_direction = controller
-		if not (controller.length_squared() > 0):
+		if GameManager.input_mode == GameManager.InputMode.MOUSE:
 			spray_direction = (global_position - mouse_pos).normalized()
 			
 		
 		# Weight values: tweak these to tune how much movement vs. knockback matters
 		# Probably wanna make sure they add up to one
-		var knockback_weight = 0.8
-		var move_weight = 0.2
+		var knockback_weight = 0.95
+		var move_weight = 0.05
 		
 		# Tried messing around with a jitter to make the knockback morew random
 		# You can get rid of this if you dont want it

@@ -3,6 +3,9 @@ extends Control
 const MAIN = preload("res://scenes/main.tscn")
 @onready var settings_menu: Control = $SettingsMenu
 
+func _ready():
+	MusicManager.play_music("menu_music")
+
 func _on_button_pressed() -> void:
 	Transition.play("fade_in")
 	await get_tree().create_timer(0.5).timeout

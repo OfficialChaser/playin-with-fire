@@ -5,3 +5,5 @@
 [node name="MusicManager" type="AudioStreamPlayer"]
 bus = &"Music"
 script = ExtResource("1_vs2f4")
+
+[connection signal="finished" from="." to="." method="_on_finished"]
