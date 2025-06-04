@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://cgqtkixpnivjh"]
+[gd_scene load_steps=16 format=4 uid="uid://cgqtkixpnivjh"]
 
 [ext_resource type="PackedScene" uid="uid://ciigmew78bdo4" path="res://scenes/Player/player.tscn" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://15jwuaapa63q" path="res://scenes/Tiles/background_tiles.tscn" id="1_sugp2"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://b0ivuqgs8lf53" path="res://scripts/UI/pause_menu.gd" id="9_choun"]
 [ext_resource type="PackedScene" uid="uid://7l2pcgp2c2la" path="res://scenes/UI/game_over.tscn" id="10_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://nqudhcmrpx1g" path="res://scenes/UI/rule_menu.tscn" id="11_eb6dy"]
+[ext_resource type="Script" uid="uid://bhq8237fgqtex" path="res://scripts/Managers/key_manager.gd" id="13_trceg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tefeu"]
 texture = ExtResource("3_tbgi4")
@@ -106,3 +107,6 @@ text = "Press a button to Unpause"
 
 [node name="LightningManager" type="Node2D" parent="."]
 script = ExtResource("9_85g3d")
+
+[node name="KeyManager" type="Node" parent="."]
+script = ExtResource("13_trceg")

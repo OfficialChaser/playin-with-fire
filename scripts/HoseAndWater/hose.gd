@@ -17,6 +17,7 @@ var last_aim_direction: Vector2 = Vector2.RIGHT
 # var look_mode = InputMode.MOUSE
 
 # Onreadys
+# @onready var KeyManager = $KeyManager for some reason doesn't want to see KeyManager.keys_layout
 @onready var sprite = $Sprite2D
 @onready var water_drop = preload("res://scenes/HoseAndWater/water_drop.tscn")
 var main_camera : MainCamera
@@ -39,11 +40,11 @@ func keys_layout():
 	var WASD = [KEY_A, KEY_D, KEY_W, KEY_S]
 	var ARROWS = [KEY_LEFT, KEY_RIGHT, KEY_UP, KEY_DOWN]
 	var HJKL = [KEY_H, KEY_L, KEY_K, KEY_J]
-	if (Input.is_physical_key_pressed(WASD[0]) or Input.is_physical_key_pressed(WASD[1]) or Input.is_physical_key_pressed(WASD[2]) or Input.is_physical_key_pressed(WASD[3])):
+	if Input.is_physical_key_pressed(WASD[0]) or Input.is_physical_key_pressed(WASD[1]) or Input.is_physical_key_pressed(WASD[2]) or Input.is_physical_key_pressed(WASD[3]):
 		return GameManager.InputMode.WASD
-	elif (Input.is_physical_key_pressed(ARROWS[0]) or Input.is_physical_key_pressed(ARROWS[1]) or Input.is_physical_key_pressed(ARROWS[2]) or Input.is_physical_key_pressed(ARROWS[3])):
+	elif Input.is_physical_key_pressed(ARROWS[0]) or Input.is_physical_key_pressed(ARROWS[1]) or Input.is_physical_key_pressed(ARROWS[2]) or Input.is_physical_key_pressed(ARROWS[3]):
 		return GameManager.InputMode.ARROWS
-	elif (Input.is_physical_key_pressed(HJKL[0]) or Input.is_physical_key_pressed(HJKL[1]) or Input.is_physical_key_pressed(HJKL[2]) or Input.is_physical_key_pressed(HJKL[3])):
+	elif Input.is_physical_key_pressed(HJKL[0]) or Input.is_physical_key_pressed(HJKL[1]) or Input.is_physical_key_pressed(HJKL[2]) or Input.is_physical_key_pressed(HJKL[3]):
 		return GameManager.InputMode.HJKL
 	else: 
 		return GameManager.key_mode
@@ -53,6 +54,9 @@ func _unhandled_input(event):
 	# 	GameManager.look_mode = GameManager.InputMode.MOUSE
 	if event is InputEventKey:
 		GameManager.key_mode = keys_layout()
+		
+		
+		
 		
 	elif event is InputEventJoypadMotion:
 		GameManager.key_mode = GameManager.InputMode.CONTROLLER

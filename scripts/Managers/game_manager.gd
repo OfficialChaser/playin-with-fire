@@ -22,6 +22,9 @@ enum InputMode { CONTROLLER, WASD, ARROWS, HJKL, MOUSE } # we so we can show wha
 var look_mode = InputMode.MOUSE
 var key_mode = InputMode.WASD
 
+# keys - left right up down, to match the keys variable
+
+
 # tiny change, look_mode is either MOUSE or CONTROLLER
 # while key_mode is what movement keys the player moves with
 # key_mode can be used to show that you remove "up key" as what they use to move up, so it looks better
@@ -43,6 +46,7 @@ func day_completed():
 	# reload scene with updated stuff
 	get_tree().reload_current_scene()
 	await rule_selected
+	# apply upgrades
 	in_game = true
 
 func restart_game():
@@ -77,5 +81,5 @@ func update_game_stats():
 	day += 1
 	
 	# figure out some sort of log or exp function here to get a better difficulty curve
-	fire_spawn_rate -= 0.02
+	fire_spawn_rate -= 0.02  # looks like fire spawn timer
 	fire_spawn_rate = clamp(fire_spawn_rate, 0.01, 10000)

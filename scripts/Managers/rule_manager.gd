@@ -1,7 +1,8 @@
 extends Node
 
-var rules := ["double trouble", "lose a key"]
+var rules := ["double trouble", "lose a key", "cursor trap", "save the trees", "bloody stuff", "limited water", "DARKNESS"] # "stop the flood"
 var used_rules := []
+
 
 var rule_levels = {} # Rule rule : int level
 
@@ -9,7 +10,7 @@ var current_rule : String
 
 func _ready():
 	for rule in rules:
-		rule_levels[rule] = 1
+		rule_levels[rule] = 1	# "double trouble" : 1 , "lose a key" : 1, ...
 
 func pick_random_rule() -> String:
 	# Prevent rerolling the same rule
@@ -28,3 +29,6 @@ func pick_random_rule() -> String:
 
 func clear_used_rules():
 	used_rules.clear()
+
+func picked_rule(rule):
+	rule_levels[rule] += 1
