@@ -101,6 +101,21 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Press a button to Unpause"
 
+[node name="Button" type="Button" parent="CanvasLayer/PauseMenu"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -37.5
+offset_top = -48.0
+offset_right = 37.5
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Quit	"
+
 [node name="GameOver" parent="CanvasLayer" instance=ExtResource("10_ya4ey")]
 
 [node name="RuleMenu" parent="CanvasLayer" instance=ExtResource("11_eb6dy")]
@@ -110,3 +125,5 @@ script = ExtResource("9_85g3d")
 
 [node name="KeyManager" type="Node" parent="."]
 script = ExtResource("13_trceg")
+
+[connection signal="pressed" from="CanvasLayer/PauseMenu/Button" to="CanvasLayer/PauseMenu" method="_on_button_pressed"]
