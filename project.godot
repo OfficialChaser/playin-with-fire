@@ -22,6 +22,7 @@ config/icon="uid://bsuhy268klumw"
 
 GameManager="*res://scripts/Managers/game_manager.gd"
 Transition="*res://scenes/UI/transition.tscn"
+MusicManager="*res://scenes/Audio/music_manager.tscn"
 
 [display]
 
@@ -32,19 +33,24 @@ window/stretch/mode="viewport"
 [file_customization]
 
 folder_colors={
+"res://assets/": "red",
+"res://misc/": "green",
+"res://scenes/": "purple",
 "res://scenes/Fire/": "red",
 "res://scenes/HoseAndWater/": "blue",
 "res://scenes/Objects/": "orange",
 "res://scenes/Player/": "pink",
 "res://scenes/Tiles/": "purple",
 "res://scenes/UI/": "green",
+"res://scripts/": "blue",
 "res://scripts/Fire/": "red",
 "res://scripts/HoseAndWater/": "blue",
 "res://scripts/Managers/": "yellow",
 "res://scripts/Objects/": "orange",
 "res://scripts/Player/": "pink",
 "res://scripts/Tiles/": "purple",
-"res://scripts/UI/": "green"
+"res://scripts/UI/": "green",
+"res://sounds/": "yellow"
 }
 
 [gui]

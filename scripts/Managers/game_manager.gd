@@ -53,6 +53,9 @@ func restart_game():
 	
 	# Play animation
 	Transition.play("fade_out")
+	
+	# Restart Music
+	MusicManager.play_music("game_music")
 
 func end_game():
 	game_over = true
