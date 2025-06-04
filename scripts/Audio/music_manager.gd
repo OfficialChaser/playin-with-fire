@@ -11,6 +11,6 @@ func play_music(music: String):
 		playing = true
 
 func _process(_delta):
-	if !playing:w
+	if !playing:
 		playing = true
 	
