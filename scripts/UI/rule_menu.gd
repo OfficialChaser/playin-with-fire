@@ -10,8 +10,8 @@ extends Control
 @onready var reroll_button = $RerollButton
 
 @onready var animation_player = $AnimationPlayer
-@onready var keyboard = $Keys
-@onready var KeyManager = $"../../KeyManager"
+@onready var keyboard = $TextureRect/NerfLabel/Keys
+
 
 
 var rule : String
@@ -31,7 +31,7 @@ func _process(_delta):
 		return
 	visible = true
 	if Input.is_action_just_pressed('spray') and !rerolling and !reroll_button.is_hovered():
-		RuleManager.clear_used_rules()
+		RuleManager.select_rule()
 		animation_player.play("fade_out")
 
 func get_new_rule():
@@ -63,7 +63,7 @@ func update_rule_card_ui():
 			keyboard.frame = 12 + randi_range(0, 3)
 			thing = "stick"
 		else:
-			var km = KeyManager.keys_layout()
+			var km : int = KeyManager.keys_layout()
 			keyboard.frame = (km*4) - randi_range(1, 4) # (km-1)*4 + rng(0,3) 
 			thing = "key"
 		if RuleManager.rule_levels[rule] == 2:
@@ -97,7 +97,7 @@ func update_rule_card_ui():
 		buff_label.text = "Double spread" # two upgrades have this, maybe swap out ???
 
 func _on_reroll_button_pressed():
-	if rerolling:
+	if rerolling or GameManager.rerolls < 1:
 		return
 	
 	GameManager.rerolls -= 1
@@ -111,5 +111,4 @@ func _on_reroll_button_pressed():
 
 func ready_to_start():
 	enabled = false
-	RuleManager.picked_rule(rule)
 	GameManager.rule_selected.emit()

@@ -126,12 +126,19 @@ grow_vertical = 2
 [node name="NerfLabel" type="Label" parent="TextureRect"]
 layout_mode = 0
 offset_left = 2.0
-offset_top = 2.0
-offset_right = 128.0
-offset_bottom = 18.0
+offset_top = 10.0
+offset_right = 206.0
+offset_bottom = 26.0
 theme_override_colors/font_color = Color(0.145098, 0.145098, 0.156863, 1)
 theme_override_font_sizes/font_size = 15
 text = "break the W key"
+
+[node name="Keys" type="Sprite2D" parent="TextureRect/NerfLabel"]
+position = Vector2(142, 8)
+texture = ExtResource("2_a8mxd")
+hframes = 16
+frame = 2
+region_rect = Rect2(1, 0, 1, 0)
 
 [node name="BuffLabel" type="Label" parent="TextureRect"]
 layout_mode = 1
@@ -219,14 +226,15 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -34.5
-offset_top = -36.0
-offset_right = 35.5
-offset_bottom = -20.0
+offset_left = -36.5
+offset_top = -41.0
+offset_right = 38.5
+offset_bottom = -25.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.439216, 0.219608, 0.262745, 1)
 theme_override_font_sizes/font_size = 5
-text = "(3 per game)"
+text = "(Rerolls do not
+ reset per day)"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -234,12 +242,5 @@ vertical_alignment = 1
 libraries = {
 &"": SubResource("AnimationLibrary_ph6hy")
 }
-
-[node name="Keys" type="Sprite2D" parent="."]
-position = Vector2(253, 134)
-texture = ExtResource("2_a8mxd")
-hframes = 16
-frame = 2
-region_rect = Rect2(1, 0, 1, 0)
 
 [connection signal="pressed" from="RerollButton" to="." method="_on_reroll_button_pressed"]

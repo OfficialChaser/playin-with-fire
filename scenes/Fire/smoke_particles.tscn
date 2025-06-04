@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://81jb02r2ed47"]
+[gd_scene load_steps=9 format=3 uid="uid://81jb02r2ed47"]
 
 [ext_resource type="Texture2D" uid="uid://bsuhy268klumw" path="res://assets/placeholder.png" id="1_7o28k"]
+[ext_resource type="AudioStream" uid="uid://cfjy0anj01xpf" path="res://sounds/SFX/Fire Game Fire Extinguished.wav" id="2_of41q"]
+[ext_resource type="Script" uid="uid://dm07m8li1er3n" path="res://scripts/Audio/extinguished_sfx.gd" id="3_yiq52"]
 
 [sub_resource type="Gradient" id="Gradient_of41q"]
 offsets = PackedFloat32Array(0.272727, 1)
@@ -21,6 +23,28 @@ scale_max = 0.5
 color = Color(0.684971, 0.622182, 0.610454, 1)
 color_ramp = SubResource("GradientTexture1D_yiq52")
 
+[sub_resource type="Animation" id="Animation_of41q"]
+resource_name = "play"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yiq52"]
+_data = {
+&"play": SubResource("Animation_of41q")
+}
+
 [node name="SmokeParticles" type="GPUParticles2D"]
 emitting = false
 amount = 20
@@ -28,3 +52,15 @@ texture = ExtResource("1_7o28k")
 lifetime = 0.5
 one_shot = true
 process_material = SubResource("ParticleProcessMaterial_btntx")
+
+[node name="ExtinguishedSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_of41q")
+volume_db = 3.0
+autoplay = true
+script = ExtResource("3_yiq52")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_yiq52")
+}
+autoplay = "play"

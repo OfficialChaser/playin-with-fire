@@ -13,15 +13,15 @@ var spawn_accumulator := 0.0
 
 # KBM + Controller vars
 var last_aim_direction: Vector2 = Vector2.RIGHT
-# enum InputMode { CONTROLLER, MOUSE }
-# var look_mode = InputMode.MOUSE
 
 # Onreadys
-# @onready var KeyManager = $KeyManager for some reason doesn't want to see KeyManager.keys_layout
 @onready var sprite = $Sprite2D
 @onready var water_drop = preload("res://scenes/HoseAndWater/water_drop.tscn")
 var main_camera : MainCamera
 var player : Player
+
+# Audio
+@onready var hose_sfx = $HoseSFX
 
 func _ready():
 	main_camera = get_tree().get_first_node_in_group("main_camera")
@@ -36,26 +36,9 @@ func _process(delta):
 	
 	spray_time = clamp(spray_time, min_spray_time, max_spray_time)
 
-func keys_layout():
-	var WASD = [KEY_A, KEY_D, KEY_W, KEY_S]
-	var ARROWS = [KEY_LEFT, KEY_RIGHT, KEY_UP, KEY_DOWN]
-	var HJKL = [KEY_H, KEY_L, KEY_K, KEY_J]
-	if Input.is_physical_key_pressed(WASD[0]) or Input.is_physical_key_pressed(WASD[1]) or Input.is_physical_key_pressed(WASD[2]) or Input.is_physical_key_pressed(WASD[3]):
-		return GameManager.InputMode.WASD
-	elif Input.is_physical_key_pressed(ARROWS[0]) or Input.is_physical_key_pressed(ARROWS[1]) or Input.is_physical_key_pressed(ARROWS[2]) or Input.is_physical_key_pressed(ARROWS[3]):
-		return GameManager.InputMode.ARROWS
-	elif Input.is_physical_key_pressed(HJKL[0]) or Input.is_physical_key_pressed(HJKL[1]) or Input.is_physical_key_pressed(HJKL[2]) or Input.is_physical_key_pressed(HJKL[3]):
-		return GameManager.InputMode.HJKL
-	else: 
-		return GameManager.key_mode
-
 func _unhandled_input(event):
-	# if event is InputEventMouseMotion or event is InputEventMouseButton:
-	# 	GameManager.look_mode = GameManager.InputMode.MOUSE
 	if event is InputEventKey:
-		GameManager.key_mode = keys_layout()
-		
-		
+		GameManager.key_mode = KeyManager.keys_layout()
 		
 		
 	elif event is InputEventJoypadMotion:
@@ -86,6 +69,7 @@ func handle_hose_rotation(delta):
 ## Turn spraying on or off depending on the parameteras
 func spray(status: bool = true):
 	spraying = status
+	hose_sfx.playing = status
 
 func manage_water_spawning(_spraying: bool, delta: float):
 	if _spraying:

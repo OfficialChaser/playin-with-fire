@@ -27,8 +27,6 @@ func pick_random_rule() -> String:
 	
 	return current_rule
 
-func clear_used_rules():
+func select_rule():
+	rule_levels[current_rule] += 1
 	used_rules.clear()
-
-func picked_rule(rule):
-	rule_levels[rule] += 1

@@ -4,8 +4,8 @@ const LIGHTNING = preload("res://scenes/Objects/lightning.tscn")
 const LIGHTNING_HIGHLIGHT = preload("res://scenes/Objects/lightning_highlight.tscn")
 
 @onready var fire_tiles: FireTiles = $"../FireTiles"
-@export var min_lightning : int = 1
-@export var max_lightning : int = 2
+@export var min_lightning : int = 10
+@export var max_lightning : int = 20
 func _ready() -> void:
 	if GameManager.day > 1:
 		await GameManager.rule_selected

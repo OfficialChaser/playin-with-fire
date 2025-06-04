@@ -12,8 +12,12 @@ class_name GUI
 
 
 func _ready():
+	update_timer_label(true)
 	blur_animation_player.play("RESET")
 	Transition.play("fade_out")
+	
+	if GameManager.day > 1:
+		await GameManager.rule_selected
 	day_timer.start()
 
 func _process(_delta):
@@ -21,9 +25,9 @@ func _process(_delta):
 	update_health_label()
 	update_day_label()
 
-func update_timer_label():
-	if not GameManager.in_game:
-		day_timer.stop()
+func update_timer_label(override: bool = false):
+	if not GameManager.in_game and not override:
+		return
 	# Get the time left in seconds
 	var time_left = day_timer.time_left
 	# Calculate minutes and seconds
@@ -53,4 +57,4 @@ func day_over_sequence(way: String = "time out"):
 	Transition.play("fade_in")
 	
 	await Transition.animation_finished
-	GameManager.day_completed()
+	GameManager.day_completed(way)

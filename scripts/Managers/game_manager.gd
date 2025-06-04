@@ -36,17 +36,19 @@ func damage_player(damage: int):
 		if player_health <= 0:
 			end_game()
 
-func day_completed():
+func day_completed(way: String = ""):
 	update_game_stats()
 	in_game = false
 	
+	if way == "smokin' bonus":
+		GameManager.rerolls += 1
+	
 	# placeholder maybe
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(0.1).timeout
 	
 	# reload scene with updated stuff
 	get_tree().reload_current_scene()
 	await rule_selected
-	# apply upgrades
 	in_game = true
 
 func restart_game():

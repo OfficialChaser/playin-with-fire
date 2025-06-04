@@ -207,6 +207,7 @@ script = ExtResource("1_mfius")
 
 [node name="DayTimer" type="Timer" parent="."]
 wait_time = 90.0
+one_shot = true
 
 [node name="InfoPanel" type="TextureRect" parent="."]
 layout_mode = 1

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://canolbex08enh"]
+[gd_scene load_steps=4 format=3 uid="uid://canolbex08enh"]
 
 [ext_resource type="Script" uid="uid://c6qy37ce5nydb" path="res://scripts/HoseAndWater/hose.gd" id="1_l07wx"]
 [ext_resource type="Texture2D" uid="uid://drapotw6jm7mg" path="res://assets/hose_placeholder.png" id="2_s23pb"]
+[ext_resource type="AudioStream" uid="uid://b6acopwoyhgxf" path="res://sounds/SFX/Fire Game Water Hose.wav" id="3_s23pb"]
 
 [node name="Hose" type="Node2D"]
 script = ExtResource("1_l07wx")
@@ -12,3 +13,7 @@ texture = ExtResource("2_s23pb")
 
 [node name="Muzzle" type="Marker2D" parent="."]
 position = Vector2(24, 0)
+
+[node name="HoseSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_s23pb")
+bus = &"SFX"

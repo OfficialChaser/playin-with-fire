@@ -23,11 +23,12 @@ func _ready():
 	get_cell_source_id(Vector2i(0, 0))
 	fire_areas.clear()
 	fire_health.clear()
-	# Give each starting fire cell a health
-	for coords in get_used_cells():
+	
+	# If we place any manually
+	'''for coords in get_used_cells():
 		if get_cell_tile_data(coords).get_custom_data("fire"):
 			fire_health[coords] = starting_health
-			add_fire_sprite(coords)
+			add_fire_sprite(coords)'''
 	
 	# None of the tile textures need to be seen
 	visible = false
@@ -112,7 +113,7 @@ func update_cell_health(coord_pair: Vector2i, damage: float):
 	
 	
 	if fire_health[coord_pair] <= 0:
-		# Spawn smoke
+		# Spawn smoke + SFX
 		var smoke = SMOKE_PARTICLES.instantiate()
 		smoke.global_position = 16*coord_pair + Vector2i(8,8)
 		get_tree().current_scene.add_child(smoke)

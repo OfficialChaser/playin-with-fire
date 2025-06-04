@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://7l2pcgp2c2la"]
+[gd_scene load_steps=17 format=3 uid="uid://7l2pcgp2c2la"]
 
 [ext_resource type="Script" uid="uid://d3jjrxrq4fbou" path="res://scripts/UI/game_over.gd" id="1_njkqv"]
+[ext_resource type="AudioStream" uid="uid://c0ph4rsusino5" path="res://sounds/SFX/Fire Game Game Over.wav" id="2_vop4n"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ina46"]
 
@@ -50,10 +51,22 @@ tracks/1/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GameOverSFX:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_njkqv"]
 resource_name = "fade_in"
-length = 0.5
+length = 6.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -61,7 +74,7 @@ tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(1.66667, 2.53333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -73,10 +86,22 @@ tracks/1/path = NodePath("ColorRect/RestartButton:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 2.56667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GameOverSFX:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l48yu"]
@@ -176,5 +201,8 @@ vertical_alignment = 1
 libraries = {
 &"": SubResource("AnimationLibrary_l48yu")
 }
+
+[node name="GameOverSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_vop4n")
 
 [connection signal="pressed" from="ColorRect/RestartButton" to="." method="_on_restart_button_pressed"]

@@ -24,6 +24,7 @@ GameManager="*res://scripts/Managers/game_manager.gd"
 Transition="*res://scenes/UI/transition.tscn"
 MusicManager="*res://scenes/Audio/music_manager.tscn"
 RuleManager="*res://scripts/Managers/rule_manager.gd"
+KeyManager="*res://scripts/Managers/key_manager.gd"
 
 [display]
 
@@ -59,6 +60,21 @@ folder_colors={
 theme/custom_font="uid://b82diaeapk85u"
 theme/default_font_antialiasing=0
 theme/default_font_subpixel_positioning=0
+
+[importer_defaults]
+
+wav={
+"compress/mode": 2,
+"edit/loop_begin": 0,
+"edit/loop_end": -1,
+"edit/loop_mode": 2,
+"edit/normalize": false,
+"edit/trim": false,
+"force/8_bit": false,
+"force/max_rate": false,
+"force/max_rate_hz": 44100,
+"force/mono": false
+}
 
 [input]
 

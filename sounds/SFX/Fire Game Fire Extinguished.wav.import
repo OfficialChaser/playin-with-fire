@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cfjy0anj01xpf"
+path="res://.godot/imported/Fire Game Fire Extinguished.wav-bfba2e7d1a392c8297d7f9eb8747323b.sample"
+
+[deps]
+
+source_file="res://sounds/SFX/Fire Game Fire Extinguished.wav"
+dest_files=["res://.godot/imported/Fire Game Fire Extinguished.wav-bfba2e7d1a392c8297d7f9eb8747323b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
