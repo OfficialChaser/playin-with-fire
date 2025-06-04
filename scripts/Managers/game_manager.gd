@@ -18,8 +18,13 @@ var keys := [true, true, true, true] # keys order is left right up down
 var lightning_delay_time = 1.0
 
 # Input
-enum InputMode { CONTROLLER, MOUSE }
-var input_mode = InputMode.MOUSE
+enum InputMode { CONTROLLER, WASD, ARROWS, HJKL, MOUSE } # we so we can show what key is removed in "remove key"
+var look_mode = InputMode.MOUSE
+var key_mode = InputMode.WASD
+
+# tiny change, look_mode is either MOUSE or CONTROLLER
+# while key_mode is what movement keys the player moves with
+# key_mode can be used to show that you remove "up key" as what they use to move up, so it looks better
 
 func damage_player(damage: int):
 	if in_game and not game_over:

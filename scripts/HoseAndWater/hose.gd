@@ -13,8 +13,8 @@ var spawn_accumulator := 0.0
 
 # KBM + Controller vars
 var last_aim_direction: Vector2 = Vector2.RIGHT
-enum InputMode { CONTROLLER, MOUSE }
-var input_mode = InputMode.MOUSE
+# enum InputMode { CONTROLLER, MOUSE }
+# var look_mode = InputMode.MOUSE
 
 # Onreadys
 @onready var sprite = $Sprite2D
@@ -35,11 +35,28 @@ func _process(delta):
 	
 	spray_time = clamp(spray_time, min_spray_time, max_spray_time)
 
+func keys_layout():
+	var WASD = [KEY_A, KEY_D, KEY_W, KEY_S]
+	var ARROWS = [KEY_LEFT, KEY_RIGHT, KEY_UP, KEY_DOWN]
+	var HJKL = [KEY_H, KEY_L, KEY_K, KEY_J]
+	if (Input.is_physical_key_pressed(WASD[0]) or Input.is_physical_key_pressed(WASD[1]) or Input.is_physical_key_pressed(WASD[2]) or Input.is_physical_key_pressed(WASD[3])):
+		return GameManager.InputMode.WASD
+	elif (Input.is_physical_key_pressed(ARROWS[0]) or Input.is_physical_key_pressed(ARROWS[1]) or Input.is_physical_key_pressed(ARROWS[2]) or Input.is_physical_key_pressed(ARROWS[3])):
+		return GameManager.InputMode.ARROWS
+	elif (Input.is_physical_key_pressed(HJKL[0]) or Input.is_physical_key_pressed(HJKL[1]) or Input.is_physical_key_pressed(HJKL[2]) or Input.is_physical_key_pressed(HJKL[3])):
+		return GameManager.InputMode.HJKL
+	else: 
+		return GameManager.key_mode
+
 func _unhandled_input(event):
-	if event is InputEventMouseMotion or event is InputEventMouseButton:
-		input_mode = InputMode.MOUSE
+	# if event is InputEventMouseMotion or event is InputEventMouseButton:
+	# 	GameManager.look_mode = GameManager.InputMode.MOUSE
+	if event is InputEventKey:
+		GameManager.key_mode = keys_layout()
+		
 	elif event is InputEventJoypadMotion:
-		input_mode = InputMode.CONTROLLER
+		GameManager.key_mode = GameManager.InputMode.CONTROLLER
+	
 
 func handle_hose_rotation(delta):
 	var controller = Vector2(
@@ -50,15 +67,14 @@ func handle_hose_rotation(delta):
 	# Track last aim direction and input mode
 	if controller.length_squared() > 0.01:
 		last_aim_direction = controller
-		GameManager.input_mode = GameManager.InputMode.CONTROLLER
+		GameManager.look_mode = GameManager.InputMode.CONTROLLER
 	elif Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) or Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
-		GameManager.input_mode = GameManager.InputMode.MOUSE
+		GameManager.look_mode = GameManager.InputMode.MOUSE
 
-	var target_angle: float
 
-	if input_mode == InputMode.CONTROLLER:
+	if GameManager.look_mode == GameManager.InputMode.CONTROLLER:
 		var target_pos = player.global_position + last_aim_direction
-		target_angle = (target_pos - global_position).angle()
+		var target_angle = (target_pos - global_position).angle()
 		rotation = lerp_angle(rotation, target_angle, 8 * delta)
 	else:
 		rotation = (get_global_mouse_position() - global_position).angle()

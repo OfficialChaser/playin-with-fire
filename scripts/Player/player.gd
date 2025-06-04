@@ -57,6 +57,29 @@ func _physics_process(delta):
 	handle_animations()
 
 
+func get_inputVector():
+	var v = Vector2.ZERO
+	# keys order is left right up down
+	
+	# 	x axis part
+	if (GameManager.keys[0] and GameManager.keys[1]): # right and left keys are on
+		v.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	elif (GameManager.keys[0]): #	left key is on, so right must be off
+		v.x = - Input.get_action_strength("move_left")
+	elif (GameManager.keys[1]): #	right key is on, so left must be off
+		v.x = Input.get_action_strength("move_right")
+	
+	#	y axis part
+	if (GameManager.keys[2] and GameManager.keys[3]): # up and down keys are on
+		v.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
+	elif (GameManager.keys[2]): #	up key is on, so down must be off
+		v.y = - Input.get_action_strength("move_up") 
+	elif (GameManager.keys[3]): #	down key is on, so up must be off
+		v.y = Input.get_action_strength("move_down")
+
+	# normalise the vector no matter what
+	return v.normalized()
+
 func handle_movement(delta):
 	var mouse_pos = get_global_mouse_position()
 	# Get input
@@ -65,31 +88,11 @@ func handle_movement(delta):
 	 	Input.get_action_strength("look_down") - Input.get_action_strength("look_up")
 	).normalized()
 	
-	var input_vector = Vector2.ZERO
-	# keys order is left right up down
-	
-	# 	x axis part
-	if (GameManager.keys[0] and GameManager.keys[1]): # right and left keys are on
-		input_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
-	elif (GameManager.keys[0]): #	left key is on, so right must be off
-		input_vector.x = - Input.get_action_strength("move_left")
-	elif (GameManager.keys[1]): #	right key is on, so left must be off
-		input_vector.x = Input.get_action_strength("move_right")
-	
-	#	y axis part
-	if (GameManager.keys[2] and GameManager.keys[3]): # up and down keys are on
-		input_vector.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
-	elif (GameManager.keys[2]): #	up key is on, so down must be off
-		input_vector.y = - Input.get_action_strength("move_up") 
-	elif (GameManager.keys[3]): #	down key is on, so up must be off
-		input_vector.y = Input.get_action_strength("move_down")
-
-	# normalise the vector no matter what
-	input_vector = input_vector.normalized()
+	var input_vector = get_inputVector()
 	
 	if hose.spraying:
 		var spray_direction = controller
-		if GameManager.input_mode == GameManager.InputMode.MOUSE:
+		if GameManager.look_mode == GameManager.InputMode.MOUSE:
 			spray_direction = (global_position - mouse_pos).normalized()
 			
 		
