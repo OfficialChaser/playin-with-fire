@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dh051np355qo7"
-path="res://.godot/imported/box-sheet.png-5ac7ce81e5ac13872e236451bc23ce7a.ctex"
+uid="uid://erdl401aiquc"
+path="res://.godot/imported/box.png-d5a72c3e4a96e4fd1be27984007d8d02.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/transition/box-sheet.png"
-dest_files=["res://.godot/imported/box-sheet.png-5ac7ce81e5ac13872e236451bc23ce7a.ctex"]
+source_file="res://assets/box-stuff/box.png"
+dest_files=["res://.godot/imported/box.png-d5a72c3e4a96e4fd1be27984007d8d02.ctex"]
 
 [params]
 
