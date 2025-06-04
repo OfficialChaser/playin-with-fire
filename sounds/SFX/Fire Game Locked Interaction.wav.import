@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://slouln1ao1e7"
+path="res://.godot/imported/Fire Game Locked Interaction.wav-3f148af36c6a4bda637d2c96816b3752.sample"
+
+[deps]
+
+source_file="res://sounds/SFX/Fire Game Locked Interaction.wav"
+dest_files=["res://.godot/imported/Fire Game Locked Interaction.wav-3f148af36c6a4bda637d2c96816b3752.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

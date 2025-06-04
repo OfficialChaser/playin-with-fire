@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dmc6g1watn3g8"
+path="res://.godot/imported/Fire Game Walking Squish.wav-cef4c726b0131d9a293666c3f85930d4.sample"
+
+[deps]
+
+source_file="res://sounds/SFX/Fire Game Walking Squish.wav"
+dest_files=["res://.godot/imported/Fire Game Walking Squish.wav-cef4c726b0131d9a293666c3f85930d4.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

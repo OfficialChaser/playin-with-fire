@@ -1,10 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://ciigmew78bdo4"]
+[gd_scene load_steps=15 format=3 uid="uid://ciigmew78bdo4"]
 
 [ext_resource type="Script" uid="uid://bu3d0qr8bjdp4" path="res://scripts/Player/player.gd" id="1_mtuoh"]
 [ext_resource type="Shader" uid="uid://dnv5d7khiv3x5" path="res://misc/shaders/hit_flash.tres" id="2_hvfru"]
 [ext_resource type="Script" uid="uid://drt4ta5uq2ft7" path="res://scripts/Managers/player_collision_manager.gd" id="4_c4h5g"]
 [ext_resource type="Texture2D" uid="uid://yl1yaiys4mwk" path="res://assets/fireman/fireman-sheet.png" id="4_hvfru"]
 [ext_resource type="PackedScene" uid="uid://canolbex08enh" path="res://scenes/HoseAndWater/hose.tscn" id="5_uiqp4"]
+[ext_resource type="AudioStream" uid="uid://dos3mflh2k35f" path="res://sounds/SFX/Fire Game Hit Sound.wav" id="6_hvfru"]
+[ext_resource type="AudioStream" uid="uid://dmc6g1watn3g8" path="res://sounds/SFX/Fire Game Walking Squish.wav" id="7_a06cl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a06cl"]
 shader = ExtResource("2_hvfru")
@@ -97,6 +99,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_dl1wr"]
 resource_name = "stunned"
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -120,6 +123,20 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_hit_sfx"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a06cl"]
@@ -164,5 +181,14 @@ script = ExtResource("4_c4h5g")
 [node name="KnockbackCooldown" type="Timer" parent="PlayerCollisionManager"]
 wait_time = 0.3
 one_shot = true
+
+[node name="HitSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_hvfru")
+volume_db = 4.0
+
+[node name="WalkingSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_a06cl")
+volume_db = 10.0
+bus = &"SFX"
 
 [connection signal="timeout" from="PlayerCollisionManager/KnockbackCooldown" to="PlayerCollisionManager" method="_on_knockback_cooldown_timeout"]
