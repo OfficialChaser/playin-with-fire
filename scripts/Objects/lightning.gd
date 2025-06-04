@@ -6,6 +6,6 @@ func _ready() -> void:
 	await get_tree().create_timer(spawn_timer).timeout
 	show()
 	play("default")
-	
+	$LightningSFX.play()
 	await animation_finished
 	queue_free()

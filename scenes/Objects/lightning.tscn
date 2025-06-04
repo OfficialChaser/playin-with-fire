@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dw2ci6r2lrsds"]
+[gd_scene load_steps=8 format=3 uid="uid://dw2ci6r2lrsds"]
 
 [ext_resource type="Texture2D" uid="uid://dgw1jwng611ds" path="res://assets/lightning.png" id="1_upl4x"]
 [ext_resource type="Script" uid="uid://brp2b58cukyj5" path="res://scripts/Objects/lightning.gd" id="2_d7yd8"]
+[ext_resource type="AudioStream" uid="uid://bex68spxy5d4r" path="res://sounds/SFX/Fire Game Lightning.wav" id="3_d7yd8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n7g4i"]
 atlas = ExtResource("1_upl4x")
@@ -37,3 +38,6 @@ visible = false
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_wxtiq")
 script = ExtResource("2_d7yd8")
+
+[node name="LightningSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_d7yd8")
