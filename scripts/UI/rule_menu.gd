@@ -12,6 +12,8 @@ extends Control
 @onready var animation_player = $AnimationPlayer
 @onready var keyboard = $TextureRect/Keys
 
+@onready var anim = $greg/AnimationPlayer
+
 
 
 var rule : String
@@ -49,7 +51,7 @@ func update_rule_card_ui():
 	keyboard.visible = false
 	cool_label.text = ""
 	
-	# guy comes in
+	anim.play("enter")
 	
 	if rule == "double trouble":
 		if RuleManager.rule_levels[rule] == 2:
@@ -99,8 +101,8 @@ func update_rule_card_ui():
 		buff_label.text = "Double spread" # two upgrades have this, maybe swap out ???
 
 func _on_reroll_button_pressed():
-	var ap = $box/AnimationPlayer
-	ap.play("enter")
+	
+	# anim.play("enter")
 	if rerolling or GameManager.rerolls < 1:
 		return
 	
@@ -115,4 +117,5 @@ func _on_reroll_button_pressed():
 
 func ready_to_start():
 	enabled = false
+	anim.play("leave")
 	GameManager.rule_selected.emit()
