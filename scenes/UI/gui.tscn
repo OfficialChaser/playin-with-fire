@@ -1,9 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://fp7rg4p75r5e"]
+[gd_scene load_steps=15 format=3 uid="uid://fp7rg4p75r5e"]
 
 [ext_resource type="Script" uid="uid://csd8n5o6psd2j" path="res://scripts/UI/gui.gd" id="1_mfius"]
 [ext_resource type="Texture2D" uid="uid://crdbug67gbg07" path="res://assets/UI-land.png" id="2_fqfpr"]
 [ext_resource type="Shader" uid="uid://cmr5gx5qup8wf" path="res://misc/shaders/blur.gdshader" id="3_dk0i5"]
 [ext_resource type="Script" uid="uid://dpkglagfuuq7s" path="res://scripts/UI/smokin_bonus.gd" id="4_3tbu2"]
+[ext_resource type="AudioStream" uid="uid://c7l0q1leujjrr" path="res://sounds/SFX/Fire Game Complete Day.wav" id="5_tk48h"]
+[ext_resource type="AudioStream" uid="uid://6o16fbpqrbg2" path="res://sounds/SFX/Fire Game Day w- Bonus.wav" id="6_hmhlj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3tbu2"]
 shader = ExtResource("3_dk0i5")
@@ -225,8 +227,8 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -101.0
-offset_top = 9.0
-offset_bottom = 59.0
+offset_top = 24.0
+offset_bottom = 74.0
 grow_horizontal = 0
 theme_override_constants/separation = 10
 
@@ -366,9 +368,19 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 16.0
+offset_left = -32.0
+offset_top = 5.0
+offset_right = 32.0
+offset_bottom = 21.0
 grow_horizontal = 2
+theme_override_font_sizes/font_size = 10
 text = "Rule"
 horizontal_alignment = 1
+
+[node name="RegWinSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_tk48h")
+
+[node name="SmokinWinSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_hmhlj")
+
+[connection signal="timeout" from="DayTimer" to="." method="_on_day_timer_timeout"]

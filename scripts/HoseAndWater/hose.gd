@@ -7,8 +7,7 @@ var spray_time := 0.0
 @export var max_spray_time := 1.0
 
 # Spray time stats
-@export var drops_per_second := 100.0
-var spawn_interval := 1.0 / drops_per_second
+var spawn_interval := 1.0 / GameManager.water_spawn_rate
 var spawn_accumulator := 0.0
 
 # KBM + Controller vars
@@ -35,6 +34,8 @@ func _process(delta):
 	manage_water_spawning(spraying, delta)
 	
 	spray_time = clamp(spray_time, min_spray_time, max_spray_time)
+	
+	spawn_interval = 1.0 / GameManager.water_spawn_rate
 
 func _unhandled_input(event):
 	if event is InputEventKey:

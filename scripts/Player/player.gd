@@ -23,10 +23,6 @@ var hose_knockback : int
 @onready var sprite_animation_player = $Sprite2D/AnimationPlayer
 var main_camera : MainCamera
 
-# Audio
-@onready var walking_sfx = $WalkingSFX
-
-
 func _ready():
 	main_camera = get_tree().get_first_node_in_group("main_camera")
 	knockback_enabled = false
@@ -116,11 +112,8 @@ func handle_movement(delta):
 			(combined_direction * GameManager.hose_knockback) + jitter, 
 			6 * hose_jitter_power * delta
 			)
-		walking_sfx.stop()
 	else:
 		velocity = lerp(velocity, input_vector * move_speed, acc)
-		if velocity.length() < 0.01:
-			walking_sfx.play()
 
 	move_and_slide()
 

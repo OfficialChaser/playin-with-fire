@@ -18,6 +18,7 @@ var damage := 20.0
 var fire_tiles
 
 func _ready():
+	modulate = GameManager.water_color
 	damage = starting_damage
 	velocity = Vector2.RIGHT.rotated(rotation + deg_to_rad(randf_range(-10, 10))) * speed
 	

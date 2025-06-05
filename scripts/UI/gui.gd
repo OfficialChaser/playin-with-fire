@@ -11,6 +11,9 @@ class_name GUI
 
 @onready var rule_name: Label = $RuleInfo/RuleName
 
+@onready var smokin_win_sfx = $SmokinWinSFX
+@onready var reg_win_sfx = $RegWinSFX
+
 
 func _ready():
 
@@ -56,10 +59,16 @@ func _on_day_timer_timeout():
 
 func day_over_sequence(way: String = "time out"):
 	GameManager.in_game = false
+	print("test12")
 	day_timer.stop()
 	await get_tree().create_timer(0.5).timeout
 	blur_animation_player.play("blur_in")
 	day_success_animation_player.play(way)
+	if way == "time out":
+		reg_win_sfx.play()
+	elif way == "smokin' bonus":
+		smokin_win_sfx.play()
+	
 	
 	await get_tree().create_timer(5).timeout
 	day_success_animation_player.play("RESET")

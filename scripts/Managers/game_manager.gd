@@ -13,6 +13,7 @@ const start_fire_spawn_rate := 0.2
 const start_rerolls := 3
 const start_hose_knockback := 5000
 const start_player_damage := 2
+const start_water_spawn_rate := 50.0
 
 # Game stats - change these with the rules
 var player_health := 100
@@ -20,6 +21,8 @@ var fire_spawn_rate := 0.2
 var rerolls := 3
 var hose_knockback := 75
 var player_damage := 2
+var water_spawn_rate := 50.0
+var water_color := Color("3f5886")
 
 
 # indicates what keys are on

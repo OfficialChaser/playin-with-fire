@@ -58,9 +58,6 @@ func update_rule_card_ui():
 	if rule:
 		rule.set_rule_text(self,RuleManager.rule_levels[rule])
 
-
-
-
 func _on_reroll_button_pressed():
 	
 	# anim.play("enter")

@@ -40,7 +40,7 @@ func pick_random_rule() -> Rule:
 	if !possible_rules:
 		return current_rule
 		
-	current_rule = possible_rules[0] ###!!!! This is for Debug purposes !!!! Should be pick_random()
+	current_rule = possible_rules.pick_random()
 	used_rules.append(current_rule)
 	
 	return current_rule

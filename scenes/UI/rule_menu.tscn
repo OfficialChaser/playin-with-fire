@@ -1,10 +1,23 @@
-[gd_scene load_steps=14 format=3 uid="uid://bk7cvfu0hrbbw"]
+[gd_scene load_steps=19 format=3 uid="uid://bk7cvfu0hrbbw"]
 
 [ext_resource type="Script" uid="uid://baabppi4ibmx6" path="res://scripts/UI/rule_menu.gd" id="1_nor5v"]
 [ext_resource type="Texture2D" uid="uid://ct6t6t22r5vud" path="res://assets/UI-card.png" id="2_3sxuk"]
 [ext_resource type="Texture2D" uid="uid://b376tuqktxpxr" path="res://assets/keys/keys.png" id="2_a8mxd"]
 [ext_resource type="Texture2D" uid="uid://dh051np355qo7" path="res://assets/box-stuff/box-sheet.png" id="3_les7v"]
 [ext_resource type="Texture2D" uid="uid://erdl401aiquc" path="res://assets/box-stuff/box.png" id="4_3sxuk"]
+[ext_resource type="Texture2D" uid="uid://khohx8coffin" path="res://assets/UI-square.png" id="4_5v2b7"]
+[ext_resource type="AudioStream" uid="uid://dmc6g1watn3g8" path="res://sounds/SFX/Fire Game Walking Squish.wav" id="6_u37f6"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5v2b7"]
+texture = ExtResource("4_5v2b7")
+modulate_color = Color(0.791999, 0.791999, 0.791999, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_od04r"]
+texture = ExtResource("4_5v2b7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_glo0s"]
+texture = ExtResource("4_5v2b7")
+modulate_color = Color(0.65834, 0.65834, 0.65834, 1)
 
 [sub_resource type="Animation" id="Animation_a8mxd"]
 length = 0.001
@@ -107,6 +120,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("WalkingSFX:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_3sxuk"]
 resource_name = "enter"
@@ -172,6 +197,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(0, 0), Vector2(1, 1)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("WalkingSFX:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_u37f6"]
 resource_name = "idle"
@@ -190,6 +227,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [16, 17, 18, 21, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WalkingSFX:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_ph6hy"]
 resource_name = "leave"
@@ -206,6 +255,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [30, 31, 32, 33, 34, 35, 36, 37, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WalkingSFX:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5v2b7"]
@@ -327,9 +388,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -121.5
-offset_top = 6.0
+offset_top = -1.0
 offset_right = 121.5
-offset_bottom = 22.0
+offset_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0.921569, 0.933333, 0.713726, 1)
@@ -377,6 +438,17 @@ offset_right = -21.0
 offset_bottom = -11.0
 grow_horizontal = 0
 grow_vertical = 0
+theme_override_styles/focus = SubResource("StyleBoxTexture_5v2b7")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxTexture_5v2b7")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_5v2b7")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_od04r")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_od04r")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxTexture_od04r")
+theme_override_styles/hover = SubResource("StyleBoxTexture_od04r")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxTexture_glo0s")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_glo0s")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxTexture_5v2b7")
+theme_override_styles/normal = SubResource("StyleBoxTexture_5v2b7")
 
 [node name="RerollLabel" type="Label" parent="RerollButton"]
 layout_mode = 1
@@ -430,5 +502,9 @@ libraries = {
 [node name="box" type="Sprite2D" parent="greg"]
 position = Vector2(3.5, -6)
 texture = ExtResource("4_3sxuk")
+
+[node name="WalkingSFX" type="AudioStreamPlayer" parent="greg"]
+stream = ExtResource("6_u37f6")
+bus = &"SFX"
 
 [connection signal="pressed" from="RerollButton" to="." method="_on_reroll_button_pressed"]

@@ -41,3 +41,4 @@ script = ExtResource("2_d7yd8")
 
 [node name="LightningSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_d7yd8")
+bus = &"SFX"
