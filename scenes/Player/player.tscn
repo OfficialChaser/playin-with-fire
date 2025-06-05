@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ciigmew78bdo4"]
+[gd_scene load_steps=15 format=3 uid="uid://ciigmew78bdo4"]
 
 [ext_resource type="Script" uid="uid://bu3d0qr8bjdp4" path="res://scripts/Player/player.gd" id="1_mtuoh"]
 [ext_resource type="Shader" uid="uid://dnv5d7khiv3x5" path="res://misc/shaders/hit_flash.tres" id="2_hvfru"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://yl1yaiys4mwk" path="res://assets/fireman/fireman-sheet.png" id="4_hvfru"]
 [ext_resource type="PackedScene" uid="uid://canolbex08enh" path="res://scenes/HoseAndWater/hose.tscn" id="5_uiqp4"]
 [ext_resource type="AudioStream" uid="uid://dos3mflh2k35f" path="res://sounds/SFX/Fire Game Hit Sound.wav" id="6_hvfru"]
+[ext_resource type="AudioStream" uid="uid://slouln1ao1e7" path="res://sounds/SFX/Fire Game Locked Interaction.wav" id="7_a06cl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a06cl"]
 shader = ExtResource("2_hvfru")
@@ -184,5 +185,8 @@ one_shot = true
 stream = ExtResource("6_hvfru")
 volume_db = 4.0
 bus = &"SFX"
+
+[node name="LockedSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_a06cl")
 
 [connection signal="timeout" from="PlayerCollisionManager/KnockbackCooldown" to="PlayerCollisionManager" method="_on_knockback_cooldown_timeout"]

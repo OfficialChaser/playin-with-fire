@@ -74,6 +74,15 @@ func get_inputVector():
 		v.y = - Input.get_action_strength("move_up") 
 	elif (GameManager.keys[3]): #	down key is on, so up must be off
 		v.y = Input.get_action_strength("move_down")
+	
+	if !GameManager.keys[0] and Input.get_action_strength("move_left") or !GameManager.keys[1] and Input.get_action_strength("move_right"):
+		if !$LockedSFX.playing:
+			main_camera.apply_shake(1, 5)
+			$LockedSFX.play()
+	if !GameManager.keys[2] and Input.get_action_strength("move_up") or !GameManager.keys[3] and Input.get_action_strength("move_down"):
+		if !$LockedSFX.playing:
+			main_camera.apply_shake(1, 5)
+			$LockedSFX.play()
 
 	# normalise the vector no matter what
 	return v.normalized()
