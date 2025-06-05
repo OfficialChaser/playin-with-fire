@@ -16,7 +16,7 @@ class_name RuleMenu
 @onready var anim = $greg/AnimationPlayer
 
 
-
+var start = true
 var rule : Rule
 
 var rerolling := false
@@ -48,18 +48,25 @@ func get_new_rule():
 	print(rule.rule_name)
 
 	reroll_label.text = "Rerolls: " + str(GameManager.rerolls)
+	
+	
+	
 	update_rule_card_ui()
 
 func update_rule_card_ui():
 	keyboard.visible = false
 	
-	anim.play("enter")
-	#
+	if start:
+		anim.play("enter_2")
+	else:
+		anim.play("enter")
+	
 	if rule:
 		rule.set_rule_text(self,RuleManager.rule_levels[rule])
 
 func _on_reroll_button_pressed():
 	
+	start = false
 	# anim.play("enter")
 	if rerolling or GameManager.rerolls < 1:
 		return
@@ -74,6 +81,7 @@ func _on_reroll_button_pressed():
 	rerolling = false
 
 func ready_to_start():
+	start = true
 	enabled = false
 	anim.play("leave")
 
