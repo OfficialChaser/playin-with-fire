@@ -26,7 +26,9 @@ func set_rule_text(rule_menu : RuleMenu, _level : int = 1):
 
 	rule_menu.cool_label.text = ' '
 	rule_menu.nerf_label.text = nerf_label + thing
-	rule_menu.buff_label.text = buff_label 
+	rule_menu.buff_label.text = buff_label
+	if _level > 1:
+		rule_menu.cool_label = cool_label
 
 func set_rule_config(level : int = 1):
 	GameManager.used_keys.append(rng)
