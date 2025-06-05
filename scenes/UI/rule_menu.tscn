@@ -13,14 +13,14 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_od04r"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ej8j0"]
+texture = ExtResource("4_5v2b7")
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_glo0s"]
 texture = ExtResource("6_kkbxc")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kkbxc"]
 texture = ExtResource("5_glo0s")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ej8j0"]
-texture = ExtResource("4_5v2b7")
 
 [sub_resource type="Animation" id="Animation_a8mxd"]
 length = 0.001
@@ -595,8 +595,8 @@ offset_bottom = -11.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_od04r")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_od04r")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_od04r")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxTexture_ej8j0")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_ej8j0")
 theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_glo0s")
 theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_glo0s")
 theme_override_styles/hover_mirrored = SubResource("StyleBoxTexture_kkbxc")
@@ -635,6 +635,20 @@ grow_horizontal = 2
 theme_override_colors/font_color = Color(0.439216, 0.219608, 0.262745, 1)
 theme_override_font_sizes/font_size = 5
 text = "(3 per game)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OutOfStock" type="Label" parent="RerollButton"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 57.0
+offset_right = 72.0
+offset_bottom = 80.0
+rotation = -0.785398
+theme_override_colors/font_color = Color(0.247059, 0.172549, 0.231373, 1)
+theme_override_font_sizes/font_size = 10
+text = "  Out of 
+Stock"
 horizontal_alignment = 1
 vertical_alignment = 1
 

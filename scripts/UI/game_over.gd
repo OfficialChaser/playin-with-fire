@@ -19,6 +19,7 @@ func _process(_delta):
 		$AnimationPlayer.play("fade_in")
 		faded = true
 		# hide house on tilemap
+		$"../../MidgroundTiles".set_cell(Vector2i(0, -1), -1)
 		
 func _unhandled_input(event: InputEvent):
 	if GameManager.game_over and faded:

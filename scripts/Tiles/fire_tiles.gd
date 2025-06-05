@@ -38,12 +38,7 @@ func _ready():
 	player = get_tree().get_first_node_in_group("player")
 
 func _process(_delta):
-	if fire_areas.size() < 30:
-		cooldown_timer.wait_time = GameManager.fire_spawn_rate * 4
-	elif fire_areas.size() < 50:
-		cooldown_timer.wait_time = GameManager.fire_spawn_rate * 2
-	else:
-		cooldown_timer.wait_time = GameManager.fire_spawn_rate
+
 	
 	check_house()
 
@@ -60,6 +55,15 @@ func check_house():
 					fire_health.clear()
 
 func _on_cooldown_timer_timeout():
+	print(cooldown_timer.wait_time)
+	if fire_areas.size() < 15:
+		cooldown_timer.wait_time = GameManager.fire_spawn_rate * 10
+	elif fire_areas.size() < 30:
+		cooldown_timer.wait_time = GameManager.fire_spawn_rate * 4
+	elif fire_areas.size() < 50:
+		cooldown_timer.wait_time = GameManager.fire_spawn_rate * 2
+	else:
+		cooldown_timer.wait_time = GameManager.fire_spawn_rate
 	if GameManager.in_game:
 		add_fire()
 

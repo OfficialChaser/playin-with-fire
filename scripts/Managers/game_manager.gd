@@ -8,8 +8,9 @@ var game_over := false
 
 ## Game Starting stats - These can be used to reset the game stats after a rule change or reload
 var day := 1
-const start_fire_spawn_rate := 0.2
-const start_rerolls := 10
+const start_fire_spawn_rate := 0.08
+const start_lightning_spawn_amt := 5
+const start_rerolls := 3
 const start_player_damage := 2
 
 # Double Trouble
@@ -60,6 +61,7 @@ var keys := [true, true, true, true] # keys order is left right up down
 # Misc
 var rerolls := start_rerolls
 var fire_spawn_rate := start_fire_spawn_rate
+var lightning_spawn_amt := start_lightning_spawn_amt
 var lightning_delay_time = 0.6
 var current_rule : Rule = null
 
@@ -80,8 +82,9 @@ func _ready() -> void:
 func on_rule_selected(rule : Rule):
 	if current_rule:
 		current_rule.reset_rule_config()
-	current_rule = rule
-	current_rule.set_rule_config(RuleManager.rule_levels[current_rule])
+	if rule:
+		current_rule = rule
+		current_rule.set_rule_config(RuleManager.rule_levels[current_rule])
 
 
 func damage_player(damage: int):
@@ -89,6 +92,7 @@ func damage_player(damage: int):
 		player_health -= damage
 	
 		if player_health <= 0:
+			player_health = 0
 			end_game()
 
 func day_completed(way: String = ""):
@@ -141,7 +145,9 @@ func reset_vars():
 	day = 1
 	fire_spawn_rate = start_fire_spawn_rate
 	player_damage  = start_player_damage
+	lightning_spawn_amt = start_lightning_spawn_amt
 	rerolls = start_rerolls
+	current_rule = null
 	
 	# Rule Manager
 	RuleManager.maxed_rules.clear()
