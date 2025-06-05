@@ -481,7 +481,7 @@ offset_right = 177.0
 offset_bottom = -91.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(1.72e+07, 1.7e+06)
 theme_override_colors/font_color = Color(0.776471, 0.705882, 0.309804, 1)
 theme_override_font_sizes/font_size = 30
 text = "example text"
@@ -501,6 +501,7 @@ offset_right = 131.0
 offset_bottom = 81.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(138, 78)
 texture = ExtResource("2_3sxuk")
 
 [node name="NerfLabel" type="Label" parent="TextureRect"]
