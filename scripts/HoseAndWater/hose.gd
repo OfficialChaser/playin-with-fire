@@ -5,6 +5,7 @@ var spraying := false
 var spray_time := 0.0
 @export var min_spray_time := 0.05
 @export var max_spray_time := 1.0
+var drops_spawned := 0
 
 # Spray time stats
 var spawn_interval := 1.0 / GameManager.water_spawn_rate
@@ -92,3 +93,8 @@ func spawn_water_drop():
 	drop.rotation = sprite.global_rotation
 	drop.lifetime = spray_time
 	get_tree().current_scene.add_child(drop)
+	
+	drops_spawned += 1
+	if drops_spawned > 100:
+		GameManager.damage_player(GameManager.player_blood_damage)
+		drops_spawned = 0

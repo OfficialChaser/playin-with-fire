@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bk7cvfu0hrbbw"]
+[gd_scene load_steps=20 format=3 uid="uid://bk7cvfu0hrbbw"]
 
 [ext_resource type="Script" uid="uid://baabppi4ibmx6" path="res://scripts/UI/rule_menu.gd" id="1_nor5v"]
 [ext_resource type="Texture2D" uid="uid://ct6t6t22r5vud" path="res://assets/UI-card.png" id="2_3sxuk"]
@@ -7,17 +7,15 @@
 [ext_resource type="Texture2D" uid="uid://erdl401aiquc" path="res://assets/box-stuff/box.png" id="4_3sxuk"]
 [ext_resource type="Texture2D" uid="uid://khohx8coffin" path="res://assets/UI-square.png" id="4_5v2b7"]
 [ext_resource type="Texture2D" uid="uid://cc7t1pgb2fpl0" path="res://assets/UI-square1.png" id="5_glo0s"]
-[ext_resource type="Texture2D" uid="uid://imhvho842g6d" path="res://assets/UI-square2.png" id="6_kkbxc"]
 [ext_resource type="AudioStream" uid="uid://dmc6g1watn3g8" path="res://sounds/SFX/Fire Game Walking Squish.wav" id="6_u37f6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_od04r"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5v2b7"]
 texture = ExtResource("4_5v2b7")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_od04r"]
 texture = ExtResource("5_glo0s")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_glo0s"]
-texture = ExtResource("6_kkbxc")
 
 [sub_resource type="Animation" id="Animation_a8mxd"]
 length = 0.001
@@ -438,15 +436,15 @@ offset_right = -21.0
 offset_bottom = -11.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_styles/focus = SubResource("StyleBoxTexture_5v2b7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_od04r")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxTexture_5v2b7")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_5v2b7")
 theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_od04r")
 theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_od04r")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxTexture_od04r")
-theme_override_styles/hover = SubResource("StyleBoxTexture_od04r")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxTexture_glo0s")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_glo0s")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxTexture_5v2b7")
+theme_override_styles/hover = SubResource("StyleBoxTexture_5v2b7")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxTexture_od04r")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_od04r")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxTexture_5v2b7")
 theme_override_styles/normal = SubResource("StyleBoxTexture_5v2b7")
 
