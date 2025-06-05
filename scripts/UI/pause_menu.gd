@@ -14,3 +14,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.is_pressed() and not event.is_echo():
 			get_tree().paused = false
 			hide()
+
+
+func _on_button_pressed() -> void:
+	get_tree().quit()
