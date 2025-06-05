@@ -1,6 +1,7 @@
 extends Control
 
 var started_anim := false
+var faded := false
 @onready var day_label = $ColorRect/VBoxContainer/DayLabel
 
 func _ready():
@@ -16,6 +17,13 @@ func _process(_delta):
 		day_label.text = "You survived until day " + str(GameManager.day)
 		MusicManager.play_music()
 		$AnimationPlayer.play("fade_in")
+		faded = true
+		# hide house on tilemap
+		
+func _unhandled_input(event: InputEvent):
+	if GameManager.game_over and faded:
+		if Input.is_action_just_pressed("spray") or Input.is_action_just_pressed("restart") or Input.is_action_just_pressed("pause"):
+				GameManager.restart_game()
 
 func _on_restart_button_pressed():
 	GameManager.restart_game()
