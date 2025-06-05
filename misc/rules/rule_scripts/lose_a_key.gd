@@ -32,7 +32,7 @@ func set_rule_text(rule_menu : RuleMenu, _level : int = 1):
 
 func set_rule_config(level : int = 1):
 	GameManager.used_keys.append(rng)
-	GameManager.player_move_speed *= 2
+	GameManager.player_move_speed *= 1.5
 	GameManager.keys[rng] = false
 	if level > 1:
 		GameManager.fly_enabled = true

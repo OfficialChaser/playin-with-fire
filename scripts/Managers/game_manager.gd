@@ -25,6 +25,7 @@ const start_blood_enabled := false
 
 # Darkness
 const start_darkness_enabled := false
+const start_darkness_radius := 120.0
 const start_spread := 10
 
 # Lose a key
@@ -46,6 +47,7 @@ var blood_enabled := start_blood_enabled
 
 # Darkness
 var darkness_enabled := start_darkness_enabled
+var darkness_radius := start_darkness_radius
 var spread := start_spread
 
 # Lose a key
@@ -58,15 +60,13 @@ var keys := [true, true, true, true] # keys order is left right up down
 # Misc
 var rerolls := start_rerolls
 var fire_spawn_rate := start_fire_spawn_rate
-var lightning_delay_time = 1.0
+var lightning_delay_time = 0.6
 var current_rule : Rule = null
 
 # Input
 enum InputMode { CONTROLLER, WASD, ARROWS, HJKL, MOUSE } # we so we can show what key is removed in "remove key"
 var look_mode = InputMode.MOUSE
 var key_mode = InputMode.WASD
-
-# keys - left right up down, to match the keys variable
 
 
 # tiny change, look_mode is either MOUSE or CONTROLLER
@@ -112,7 +112,7 @@ func restart_game():
 	
 	# Play transition
 	Transition.play("fade_in")
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(1).timeout
 	
 	# Reload scene and reset game vars
 	get_tree().reload_current_scene()
@@ -142,7 +142,10 @@ func reset_vars():
 	fire_spawn_rate = start_fire_spawn_rate
 	player_damage  = start_player_damage
 	rerolls = start_rerolls
-
+	
+	# Rule Manager
+	RuleManager.maxed_rules.clear()
+	
 	# Double Trouble
 	hose_knockback = start_hose_knockback
 	water_spawn_rate = start_water_spawn_rate
@@ -156,6 +159,7 @@ func reset_vars():
 
 	# Darkness
 	darkness_enabled = start_darkness_enabled
+	darkness_radius = start_darkness_radius
 	spread = start_spread
 
 	# Lose a key

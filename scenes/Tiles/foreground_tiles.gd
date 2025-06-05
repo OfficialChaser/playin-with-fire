@@ -12,21 +12,20 @@ func _process(_delta):
 	set_all_tiles(true)
 	
 
-func set_all_tiles(on: bool, level: int = 1):
+func set_all_tiles(on: bool):
 	z_index = 1
 	if not on:
 		for coords in get_used_cells():
 			set_cell(coords, 0, Vector2i(0, 0))
 		return
 	
-	if level == 1:
-		for coords in get_used_cells():
-			var dist = map_to_local(coords).distance_to(player.global_position)
-			if dist < 50:
-				set_cell(coords, 0, Vector2i(0, 0))
-			elif dist < 100:
-				set_cell(coords, 0, Vector2i(2, 0))
-			elif dist < 150:
-				set_cell(coords, 0, Vector2i(3, 0))
-			else:
-				set_cell(coords, 0, Vector2i(4, 0))
+	for coords in get_used_cells():
+		var dist = map_to_local(coords).distance_to(player.global_position)
+		if dist < GameManager.darkness_radius:
+			set_cell(coords, 0, Vector2i(0, 0))
+		elif dist < GameManager.darkness_radius * 1.5:
+			set_cell(coords, 0, Vector2i(2, 0))
+		elif dist < GameManager.darkness_radius * 1.75:
+			set_cell(coords, 0, Vector2i(3, 0))
+		else:
+			set_cell(coords, 0, Vector2i(4, 0))

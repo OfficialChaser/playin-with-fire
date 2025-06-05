@@ -23,8 +23,10 @@ var enabled := false
 var selectable := false
 
 func _ready():
-	if GameManager.day > 1:
-		title_label.text = "Today's\n[wave amp=60 freq=5]Unpredictable Rule[/wave]"
+	if RuleManager.player_has_maxed_out():
+		ready_to_start(false)
+	elif GameManager.day > 1:
+		title_label.text = "[wave amp=60 freq=5]Today's Forecast[/wave]"
 		get_new_rule()
 		enabled = true
 		
@@ -79,11 +81,12 @@ func _on_reroll_button_pressed():
 	if selectable:
 		reroll()
 
-func ready_to_start():
+func ready_to_start(new_rule: bool = true):
 	start = true
 	enabled = false
 	Transition.play("fade_out")
-	GameManager.rule_selected.emit(RuleManager.current_rule) # they'll still stack tho
+	if new_rule:
+		GameManager.rule_selected.emit(RuleManager.current_rule) # they'll still stack tho
 
 func reroll():
 	start = false
