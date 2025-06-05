@@ -45,14 +45,8 @@ func get_new_rule():
 	elif RuleManager.rule_levels[rule] == 3:
 		mod = " III"
 	rule_label.text = rule.rule_name + mod
-<<<<<<< HEAD
 	print(rule.rule_name)
-=======
-<<<<<<< HEAD
-	print(rule.rule_name)
-=======
->>>>>>> a7c15f93c37b43d515beafd83fcf6663efb52445
->>>>>>> 7062af6a0a046fc1d1fa9c75a56bfe6f6f55c355
+
 	reroll_label.text = "Rerolls: " + str(GameManager.rerolls)
 	update_rule_card_ui()
 
@@ -85,12 +79,5 @@ func _on_reroll_button_pressed():
 func ready_to_start():
 	enabled = false
 	anim.play("leave")
-<<<<<<< HEAD
-	GameManager.rule_selected.emit()
-=======
-<<<<<<< HEAD
-	GameManager.rule_selected.emit()
-=======
-	GameManager.rule_selected.emit(RuleManager.current_rule)
->>>>>>> a7c15f93c37b43d515beafd83fcf6663efb52445
->>>>>>> 7062af6a0a046fc1d1fa9c75a56bfe6f6f55c355
+
+	GameManager.rule_selected.emit(RuleManager.current_rule) # they'll still stack tho
