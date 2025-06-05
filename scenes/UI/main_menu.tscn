@@ -36,16 +36,31 @@ grow_vertical = 2
 
 [node name="TitleLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.662745, 0.396078, 0.203922, 1)
 theme_override_font_sizes/font_size = 20
 text = "Untitled Fire Game"
 
 [node name="PlayButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_disabled_color = Color(0.247059, 0.172549, 0.231373, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.662745, 0.396078, 0.203922, 1)
+theme_override_colors/font_hover_color = Color(0.776471, 0.705882, 0.309804, 1)
+theme_override_colors/font_outline_color = Color(0.247059, 0.172549, 0.231373, 1)
+theme_override_colors/font_color = Color(0.921569, 0.933333, 0.713726, 1)
+theme_override_colors/font_focus_color = Color(0.776471, 0.705882, 0.309804, 1)
+theme_override_colors/font_pressed_color = Color(0.662745, 0.396078, 0.203922, 1)
 theme_override_font_sizes/font_size = 10
 text = "Play"
 
 [node name="Button2" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_disabled_color = Color(0.247059, 0.172549, 0.231373, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.662745, 0.396078, 0.203922, 1)
+theme_override_colors/font_hover_color = Color(0.776471, 0.705882, 0.309804, 1)
+theme_override_colors/font_outline_color = Color(0.247059, 0.172549, 0.231373, 1)
+theme_override_colors/font_color = Color(0.921569, 0.933333, 0.713726, 1)
+theme_override_colors/font_focus_color = Color(0.776471, 0.705882, 0.309804, 1)
+theme_override_colors/font_pressed_color = Color(0.662745, 0.396078, 0.203922, 1)
 theme_override_font_sizes/font_size = 10
 text = "Settings"
 
@@ -73,6 +88,13 @@ offset_left = 13.0
 offset_top = 10.0
 offset_right = 53.0
 offset_bottom = 41.0
+theme_override_colors/font_disabled_color = Color(0.247059, 0.172549, 0.231373, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.662745, 0.396078, 0.203922, 1)
+theme_override_colors/font_hover_color = Color(0.776471, 0.705882, 0.309804, 1)
+theme_override_colors/font_outline_color = Color(0.247059, 0.172549, 0.231373, 1)
+theme_override_colors/font_color = Color(0.921569, 0.933333, 0.713726, 1)
+theme_override_colors/font_focus_color = Color(0.776471, 0.705882, 0.309804, 1)
+theme_override_colors/font_pressed_color = Color(0.662745, 0.396078, 0.203922, 1)
 theme_override_font_sizes/font_size = 10
 text = "Back"
 

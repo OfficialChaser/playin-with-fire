@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://fp7rg4p75r5e"]
 
-[ext_resource type="Texture2D" uid="uid://bsuhy268klumw" path="res://assets/placeholder.png" id="1_efmwq"]
 [ext_resource type="Script" uid="uid://csd8n5o6psd2j" path="res://scripts/UI/gui.gd" id="1_mfius"]
+[ext_resource type="Texture2D" uid="uid://crdbug67gbg07" path="res://assets/UI-land.png" id="2_fqfpr"]
 [ext_resource type="Shader" uid="uid://cmr5gx5qup8wf" path="res://misc/shaders/blur.gdshader" id="3_dk0i5"]
 [ext_resource type="Script" uid="uid://dpkglagfuuq7s" path="res://scripts/UI/smokin_bonus.gd" id="4_3tbu2"]
 
@@ -206,7 +206,7 @@ grow_vertical = 2
 script = ExtResource("1_mfius")
 
 [node name="DayTimer" type="Timer" parent="."]
-wait_time = 90.0
+wait_time = 2.0
 one_shot = true
 
 [node name="InfoPanel" type="TextureRect" parent="."]
@@ -214,17 +214,17 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -94.0
+offset_left = -106.0
 offset_bottom = 99.0
 grow_horizontal = 0
-texture = ExtResource("1_efmwq")
+texture = ExtResource("2_fqfpr")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="InfoPanel"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -94.0
+offset_left = -101.0
 offset_top = 9.0
 offset_bottom = 59.0
 grow_horizontal = 0
@@ -234,7 +234,7 @@ theme_override_constants/separation = 10
 custom_minimum_size = Vector2(94, 0)
 layout_mode = 2
 size_flags_horizontal = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.247059, 0.172549, 0.231373, 1)
 theme_override_font_sizes/font_size = 20
 text = "Day 1"
 horizontal_alignment = 2
@@ -242,7 +242,7 @@ vertical_alignment = 1
 
 [node name="HPLabel" type="Label" parent="InfoPanel/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.247059, 0.172549, 0.231373, 1)
 theme_override_font_sizes/font_size = 10
 text = "HP: 100"
 horizontal_alignment = 1
@@ -252,7 +252,7 @@ vertical_alignment = 1
 layout_mode = 0
 offset_right = 94.0
 offset_bottom = 66.0
-texture = ExtResource("1_efmwq")
+texture = ExtResource("2_fqfpr")
 
 [node name="TimerLabel" type="Label" parent="TimerPanel"]
 layout_mode = 1
@@ -260,7 +260,7 @@ offset_left = 2.0
 offset_top = 18.0
 offset_right = 96.0
 offset_bottom = 39.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.247059, 0.172549, 0.231373, 1)
 theme_override_font_sizes/font_size = 20
 text = "XX:XX"
 horizontal_alignment = 1
@@ -274,6 +274,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.921569, 0.933333, 0.713726, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect"]
 libraries = {
@@ -317,6 +318,7 @@ offset_top = -16.0
 offset_right = 255.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_colors/font_color = Color(0.921569, 0.933333, 0.713726, 1)
 theme_override_font_sizes/font_size = 10
 text = "You extinguished all of the flames!"
 horizontal_alignment = 1
@@ -337,6 +339,8 @@ offset_right = 324.0
 offset_bottom = 70.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.262745, 0.227451, 0.364706, 1)
+theme_override_colors/font_outline_color = Color(0.921569, 0.933333, 0.713726, 1)
 theme_override_font_sizes/font_size = 20
 text = "You survived the day!"
 horizontal_alignment = 1
@@ -346,5 +350,15 @@ root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_tk48h")
 }
+
+[node name="RuleInfo" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
 
 [connection signal="timeout" from="DayTimer" to="." method="_on_day_timer_timeout"]
