@@ -9,9 +9,11 @@ class_name GUI
 @onready var blur_animation_player = $ColorRect/AnimationPlayer
 @onready var day_success_animation_player = $DaySuccess/AnimationPlayer
 
+@onready var rule_name: Label = $RuleInfo/RuleName
 
 
 func _ready():
+
 	update_timer_label(true)
 	blur_animation_player.play("RESET")
 	Transition.play("fade_out")
@@ -24,6 +26,7 @@ func _process(_delta):
 	update_timer_label()
 	update_health_label()
 	update_day_label()
+	update_rule_label()
 
 func update_timer_label(override: bool = false):
 	if not GameManager.in_game and not override:
@@ -41,6 +44,12 @@ func update_health_label():
 
 func update_day_label():
 	day_label.text = "Day " + str(GameManager.day)
+
+func update_rule_label():
+	if GameManager.current_rule:
+		rule_name.text = GameManager.current_rule.rule_name
+	else:
+		rule_name.text = ''
 
 func _on_day_timer_timeout():
 	day_over_sequence()
