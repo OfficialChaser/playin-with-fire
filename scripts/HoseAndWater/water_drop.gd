@@ -20,7 +20,7 @@ var fire_tiles
 func _ready():
 	modulate = GameManager.water_color
 	damage = starting_damage
-	velocity = Vector2.RIGHT.rotated(rotation + deg_to_rad(randf_range(-10, 10))) * speed
+	velocity = Vector2.RIGHT.rotated(rotation + deg_to_rad(randf_range(-1, 1) * GameManager.spread)) * speed
 	
 	# PREWARM: Touch tile data so HTML5 loads it early - this still doesnt really work exactly right
 	fire_tiles = get_node("/root/Main/FireTiles")

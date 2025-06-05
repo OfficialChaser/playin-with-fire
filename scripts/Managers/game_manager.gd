@@ -24,8 +24,10 @@ const start_blood_enabled := false
 
 # Darkness
 const start_darkness_enabled := false
+const start_spread := 10
 
 # Game stats - change these with the rules
+var spread := start_spread
 var player_health := start_player_health
 var fire_spawn_rate := start_fire_spawn_rate
 var rerolls := start_rerolls
