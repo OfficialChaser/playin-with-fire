@@ -10,7 +10,7 @@ var knockback_enabled := false
 var paused := false
 
 # Hose effects on player
-@export var hose_knockback := 5000
+@export var hose_knockback : int
 @export var hose_jitter_magnitude := 2
 @export var hose_jitter_power := 100
 

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bt0l6q2gp33fx"]
+
+[ext_resource type="Script" uid="uid://puggcb04a25o" path="res://misc/rules/rule_scripts/lose_a_key.gd" id="1_hhauf"]
+
+[resource]
+script = ExtResource("1_hhauf")
+rule_name = "Lose a Key"
+cool_label = "Reverse Recoil"
+nerf_label = "Break the     "
+buff_label = "Double Move Speed"
+metadata/_custom_type_script = "uid://iklxa3lv08v3"

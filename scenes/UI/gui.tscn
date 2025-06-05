@@ -206,7 +206,7 @@ grow_vertical = 2
 script = ExtResource("1_mfius")
 
 [node name="DayTimer" type="Timer" parent="."]
-wait_time = 90.0
+wait_time = 2.0
 one_shot = true
 
 [node name="InfoPanel" type="TextureRect" parent="."]
@@ -346,5 +346,15 @@ root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_tk48h")
 }
+
+[node name="RuleInfo" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
 
 [connection signal="timeout" from="DayTimer" to="." method="_on_day_timer_timeout"]

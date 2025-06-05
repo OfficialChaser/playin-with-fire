@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Rule" load_steps=2 format=3 uid="uid://bfdvqlbpemvr2"]
+
+[ext_resource type="Script" uid="uid://iklxa3lv08v3" path="res://misc/rules/rule_scripts/rule_base_script.gd" id="1_8ad6c"]
+
+[resource]
+script = ExtResource("1_8ad6c")
+rule_name = "Cursor Trap"
+cool_label = "Piercing Water"
+nerf_label = "Cursor is Stuck"
+buff_label = "Double Spread"
+metadata/_custom_type_script = "uid://iklxa3lv08v3"
