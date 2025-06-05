@@ -6,11 +6,21 @@ func _ready():
 	player = get_tree().get_first_node_in_group("player")
 
 func _process(_delta):
+	if GameManager.level2:
+		sellSoul()
+	
 	if !GameManager.darkness_enabled:
 		set_all_tiles(false)
 		return
 	set_all_tiles(true)
-	
+
+
+func sellSoul():
+	pass
+	# z_index = 0
+	# for coords in get_used_cells():
+	#	set_cell(coords, 0, Vector2i(0, 0))
+		
 
 func set_all_tiles(on: bool):
 	z_index = 1

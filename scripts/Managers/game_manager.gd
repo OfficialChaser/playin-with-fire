@@ -43,7 +43,7 @@ var water_spawn_rate := start_water_spawn_rate
 var fly_enabled := start_fly
 
 # heal deal
-var level2 := false
+var sellSoul := true
 
 # Bloody Stuff
 var player_health := start_player_health
@@ -163,7 +163,7 @@ func reset_vars():
 	RuleManager.maxed_rules.clear()
 	
 	# Heal deal
-	level2 = false
+	sellSoul = false
 	
 	# Double Trouble
 	hose_knockback = start_hose_knockback
