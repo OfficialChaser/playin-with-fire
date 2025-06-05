@@ -42,6 +42,8 @@ func _process(_delta):
 			reroll()
 		elif Input.is_action_just_pressed('spray') and !reroll_button.is_hovered():
 			RuleManager.select_rule()
+			anim.play("leave")
+			await anim.animation_finished
 			Transition.play("fade_in")
 			await Transition.animation_finished
 			ready_to_start()
@@ -81,7 +83,6 @@ func _on_reroll_button_pressed():
 func ready_to_start():
 	start = true
 	enabled = false
-	anim.play("leave")
 	Transition.play("fade_out")
 	GameManager.rule_selected.emit(RuleManager.current_rule) # they'll still stack tho
 
