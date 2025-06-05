@@ -6,7 +6,7 @@ signal rule_selected(rule : Rule)
 var in_game := true
 var game_over := false
 
-# Game Starting stats - These can be used to reset the game stats after a rule change or reload
+## Game Starting stats - These can be used to reset the game stats after a rule change or reload
 var day := 1
 const start_fire_spawn_rate := 0.2
 const start_rerolls := 10
@@ -15,6 +15,7 @@ const start_player_damage := 2
 # Double Trouble
 const start_hose_knockback := 50
 const start_water_spawn_rate := 50.0
+const start_fly := false
 
 # Bloody Stuff
 const start_player_health := 100
@@ -26,24 +27,37 @@ const start_blood_enabled := false
 const start_darkness_enabled := false
 const start_spread := 10
 
-# Game stats - change these with the rules
-var spread := start_spread
-var player_health := start_player_health
-var fire_spawn_rate := start_fire_spawn_rate
-var rerolls := start_rerolls
-var hose_knockback := start_hose_knockback
+# Lose a key
+const start_player_move_speed := 75.0
+
+## Game stats - change these with the rules
 var player_damage := start_player_damage
+
+# Double Trouble
+var hose_knockback := start_hose_knockback
 var water_spawn_rate := start_water_spawn_rate
+var fly_enabled := start_fly
+
+# Bloody Stuff
+var player_health := start_player_health
 var water_color := start_water_color
 var player_blood_damage := start_player_blood_damage
-var darkness_enabled = start_darkness_enabled
-var blood_enabled = start_blood_enabled
+var blood_enabled := start_blood_enabled
 
+# Darkness
+var darkness_enabled := start_darkness_enabled
+var spread := start_spread
+
+# Lose a key
+var used_keys := []
+var player_move_speed := start_player_move_speed
 
 # indicates what keys are on
 var keys := [true, true, true, true] # keys order is left right up down
 
 # Misc
+var rerolls := start_rerolls
+var fire_spawn_rate := start_fire_spawn_rate
 var lightning_delay_time = 1.0
 var current_rule : Rule = null
 
@@ -83,9 +97,6 @@ func day_completed(way: String = ""):
 	
 	if way == "smokin' bonus":
 		GameManager.rerolls += 1
-	
-	# placeholder maybe
-	await get_tree().create_timer(0.1).timeout
 	
 	# reload scene with updated stuff
 	get_tree().reload_current_scene()

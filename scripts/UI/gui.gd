@@ -16,7 +16,6 @@ class_name GUI
 
 
 func _ready():
-
 	update_timer_label(true)
 	blur_animation_player.play("RESET")
 	Transition.play("fade_out")
@@ -55,7 +54,8 @@ func update_rule_label():
 		rule_name.text = ''
 
 func _on_day_timer_timeout():
-	day_over_sequence()
+	if GameManager.in_game and !GameManager.game_over:
+		day_over_sequence()
 
 func day_over_sequence(way: String = "time out"):
 	GameManager.in_game = false

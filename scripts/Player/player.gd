@@ -2,7 +2,6 @@ extends CharacterBody2D
 class_name Player
 
 # Player vars
-@export var move_speed := 75
 @export var starting_acc := 0.5
 var acc := 0.5
 
@@ -113,7 +112,7 @@ func handle_movement(delta):
 			6 * hose_jitter_power * delta
 			)
 	else:
-		velocity = lerp(velocity, input_vector * move_speed, acc)
+		velocity = lerp(velocity, input_vector * GameManager.player_move_speed, acc)
 
 	move_and_slide()
 
