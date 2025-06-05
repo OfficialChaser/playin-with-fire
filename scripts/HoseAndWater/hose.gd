@@ -95,6 +95,6 @@ func spawn_water_drop():
 	get_tree().current_scene.add_child(drop)
 	
 	drops_spawned += 1
-	if drops_spawned > 100:
+	if drops_spawned > 20:
 		GameManager.damage_player(GameManager.player_blood_damage)
 		drops_spawned = 0

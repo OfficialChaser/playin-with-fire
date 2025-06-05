@@ -3,7 +3,6 @@ extends Node
 var rule_paths : Array[String] = [
 	"res://misc/rules/double_trouble.tres", 
 	"res://misc/rules/bloody_stuff.tres",
-	"res://misc/rules/cursor_trap.tres", 
 	"res://misc/rules/darkness.tres", 
 	"res://misc/rules/limited_water.tres", 
 	"res://misc/rules/lose_a_key.tres",
@@ -13,7 +12,7 @@ var rule_paths : Array[String] = [
 var rules : Array[Rule] 
 
 
-#= ["double trouble", "lose a key", "cursor trap", "save the trees", "bloody stuff", "limited water", "DARKNESS"] # "stop the flood"
+#= ["double trouble", "lose a key", "save the trees", "bloody stuff", "limited water", "DARKNESS"] # "stop the flood"
 var used_rules := []
 
 
