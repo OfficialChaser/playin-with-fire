@@ -1,24 +1,33 @@
 extends Node
 
-signal rule_selected
+signal rule_selected(rule : Rule)
 
 # Game vars
 var in_game := true
 var game_over := false
 
-# Game stats
-var player_health := 100
+# Game Starting stats - These can be used to reset the game stats after a rule change or reload
+const start_player_health := 100
 var day := 1
+const start_fire_spawn_rate := 0.2
+const start_rerolls := 3
+const start_hose_knockback := 5000
+const start_player_damage := 2
+
+# Game stats - change these with the rules
+var player_health := 100
 var fire_spawn_rate := 0.2
 var rerolls := 3
-var hose_knockback := 5000
+var hose_knockback := 75
 var player_damage := 2
+
 
 # indicates what keys are on
 var keys := [true, true, true, true] # keys order is left right up down
 
 # Misc
 var lightning_delay_time = 1.0
+var current_rule : Rule = null
 
 # Input
 enum InputMode { CONTROLLER, WASD, ARROWS, HJKL, MOUSE } # we so we can show what key is removed in "remove key"
@@ -31,6 +40,17 @@ var key_mode = InputMode.WASD
 # tiny change, look_mode is either MOUSE or CONTROLLER
 # while key_mode is what movement keys the player moves with
 # key_mode can be used to show that you remove "up key" as what they use to move up, so it looks better
+
+func _ready() -> void:
+	connect('rule_selected',on_rule_selected)
+
+
+func on_rule_selected(rule : Rule):
+	if current_rule:
+		current_rule.reset_rule_config()
+	current_rule = rule
+	current_rule.set_rule_config(RuleManager.rule_levels[current_rule])
+
 
 func damage_player(damage: int):
 	if in_game and not game_over:
@@ -56,11 +76,15 @@ func day_completed(way: String = ""):
 
 func restart_game():
 	# Reset stats
-	player_health = 100
 	day = 1
-	fire_spawn_rate = 0.2
-	rerolls = 3
+	player_health = start_player_health
+	fire_spawn_rate = start_fire_spawn_rate
+	hose_knockback = start_hose_knockback
+	player_damage  = start_player_damage
+
+	rerolls = start_rerolls
 	keys = [true, true, true, true] # keys order is left right up down
+
 	
 	# Play transition
 	Transition.play("fade_in")

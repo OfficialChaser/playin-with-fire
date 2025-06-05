@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="Rule" load_steps=2 format=3 uid="uid://dt53p106qnuek"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dt53p106qnuek"]
 
-[ext_resource type="Script" uid="uid://iklxa3lv08v3" path="res://misc/rules/rule_scripts/rule_base_script.gd" id="1_yy2nx"]
+[ext_resource type="Script" uid="uid://8oqxjb4vfw1a" path="res://misc/rules/rule_scripts/darkness.gd" id="1_yy2nx"]
 
 [resource]
 script = ExtResource("1_yy2nx")

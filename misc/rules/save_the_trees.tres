@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="Rule" load_steps=2 format=3 uid="uid://83u8k050han"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://83u8k050han"]
 
-[ext_resource type="Script" uid="uid://iklxa3lv08v3" path="res://misc/rules/rule_scripts/rule_base_script.gd" id="1_oas04"]
+[ext_resource type="Script" uid="uid://brl1v8fkl35bj" path="res://misc/rules/rule_scripts/save_the_trees.gd" id="1_oas04"]
 
 [resource]
 script = ExtResource("1_oas04")

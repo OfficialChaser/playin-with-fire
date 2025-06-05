@@ -1,10 +1,10 @@
 extends Node
 
 var rule_paths : Array[String] = [
+	"res://misc/rules/double_trouble.tres", 
 	"res://misc/rules/bloody_stuff.tres",
 	"res://misc/rules/cursor_trap.tres", 
 	"res://misc/rules/darkness.tres", 
-	"res://misc/rules/double_trouble.tres", 
 	"res://misc/rules/limited_water.tres", 
 	"res://misc/rules/lose_a_key.tres",
 	"res://misc/rules/save_the_trees.tres"
@@ -40,7 +40,7 @@ func pick_random_rule() -> Rule:
 	if !possible_rules:
 		return current_rule
 		
-	current_rule = possible_rules.pick_random()
+	current_rule = possible_rules[0] ###!!!! This is for Debug purposes !!!! Should be pick_random()
 	used_rules.append(current_rule)
 	
 	return current_rule

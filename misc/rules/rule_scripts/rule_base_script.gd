@@ -15,11 +15,12 @@ func set_rule_text(rule_menu : RuleMenu, level : int = 1):
 	if level > 1:
 		rule_menu.cool_label.text = cool_label
 
-func set_rule_config(level : int = 1):
+func set_rule_config(_level : int = 1):
 	pass
 
 func reset_rule_config():
 	pass
+	
 	#if rule == "double trouble":
 		#if RuleManager.rule_levels[rule] == 2:
 			#cool_label.text = "Fly"

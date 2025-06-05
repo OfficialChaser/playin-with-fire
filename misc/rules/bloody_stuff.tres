@@ -1,9 +1,9 @@
-[gd_resource type="Resource" script_class="Rule" load_steps=2 format=3 uid="uid://c8jsuxcrtghlp"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c8jsuxcrtghlp"]
 
-[ext_resource type="Script" uid="uid://iklxa3lv08v3" path="res://misc/rules/rule_scripts/rule_base_script.gd" id="1_ycu4q"]
+[ext_resource type="Script" uid="uid://bp1hvljikfmx6" path="res://misc/rules/rule_scripts/bloody_stuff.gd" id="1_e4ssr"]
 
 [resource]
-script = ExtResource("1_ycu4q")
+script = ExtResource("1_e4ssr")
 rule_name = "Bloody Stuff"
 cool_label = "Blood Pools"
 nerf_label = "Shooting Hurts"
