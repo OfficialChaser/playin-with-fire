@@ -6,6 +6,6 @@
 script = ExtResource("1_qjh02")
 rule_name = "Limited Water"
 cool_label = "Unlimited Sprinklers"
-nerf_label = "Ammo Bar for Water"
-buff_label = "Sprinklers"
+nerf_label = "Water takes ammo"
+buff_label = "Water sprinklers"
 metadata/_custom_type_script = "uid://iklxa3lv08v3"

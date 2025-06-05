@@ -6,6 +6,6 @@
 script = ExtResource("1_oas04")
 rule_name = "Save The Trees"
 cool_label = "Plant Trees"
-nerf_label = "Burning Trees Steal HP"
-buff_label = "Heal from Watered Trees"
+nerf_label = "Protect the trees"
+buff_label = "Watering heals"
 metadata/_custom_type_script = "uid://iklxa3lv08v3"

@@ -64,8 +64,8 @@ func set_rule_config(level : int = 1):
 
 [resource]
 script = SubResource("GDScript_oe8so")
-rule_name = ""
-cool_label = ""
-nerf_label = ""
-buff_label = ""
+rule_name = "Double Trouble"
+cool_label = "Levitation"
+nerf_label = "Double recoil"
+buff_label = "Double fire rate"
 metadata/_custom_type_script = "uid://iklxa3lv08v3"
