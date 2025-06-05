@@ -21,21 +21,30 @@ var rule : Rule
 
 var rerolling := false
 var enabled := false
+var selectable := false
 
 func _ready():
 	if GameManager.day > 1:
 		title_label.text = "Today's\n[wave amp=60 freq=5]Unpredictable Rule[/wave]"
 		get_new_rule()
 		enabled = true
+		
+		await anim.animation_finished
+		selectable = true
 
 func _process(_delta):
 	if not enabled:
 		visible = false
 		return
 	visible = true
-	if Input.is_action_just_pressed('spray') and !rerolling and !reroll_button.is_hovered():
-		RuleManager.select_rule()
-		animation_player.play("fade_out")
+	if !rerolling and selectable:
+		if Input.is_action_just_pressed("reroll"):
+			reroll()
+		elif Input.is_action_just_pressed('spray') and !reroll_button.is_hovered():
+			RuleManager.select_rule()
+			Transition.play("fade_in")
+			await Transition.animation_finished
+			ready_to_start()
 
 func get_new_rule():
 	rule = RuleManager.pick_random_rule()
@@ -45,7 +54,6 @@ func get_new_rule():
 	elif RuleManager.rule_levels[rule] == 3:
 		mod = " III"
 	rule_label.text = rule.rule_name + mod
-	print(rule.rule_name)
 
 	reroll_label.text = "Rerolls: " + str(GameManager.rerolls)
 	
@@ -63,26 +71,34 @@ func update_rule_card_ui():
 	
 	if rule:
 		rule.set_rule_text(self,RuleManager.rule_levels[rule])
+	
+	change_animations()
 
 func _on_reroll_button_pressed():
-	
+	if selectable:
+		reroll()
+
+func ready_to_start():
+	start = true
+	enabled = false
+	anim.play("leave")
+	Transition.play("fade_out")
+	GameManager.rule_selected.emit(RuleManager.current_rule) # they'll still stack tho
+
+func reroll():
 	start = false
 	# anim.play("enter")
 	if rerolling or GameManager.rerolls < 1:
 		return
 	
 	GameManager.rerolls -= 1
-	GameManager.rerolls = clamp(GameManager.rerolls, 0, 5)
+	GameManager.rerolls = clamp(GameManager.rerolls, 0, 10)
 	rerolling = true
 	get_new_rule()
 	
-	# Placeholder
-	await get_tree().create_timer(1).timeout
+
+func change_animations():
+	await anim.animation_finished
+	print('esttest')
+	anim.play("idle")
 	rerolling = false
-
-func ready_to_start():
-	start = true
-	enabled = false
-	anim.play("leave")
-
-	GameManager.rule_selected.emit(RuleManager.current_rule) # they'll still stack tho
