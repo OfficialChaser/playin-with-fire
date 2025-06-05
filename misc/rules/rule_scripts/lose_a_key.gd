@@ -13,7 +13,7 @@ func set_rule_text(rule_menu : RuleMenu, _level : int = 1):
 	for i in range(3):
 		if !GameManager.used_keys.has(i):
 			choices.append(i)
-	rng = randi_range(0, 3)
+	rng = choices.pick_random()
 	
 	if GameManager.look_mode == GameManager.InputMode.CONTROLLER:
 		keyboard.frame = 12 + rng

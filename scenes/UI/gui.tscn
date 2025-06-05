@@ -208,7 +208,7 @@ grow_vertical = 2
 script = ExtResource("1_mfius")
 
 [node name="DayTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 7.0
 one_shot = true
 
 [node name="InfoPanel" type="TextureRect" parent="."]

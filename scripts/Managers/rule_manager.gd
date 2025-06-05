@@ -6,7 +6,6 @@ var rule_paths : Array[String] = [
 	"res://misc/rules/darkness.tres", 
 	"res://misc/rules/limited_water.tres", 
 	"res://misc/rules/lose_a_key.tres",
-	"res://misc/rules/save_the_trees.tres"
 ]
 
 var rules : Array[Rule] 

@@ -13,7 +13,7 @@ const start_rerolls := 10
 const start_player_damage := 2
 
 # Double Trouble
-const start_hose_knockback := 50
+const start_hose_knockback := 50.0
 const start_water_spawn_rate := 50.0
 const start_fly := false
 
@@ -105,13 +105,8 @@ func day_completed(way: String = ""):
 
 func restart_game():
 	# Reset stats
-	day = 1
-	player_health = start_player_health
-	fire_spawn_rate = start_fire_spawn_rate
-	hose_knockback = start_hose_knockback
-	player_damage  = start_player_damage
-
-	rerolls = start_rerolls
+	reset_vars()
+	
 	keys = [true, true, true, true] # keys order is left right up down
 
 	
@@ -141,3 +136,28 @@ func update_game_stats():
 	# figure out some sort of log or exp function here to get a better difficulty curve
 	fire_spawn_rate -= 0.02  # looks like fire spawn timer
 	fire_spawn_rate = clamp(fire_spawn_rate, 0.01, 10000)
+
+func reset_vars():
+	day = 1
+	fire_spawn_rate = start_fire_spawn_rate
+	player_damage  = start_player_damage
+	rerolls = start_rerolls
+
+	# Double Trouble
+	hose_knockback = start_hose_knockback
+	water_spawn_rate = start_water_spawn_rate
+	fly_enabled = start_fly
+
+	# Bloody Stuff
+	player_health = start_player_health
+	water_color = start_water_color
+	player_blood_damage = start_player_blood_damage
+	blood_enabled = start_blood_enabled
+
+	# Darkness
+	darkness_enabled = start_darkness_enabled
+	spread = start_spread
+
+	# Lose a key
+	used_keys = []
+	player_move_speed = start_player_move_speed
