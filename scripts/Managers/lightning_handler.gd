@@ -4,14 +4,12 @@ const LIGHTNING = preload("res://scenes/Objects/lightning.tscn")
 const LIGHTNING_HIGHLIGHT = preload("res://scenes/Objects/lightning_highlight.tscn")
 
 @onready var fire_tiles: FireTiles = $"../FireTiles"
-@export var min_lightning : int = 10
-@export var max_lightning : int = 20
 func _ready() -> void:
 	if GameManager.day > 1:
 		await GameManager.rule_selected
 	var used_cells := {}
 	
-	for i in randi_range(min_lightning, max_lightning):
+	for i in range(GameManager.lightning_spawn_amt):
 		await get_tree().create_timer(0.1).timeout
 		spawn_lightning(used_cells)
 

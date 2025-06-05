@@ -23,6 +23,7 @@ var enabled := false
 var selectable := false
 
 func _ready():
+	$RerollButton/OutOfStock.visible = false
 	if RuleManager.player_has_maxed_out():
 		ready_to_start(false)
 	elif GameManager.day > 1:
@@ -40,7 +41,8 @@ func _process(_delta):
 	visible = true
 	if !rerolling and selectable:
 		if Input.is_action_just_pressed("reroll"):
-			reroll()
+			if GameManager.rerolls == 0 or RuleManager.used_rules.size() == RuleManager.rules.size():
+				reroll()
 		elif Input.is_action_just_pressed('spray') and !reroll_button.is_hovered():
 			RuleManager.select_rule()
 			anim.play("leave")
@@ -48,6 +50,10 @@ func _process(_delta):
 			Transition.play("fade_in")
 			await Transition.animation_finished
 			ready_to_start()
+	
+	if GameManager.rerolls == 0 or RuleManager.used_rules.size() == RuleManager.rules.size():
+		reroll_button.disabled = true
+		$RerollButton/OutOfStock.visible = true
 
 func get_new_rule():
 	rule = RuleManager.pick_random_rule()
@@ -87,6 +93,9 @@ func ready_to_start(new_rule: bool = true):
 	Transition.play("fade_out")
 	if new_rule:
 		GameManager.rule_selected.emit(RuleManager.current_rule) # they'll still stack tho
+	else:
+		RuleManager.current_rule = null
+		GameManager.rule_selected.emit(RuleManager.current_rule)
 
 func reroll():
 	start = false

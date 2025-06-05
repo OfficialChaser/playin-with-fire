@@ -34,17 +34,16 @@ func random_offset() -> Vector2:
 func play_red_tint_anim():
 	animation_player.play("hurt")
 
-'''func zoom_in_on_player():
+func zoom_in_on_house():
 	#Disable GUI
 	get_tree().current_scene.get_node("CanvasLayer").get_node("GUI").visible = false
 	
-	var player := get_tree().get_first_node_in_group("Player")
 	var tween = create_tween()
 	tween.parallel().tween_property(
 		self, "global_position", 
-		player.global_position, 0.1
+		Vector2(0, 0), 0.1
 	)
 	tween.parallel().tween_property(
 		self, "zoom", 
 		Vector2(9, 9), 0.6
-	)'''
+	)
