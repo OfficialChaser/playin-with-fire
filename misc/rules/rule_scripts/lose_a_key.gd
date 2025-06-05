@@ -2,13 +2,14 @@ extends Rule
 
 var rng
 
+
 func set_rule_text(rule_menu : RuleMenu, _level : int = 1):
 	var keyboard = rule_menu.keyboard
 	
 	keyboard.visible = true
 	# keys = [["A", "D", "W", "S"], ["←", "→", "↑", "↓"], ["H", "L", "K", "J"]] + controller keys
-	var thing
 	
+	var thing
 	var choices = []
 	for i in range(3):
 		if !GameManager.used_keys.has(i):
@@ -22,7 +23,6 @@ func set_rule_text(rule_menu : RuleMenu, _level : int = 1):
 		var km : int = KeyManager.keys_layout()
 		keyboard.frame = (km-1)*4 + rng
 		thing = "key"
-	
 
 	rule_menu.cool_label.text = ' '
 	rule_menu.nerf_label.text = nerf_label + thing
@@ -32,7 +32,7 @@ func set_rule_text(rule_menu : RuleMenu, _level : int = 1):
 
 func set_rule_config(level : int = 1):
 	GameManager.used_keys.append(rng)
-	GameManager.player_move_speed *= 1.5
+	GameManager.player_move_speed *= 2
 	GameManager.keys[rng] = false
 	if level > 1:
 		GameManager.fly_enabled = true

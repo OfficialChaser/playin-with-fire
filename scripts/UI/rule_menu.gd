@@ -15,7 +15,6 @@ class_name RuleMenu
 
 @onready var anim = $greg/AnimationPlayer
 
-
 var start = true
 var rule : Rule
 

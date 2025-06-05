@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://db54xk5h24po7"]
+
+[ext_resource type="Script" uid="uid://bp1hvljikfmx6" path="res://misc/rules/rule_scripts/bloody_stuff.gd" id="1_2c7o5"]
+
+[resource]
+script = ExtResource("1_2c7o5")
+rule_name = "Dire Fire"
+cool_label = "Blood Pools"
+nerf_label = "Passive fire"
+buff_label = "Passive healing"
+metadata/_custom_type_script = "uid://iklxa3lv08v3"

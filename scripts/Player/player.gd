@@ -103,9 +103,11 @@ func handle_movement(delta):
 		# You can get rid of this if you dont want it
 		var combined_direction = (spray_direction * knockback_weight + input_vector * move_weight).normalized()
 		var jitter = Vector2(
-			randf_range(-hose_jitter_magnitude, hose_jitter_magnitude), 
-			randf_range(-hose_jitter_magnitude, hose_jitter_magnitude)
-			) * hose_jitter_power
+			# randf_range(-hose_jitter_magnitude, hose_jitter_magnitude), 
+			# randf_range(-hose_jitter_magnitude, hose_jitter_magnitude)
+			randf_range(-1.0, 1.0), 
+			randf_range(-1.0, 1.0)
+			) * hose_jitter_magnitude * hose_jitter_power
 			
 		velocity = velocity.move_toward(
 			(combined_direction * GameManager.hose_knockback) + jitter, 

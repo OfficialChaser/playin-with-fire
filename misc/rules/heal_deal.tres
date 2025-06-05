@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_oas04")
-rule_name = "Save The Trees"
-cool_label = "Plant Trees"
-nerf_label = "Protect the trees"
-buff_label = "Watering heals"
+rule_name = "Heal Deal"
+cool_label = "Sell your soul"
+nerf_label = "Double damage"
+buff_label = "Double healing"
 metadata/_custom_type_script = "uid://iklxa3lv08v3"

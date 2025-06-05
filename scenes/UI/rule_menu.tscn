@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bk7cvfu0hrbbw"]
+[gd_scene load_steps=24 format=3 uid="uid://bk7cvfu0hrbbw"]
 
 [ext_resource type="Script" uid="uid://baabppi4ibmx6" path="res://scripts/UI/rule_menu.gd" id="1_nor5v"]
 [ext_resource type="Texture2D" uid="uid://ct6t6t22r5vud" path="res://assets/UI-card.png" id="2_3sxuk"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dh051np355qo7" path="res://assets/box-stuff/box-sheet.png" id="3_les7v"]
 [ext_resource type="Texture2D" uid="uid://erdl401aiquc" path="res://assets/box-stuff/box.png" id="4_3sxuk"]
 [ext_resource type="Texture2D" uid="uid://khohx8coffin" path="res://assets/UI-square.png" id="4_5v2b7"]
+[ext_resource type="Script" uid="uid://ca02yf3j6tyeb" path="res://scenes/UI/keys_display.gd" id="4_kkbxc"]
 [ext_resource type="Texture2D" uid="uid://cc7t1pgb2fpl0" path="res://assets/UI-square1.png" id="5_glo0s"]
 [ext_resource type="Texture2D" uid="uid://imhvho842g6d" path="res://assets/UI-square2.png" id="6_kkbxc"]
 [ext_resource type="AudioStream" uid="uid://dmc6g1watn3g8" path="res://sounds/SFX/Fire Game Walking Squish.wav" id="6_u37f6"]
@@ -110,6 +111,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("box:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3.5, -6)]
+}
 
 [sub_resource type="Animation" id="Animation_3sxuk"]
 resource_name = "enter"
@@ -186,6 +199,18 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("box:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3.5, -6)]
 }
 
 [sub_resource type="Animation" id="Animation_glo0s"]
@@ -264,6 +289,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("box:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3.5, -6)]
+}
 
 [sub_resource type="Animation" id="Animation_u37f6"]
 resource_name = "idle"
@@ -297,7 +334,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_ph6hy"]
 resource_name = "leave"
-length = 1.2
+length = 1.5
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -306,10 +343,10 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05, 1.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05, 1.2, 1.35, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [30, 31, 32, 33, 34, 35, 36, 37, 0]
+"values": [29, 30, 31, 32, 33, 34, 35, 36, 37, 0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -318,10 +355,70 @@ tracks/1/path = NodePath("WalkingSFX:playing")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.4, 1.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false]
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("box:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.05, 0.45),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("box:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.05, 0.25, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(-5, 5), Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../TextureRect:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../RuleLabel:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("box:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.05),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-3.4, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5v2b7"]
@@ -384,7 +481,6 @@ offset_right = 171.0
 offset_bottom = -69.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1e-05, 1e-05)
 theme_override_colors/font_color = Color(0.776471, 0.705882, 0.309804, 1)
 theme_override_font_sizes/font_size = 30
 text = "example text"
@@ -415,7 +511,7 @@ offset_bottom = 123.0
 theme_override_colors/font_color = Color(0.776471, 0.705882, 0.309804, 1)
 theme_override_font_sizes/font_size = 15
 text = "break the 
-key"
+stick"
 autowrap_mode = 3
 
 [node name="BuffLabel" type="Label" parent="TextureRect"]
@@ -479,8 +575,9 @@ autowrap_mode = 3
 position = Vector2(76, 105)
 texture = ExtResource("2_a8mxd")
 hframes = 16
-frame = 2
+frame = 12
 region_rect = Rect2(1, 0, 1, 0)
+script = ExtResource("4_kkbxc")
 
 [node name="RerollButton" type="Button" parent="."]
 layout_mode = 1

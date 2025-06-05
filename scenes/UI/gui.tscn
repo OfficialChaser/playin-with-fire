@@ -208,7 +208,7 @@ grow_vertical = 2
 script = ExtResource("1_mfius")
 
 [node name="DayTimer" type="Timer" parent="."]
-wait_time = 7.0
+wait_time = 30.0
 one_shot = true
 
 [node name="InfoPanel" type="TextureRect" parent="."]
@@ -268,7 +268,6 @@ text = "XX:XX"
 horizontal_alignment = 1
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 z_index = 1
 material = SubResource("ShaderMaterial_3tbu2")
 layout_mode = 1
@@ -374,6 +373,7 @@ offset_top = 5.0
 offset_right = 32.0
 offset_bottom = 21.0
 grow_horizontal = 2
+theme_override_colors/font_color = Color(0.921569, 0.933333, 0.713726, 1)
 theme_override_font_sizes/font_size = 10
 text = "Rule"
 horizontal_alignment = 1
