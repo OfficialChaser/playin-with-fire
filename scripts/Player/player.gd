@@ -10,7 +10,7 @@ var knockback_enabled := false
 var paused := false
 
 # Hose effects on player
-var hose_knockback : int
+@export var hose_knockback := 5000
 @export var hose_jitter_magnitude := 2
 @export var hose_jitter_power := 100
 
@@ -113,7 +113,7 @@ func handle_movement(delta):
 			) * hose_jitter_power
 			
 		velocity = velocity.move_toward(
-			(combined_direction * GameManager.hose_knockback) + jitter, 
+			(combined_direction * hose_knockback) + jitter, 
 			6 * hose_jitter_power * delta
 			)
 		walking_sfx.stop()
