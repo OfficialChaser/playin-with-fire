@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 [gd_scene load_steps=14 format=3 uid="uid://nqudhcmrpx1g"]
+=======
+<<<<<<< HEAD
+[gd_scene load_steps=14 format=3 uid="uid://nqudhcmrpx1g"]
+=======
+[gd_scene load_steps=13 format=3 uid="uid://nqudhcmrpx1g"]
+>>>>>>> a7c15f93c37b43d515beafd83fcf6663efb52445
+>>>>>>> 7062af6a0a046fc1d1fa9c75a56bfe6f6f55c355
 
 [ext_resource type="Script" uid="uid://baabppi4ibmx6" path="res://scripts/UI/rule_menu.gd" id="1_nor5v"]
 [ext_resource type="Texture2D" uid="uid://ct6t6t22r5vud" path="res://assets/UI-card.png" id="2_3sxuk"]
