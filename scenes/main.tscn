@@ -10,8 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://fp7rg4p75r5e" path="res://scenes/UI/gui.tscn" id="8_tipki"]
 [ext_resource type="Script" uid="uid://ca4a07lb1b3xr" path="res://scripts/Managers/lightning_handler.gd" id="9_85g3d"]
 [ext_resource type="Script" uid="uid://b0ivuqgs8lf53" path="res://scripts/UI/pause_menu.gd" id="9_choun"]
-[ext_resource type="PackedScene" uid="uid://7l2pcgp2c2la" path="res://scenes/UI/game_over.tscn" id="10_ya4ey"]
-[ext_resource type="PackedScene" uid="uid://nqudhcmrpx1g" path="res://scenes/UI/rule_menu.tscn" id="11_eb6dy"]
+[ext_resource type="PackedScene" uid="uid://bnp363jw03g5" path="res://scenes/UI/game_over.tscn" id="10_ya4ey"]
+[ext_resource type="PackedScene" uid="uid://bk7cvfu0hrbbw" path="res://scenes/UI/rule_menu.tscn" id="11_eb6dy"]
 [ext_resource type="Script" uid="uid://bhq8237fgqtex" path="res://scripts/Managers/key_manager.gd" id="13_trceg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tefeu"]
