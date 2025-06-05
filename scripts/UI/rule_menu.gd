@@ -100,6 +100,5 @@ func reroll():
 
 func change_animations():
 	await anim.animation_finished
-	print('esttest')
 	anim.play("idle")
 	rerolling = false
