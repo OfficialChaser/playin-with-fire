@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Major Jam 7"
-run/main_scene="uid://bossmfp1bwrd"
+run/main_scene="uid://ciigmew78bdo4"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 boot_splash/bg_color=Color(0.34902, 0.560784, 0.313726, 1)
 boot_splash/use_filter=false
