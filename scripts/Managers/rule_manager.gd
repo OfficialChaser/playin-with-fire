@@ -7,7 +7,7 @@ var rule_paths : Array[String] = [
 	#"res://misc/rules/limited_water.tres", 
 	"res://misc/rules/lose_a_key.tres",
 	#"res://misc/rules/gambling_addict.tres",
-	#"res://misc/rules/heal_deal.tres",
+	"res://misc/rules/heal_deal.tres",
 	#"res://misc/rules/lightning_fast.tres",
 	#"res://misc/rules/dire_fire.tres"
 ]

@@ -23,6 +23,8 @@ const start_player_health := 100
 const start_water_color := Color("3f5886")
 const start_player_blood_damage := 1
 const start_blood_enabled := false
+const start_max_hp := 100
+const start_hp_gain := 50
 
 # Darkness
 const start_darkness_enabled := false
@@ -40,11 +42,16 @@ var hose_knockback := start_hose_knockback
 var water_spawn_rate := start_water_spawn_rate
 var fly_enabled := start_fly
 
+# heal deal
+var level2 := false
+
 # Bloody Stuff
 var player_health := start_player_health
 var water_color := start_water_color
 var player_blood_damage := start_player_blood_damage
 var blood_enabled := start_blood_enabled
+var max_hp := start_max_hp
+var hp_gain := start_hp_gain
 
 # Darkness
 var darkness_enabled := start_darkness_enabled
@@ -134,7 +141,10 @@ func end_game():
 	in_game = false
 
 func update_game_stats():
-	player_health = 100
+	if player_health + hp_gain > max_hp:
+		player_health = max_hp
+	else:
+		player_health += hp_gain
 	day += 1
 	
 	# figure out some sort of log or exp function here to get a better difficulty curve
@@ -152,6 +162,9 @@ func reset_vars():
 	# Rule Manager
 	RuleManager.maxed_rules.clear()
 	
+	# Heal deal
+	level2 = false
+	
 	# Double Trouble
 	hose_knockback = start_hose_knockback
 	water_spawn_rate = start_water_spawn_rate
@@ -162,6 +175,8 @@ func reset_vars():
 	water_color = start_water_color
 	player_blood_damage = start_player_blood_damage
 	blood_enabled = start_blood_enabled
+	max_hp = start_max_hp
+	hp_gain = start_hp_gain
 
 	# Darkness
 	darkness_enabled = start_darkness_enabled
