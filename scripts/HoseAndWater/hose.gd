@@ -94,7 +94,8 @@ func spawn_water_drop():
 	drop.lifetime = spray_time
 	get_tree().current_scene.add_child(drop)
 	
-	drops_spawned += 1
-	if drops_spawned > 20:
-		GameManager.damage_player(GameManager.player_blood_damage)
-		drops_spawned = 0
+	if GameManager.blood_enabled:
+		drops_spawned += 1
+		if drops_spawned > 20:
+			GameManager.damage_player(GameManager.player_blood_damage)
+			drops_spawned = 0

@@ -20,9 +20,10 @@ const start_water_spawn_rate := 50.0
 const start_player_health := 100
 const start_water_color := Color("3f5886")
 const start_player_blood_damage := 1
+const start_blood_enabled := false
 
 # Darkness
-const start_darkness_enabeld := false
+const start_darkness_enabled := false
 
 # Game stats - change these with the rules
 var player_health := start_player_health
@@ -33,7 +34,8 @@ var player_damage := start_player_damage
 var water_spawn_rate := start_water_spawn_rate
 var water_color := start_water_color
 var player_blood_damage := start_player_blood_damage
-var darkness_enabled = start_darkness_enabeld
+var darkness_enabled = start_darkness_enabled
+var blood_enabled = start_blood_enabled
 
 
 # indicates what keys are on

@@ -7,8 +7,9 @@ func _ready():
 
 func _process(_delta):
 	if !GameManager.darkness_enabled:
-		set_all_tiles(true, 1)
+		set_all_tiles(false)
 		return
+	set_all_tiles(true)
 	
 
 func set_all_tiles(on: bool, level: int = 1):
@@ -16,6 +17,7 @@ func set_all_tiles(on: bool, level: int = 1):
 	if not on:
 		for coords in get_used_cells():
 			set_cell(coords, 0, Vector2i(0, 0))
+		return
 	
 	if level == 1:
 		for coords in get_used_cells():
@@ -28,9 +30,3 @@ func set_all_tiles(on: bool, level: int = 1):
 				set_cell(coords, 0, Vector2i(3, 0))
 			else:
 				set_cell(coords, 0, Vector2i(4, 0))
-
-func level2():
-	z_index = 1
-	for cell in get_used_cells():
-		var data = get_cell_tile_data(cell)
-		data.modulate.a = 255
