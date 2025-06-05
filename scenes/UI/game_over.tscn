@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://7l2pcgp2c2la"]
+[gd_scene load_steps=17 format=3 uid="uid://bnp363jw03g5"]
 
 [ext_resource type="Script" uid="uid://d3jjrxrq4fbou" path="res://scripts/UI/game_over.gd" id="1_njkqv"]
 [ext_resource type="AudioStream" uid="uid://c0ph4rsusino5" path="res://sounds/SFX/Fire Game Game Over.wav" id="2_vop4n"]
