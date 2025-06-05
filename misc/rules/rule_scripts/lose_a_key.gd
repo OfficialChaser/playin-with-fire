@@ -20,4 +20,6 @@ func set_rule_text(rule_menu : RuleMenu, level : int = 1):
 	rule_menu.nerf_label.text = nerf_label + thing
 	rule_menu.buff_label.text = buff_label 
 	if level > 1:
+		if GameManager.hose_knockback > 0:
+			GameManager.hose_knockback *= -1
 		rule_menu.cool_label.text = cool_label
