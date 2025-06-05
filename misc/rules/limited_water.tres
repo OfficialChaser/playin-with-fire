@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Rule" load_steps=2 format=3 uid="uid://8i3mrbrthorp"]
+
+[ext_resource type="Script" uid="uid://iklxa3lv08v3" path="res://misc/rules/rule_scripts/rule_base_script.gd" id="1_qjh02"]
+
+[resource]
+script = ExtResource("1_qjh02")
+rule_name = "Limited Water"
+cool_label = "Unlimited Sprinklers"
+nerf_label = "Ammo Bar for Water"
+buff_label = "Sprinklers"
+metadata/_custom_type_script = "uid://iklxa3lv08v3"

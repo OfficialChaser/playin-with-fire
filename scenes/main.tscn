@@ -117,8 +117,10 @@ grow_vertical = 0
 text = "Quit	"
 
 [node name="GameOver" parent="CanvasLayer" instance=ExtResource("10_ya4ey")]
+visible = false
 
 [node name="RuleMenu" parent="CanvasLayer" instance=ExtResource("11_eb6dy")]
+visible = false
 
 [node name="LightningManager" type="Node2D" parent="."]
 script = ExtResource("9_85g3d")
