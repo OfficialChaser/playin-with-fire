@@ -1,12 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-[gd_scene load_steps=14 format=3 uid="uid://nqudhcmrpx1g"]
-=======
-[gd_scene load_steps=13 format=3 uid="uid://nqudhcmrpx1g"]
->>>>>>> a7c15f93c37b43d515beafd83fcf6663efb52445
-=======
-[gd_scene load_steps=14 format=3 uid="uid://nqudhcmrpx1g"]
->>>>>>> parent of 56f6c19 (Merge branch 'main' of https://github.com/OfficialChaser/MajorJam7)
+[gd_scene load_steps=14 format=3 uid="uid://bk7cvfu0hrbbw"]
 
 [ext_resource type="Script" uid="uid://baabppi4ibmx6" path="res://scripts/UI/rule_menu.gd" id="1_nor5v"]
 [ext_resource type="Texture2D" uid="uid://ct6t6t22r5vud" path="res://assets/UI-card.png" id="2_3sxuk"]
@@ -297,6 +289,7 @@ grow_vertical = 2
 texture = ExtResource("2_3sxuk")
 
 [node name="NerfLabel" type="Label" parent="TextureRect"]
+layout_mode = 0
 offset_left = 13.0
 offset_top = 72.0
 offset_right = 130.0
