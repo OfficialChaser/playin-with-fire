@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=2 format=3 uid="uid://pxfvaow7aru3"]
 
-[ext_resource type="Script" uid="uid://bp1hvljikfmx6" path="res://misc/rules/rule_scripts/bloody_stuff.gd" id="1_ed4it"]
+[ext_resource type="Script" uid="uid://dcfw1kpx40y4w" path="res://misc/rules/rule_scripts/gambling_addict.gd" id="1_ed4it"]
 
 [resource]
 script = ExtResource("1_ed4it")

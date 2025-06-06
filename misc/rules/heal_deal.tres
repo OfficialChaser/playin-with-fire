@@ -1,9 +1,9 @@
 [gd_resource type="Resource" load_steps=2 format=3 uid="uid://83u8k050han"]
 
-[ext_resource type="Script" uid="uid://brl1v8fkl35bj" path="res://misc/rules/rule_scripts/save_the_trees.gd" id="1_oas04"]
+[ext_resource type="Script" uid="uid://c2mja8dej3jms" path="res://misc/rules/rule_scripts/heal_deal.gd" id="1_tho7d"]
 
 [resource]
-script = ExtResource("1_oas04")
+script = ExtResource("1_tho7d")
 rule_name = "Heal Deal"
 cool_label = "Sell your soul"
 nerf_label = "Double damage"

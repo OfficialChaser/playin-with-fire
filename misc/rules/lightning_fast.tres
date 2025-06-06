@@ -1,9 +1,9 @@
 [gd_resource type="Resource" load_steps=2 format=3 uid="uid://bpqrmmhp1ytm"]
 
-[ext_resource type="Script" uid="uid://bp1hvljikfmx6" path="res://misc/rules/rule_scripts/bloody_stuff.gd" id="1_lyo54"]
+[ext_resource type="Script" uid="uid://dmom4kx0nx3gn" path="res://misc/rules/rule_scripts/lightning_fast.gd" id="1_63qcq"]
 
 [resource]
-script = ExtResource("1_lyo54")
+script = ExtResource("1_63qcq")
 rule_name = "Bloody Stuff"
 cool_label = "Blood Pools"
 nerf_label = "Shoot blood"
