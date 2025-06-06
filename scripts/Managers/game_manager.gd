@@ -18,6 +18,12 @@ const start_hose_knockback := 50.0
 const start_water_spawn_rate := 50.0
 const start_fly := false
 
+# gambling addict
+const start_roll_tmrw = true
+
+#lightning fast
+const start_day_duration = 30
+
 # Bloody Stuff
 const start_player_health := 100
 const start_water_color := Color("3f5886")
@@ -44,6 +50,12 @@ var fly_enabled := start_fly
 
 # heal deal
 var sellSoul := true
+
+# gambling addict
+var roll_tmrw := start_roll_tmrw
+
+# Lightning fast
+var day_duration := start_day_duration
 
 # Bloody Stuff
 var player_health := start_player_health
@@ -169,6 +181,12 @@ func reset_vars():
 	
 	# Heal deal
 	sellSoul = false
+	
+	# gambling addict
+	roll_tmrw = start_roll_tmrw
+	
+	#lightning fast
+	day_duration = start_day_duration
 	
 	# Double Trouble
 	hose_knockback = start_hose_knockback
