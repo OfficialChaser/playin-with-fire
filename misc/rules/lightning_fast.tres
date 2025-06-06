@@ -6,6 +6,6 @@
 script = ExtResource("1_63qcq")
 rule_name = "Lightning Fast"
 cool_label = "Speedy water"
-nerf_label = "Double Lightning"
+nerf_label = "Double thunder"
 buff_label = "Double Day "
 metadata/_custom_type_script = "uid://iklxa3lv08v3"
