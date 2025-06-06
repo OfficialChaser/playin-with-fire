@@ -175,7 +175,7 @@ func get_spawn_rate() -> float:
 		return difficulty
 	else:
 		push_warning("Spawn rate curve not set! Using fallback.")
-		return 100
+		return 0.5
 
 func reset_vars():
 	day = 1

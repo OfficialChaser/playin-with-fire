@@ -16,8 +16,3 @@ func _on_button_pressed() -> void:
 
 func _on_button_2_pressed() -> void:
 	settings_menu.show()
-	pwf.hide()
-
-func _on_back_button_pressed() -> void:
-	settings_menu.hide()
-	pwf.show()
