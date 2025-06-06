@@ -42,7 +42,7 @@ func pick_random_rule() -> Rule:
 			
 	if !possible_rules:
 		return current_rule
-		
+	possible_rules.shuffle()
 	current_rule = possible_rules.pick_random()
 	used_rules.append(current_rule)
 	
