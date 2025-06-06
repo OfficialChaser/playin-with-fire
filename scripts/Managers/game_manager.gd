@@ -6,7 +6,7 @@ signal rule_selected(rule : Rule)
 var in_game := true
 var game_over := false
 const TIME_CURVE = preload("res://misc/time_curve.tres")
-const DIFFICULTY_CURVE = preload("res://misc/difficulty_curve.tres")
+var DIFFICULTY_CURVE = preload("res://misc/difficulty_curve.tres")
 var difficulty_curve: Curve
 ## Game Starting stats - These can be used to reset the game stats after a rule change or reload
 var day := 1
