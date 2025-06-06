@@ -36,3 +36,8 @@ func set_rule_config(level : int = 1):
 	GameManager.keys[rng] = false
 	if level > 1:
 		GameManager.fly_enabled = true
+
+func reset_rule_config():
+	for key in GameManager.keys:
+		GameManager.keys[key] = true
+	GameManager.fly = false
