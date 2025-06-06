@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cikudbdf50735" path="res://scripts/UI/main_menu.gd" id="1_qwnig"]
 [ext_resource type="Texture2D" uid="uid://gpik7cmu465r" path="res://assets/chillatdillat-Sheet.png" id="2_yonvy"]
 [ext_resource type="Texture2D" uid="uid://dep10symfqhjx" path="res://assets/title/pwf.png" id="3_5jstl"]
-[ext_resource type="Texture2D" uid="uid://dt1h5hr3845kc" path="res://assets/HUS.png" id="4_tfcbk"]
+[ext_resource type="Texture2D" path="res://assets/HUS.png" id="4_tfcbk"]
 
 [sub_resource type="Animation" id="Animation_5jstl"]
 length = 0.001
