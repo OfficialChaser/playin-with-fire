@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://lctewwi67ceq"]
+[gd_scene load_steps=4 format=3 uid="uid://bxxfuf00rlpl5"]
 
 [ext_resource type="Texture2D" uid="uid://ctlj2yncvuj0g" path="res://assets/grass.png" id="1_dvq1v"]
-[ext_resource type="Script" uid="uid://bnc2dfhblhqub" path="res://scripts/UI/settings_menu.gd" id="1_yk8t3"]
+[ext_resource type="Script" path="res://scripts/UI/settings_menu.gd" id="1_yk8t3"]
+[ext_resource type="Texture2D" uid="uid://8g1ti701gb2u" path="res://assets/handle.png" id="3_son7u"]
 
 [node name="Settings Menu" type="Control"]
 layout_mode = 3
@@ -57,6 +58,9 @@ text = "Master Volume"
 [node name="Master Volume" type="HSlider" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_icons/grabber = ExtResource("3_son7u")
+theme_override_icons/grabber_highlight = ExtResource("3_son7u")
+theme_override_icons/grabber_disabled = ExtResource("3_son7u")
 max_value = 1.0
 step = 0.001
 value = 1.0
@@ -80,6 +84,9 @@ text = "Music Volume"
 [node name="Music Volume" type="HSlider" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_icons/grabber = ExtResource("3_son7u")
+theme_override_icons/grabber_highlight = ExtResource("3_son7u")
+theme_override_icons/grabber_disabled = ExtResource("3_son7u")
 max_value = 1.0
 step = 0.001
 value = 1.0
