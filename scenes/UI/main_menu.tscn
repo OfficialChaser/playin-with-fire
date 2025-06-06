@@ -4,7 +4,22 @@
 [ext_resource type="Texture2D" uid="uid://ctlj2yncvuj0g" path="res://assets/grass.png" id="2_e2p27"]
 [ext_resource type="Texture2D" uid="uid://gpik7cmu465r" path="res://assets/chillatdillat-Sheet.png" id="2_yonvy"]
 [ext_resource type="Texture2D" uid="uid://dep10symfqhjx" path="res://assets/title/pwf.png" id="3_5jstl"]
-[ext_resource type="Texture2D" path="res://assets/HUS.png" id="4_tfcbk"]
+[ext_resource type="PackedScene" uid="uid://lctewwi67ceq" path="res://scenes/UI/settings_menu.tscn" id="5_e2p27"]
+
+[sub_resource type="Animation" id="Animation_e2p27"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_tfcbk"]
 resource_name = "wiggle"
@@ -22,21 +37,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [0.0, 0.0872665, -0.0872665, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_e2p27"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ngj32"]
@@ -155,40 +155,6 @@ theme_override_colors/font_pressed_color = Color(0.662745, 0.396078, 0.203922, 1
 theme_override_font_sizes/font_size = 10
 text = "Settings"
 
-[node name="SettingsMenu" type="Control" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="SettingsMenu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.439216, 0.219608, 0.262745, 1)
-
-[node name="BackButton" type="Button" parent="SettingsMenu"]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 10.0
-offset_right = 53.0
-offset_bottom = 41.0
-theme_override_colors/font_disabled_color = Color(0.247059, 0.172549, 0.231373, 1)
-theme_override_colors/font_hover_pressed_color = Color(0.662745, 0.396078, 0.203922, 1)
-theme_override_colors/font_hover_color = Color(0.776471, 0.705882, 0.309804, 1)
-theme_override_colors/font_outline_color = Color(0.247059, 0.172549, 0.231373, 1)
-theme_override_colors/font_color = Color(0.921569, 0.933333, 0.713726, 1)
-theme_override_colors/font_focus_color = Color(0.776471, 0.705882, 0.309804, 1)
-theme_override_colors/font_pressed_color = Color(0.662745, 0.396078, 0.203922, 1)
-theme_override_font_sizes/font_size = 10
-text = "Back"
-
 [node name="Pwf" type="Sprite2D" parent="."]
 position = Vector2(237, 113.5)
 scale = Vector2(5, 5)
@@ -200,9 +166,9 @@ libraries = {
 }
 
 [node name="Node2D" type="Node2D" parent="."]
-visible = false
 
 [node name="ColorRect4" type="Sprite2D" parent="Node2D"]
+visible = false
 position = Vector2(280, -241)
 scale = Vector2(5, 5)
 texture = ExtResource("2_yonvy")
@@ -210,6 +176,7 @@ offset = Vector2(20.4, 24.4)
 hframes = 24
 
 [node name="ColorRect" type="Sprite2D" parent="Node2D"]
+visible = false
 position = Vector2(-40, 134)
 scale = Vector2(5, 5)
 texture = ExtResource("2_yonvy")
@@ -217,6 +184,7 @@ offset = Vector2(20.4, 24.4)
 hframes = 24
 
 [node name="ColorRect3" type="Sprite2D" parent="Node2D"]
+visible = false
 position = Vector2(-40, -241)
 scale = Vector2(5, 5)
 texture = ExtResource("2_yonvy")
@@ -224,6 +192,7 @@ offset = Vector2(20.4, 24.4)
 hframes = 24
 
 [node name="ColorRect2" type="Sprite2D" parent="Node2D"]
+visible = false
 position = Vector2(280, 134)
 scale = Vector2(5, 5)
 texture = ExtResource("2_yonvy")
@@ -238,8 +207,9 @@ libraries = {
 [node name="Hus" type="Sprite2D" parent="Node2D"]
 position = Vector2(242, 138.5)
 scale = Vector2(2.5, 2.5)
-texture = ExtResource("4_tfcbk")
+
+[node name="SettingsMenu" parent="." instance=ExtResource("5_e2p27")]
+layout_mode = 1
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
-[connection signal="pressed" from="SettingsMenu/BackButton" to="." method="_on_back_button_pressed"]

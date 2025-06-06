@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_63qcq")
-rule_name = "Bloody Stuff"
+rule_name = "Lightning Fast"
 cool_label = "Blood Pools"
-nerf_label = "Shoot blood"
-buff_label = "Extra Health"
+nerf_label = "Double Lightning"
+buff_label = "Double Day "
 metadata/_custom_type_script = "uid://iklxa3lv08v3"
