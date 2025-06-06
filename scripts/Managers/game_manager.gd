@@ -26,7 +26,7 @@ const start_fire_damage : int = 10
 const start_roll_tmrw = true
 
 #lightning fast
-const start_day_duration = 30
+const start_day_duration = 40
 
 # Bloody Stuff
 const start_player_health := 100
