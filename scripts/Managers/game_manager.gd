@@ -147,11 +147,11 @@ func update_game_stats():
 	day += 1
 	
 	# figure out some sort of log or exp function here to get a better difficulty curve
-	fire_spawn_rate = get_spawn_rate(day)
+	fire_spawn_rate = get_spawn_rate()
 	lightning_spawn_amt += 1
 	fire_spawn_rate = clamp(fire_spawn_rate, 0.01, 10000)
 	
-func get_spawn_rate(day: int) -> float:
+func get_spawn_rate() -> float:
 	var A = 0.2
 	var B = 0.0626
 	return max(0.05, A - B * log(day + 1))
