@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_428ye")
 rule_name = "Double Trouble"
-cool_label = "Levitation"
+cool_label = "Double trouble"
 nerf_label = "Double recoil"
 buff_label = "Double fire rate"
 metadata/_custom_type_script = "uid://iklxa3lv08v3"
