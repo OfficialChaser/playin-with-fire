@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_ed4it")
 rule_name = "Gambling Addict"
-cool_label = "Devil's Deal"
-nerf_label = "No rolling tomorrow"
+cool_label = "Devil's Deal +/- 50"
+nerf_label = "No rolls next day"
 buff_label = "Two free rerolls"
 metadata/_custom_type_script = "uid://iklxa3lv08v3"

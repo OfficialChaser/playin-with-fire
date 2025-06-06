@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_tho7d")
 rule_name = "Heal Deal"
-cool_label = "Sell your soul"
+cool_label = "Heal passively"
 nerf_label = "Double damage"
 buff_label = "Double healing"
 metadata/_custom_type_script = "uid://iklxa3lv08v3"

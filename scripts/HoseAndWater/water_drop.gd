@@ -67,6 +67,8 @@ func _on_body_entered(body):
 					continue
 				
 				# If it is a fire tile, add the damage to it
+				if GameManager.bloodHalf and GameManager.player_health <= GameManager.max_hp / 2:
+					damage *= 2
 				if tiles.get_cell_tile_data(cell_coord).get_custom_data("fire"):
 					tiles.update_cell_health(cell_coord, damage)
 				

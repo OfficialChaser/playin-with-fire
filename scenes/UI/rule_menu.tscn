@@ -508,12 +508,11 @@ texture = ExtResource("2_3sxuk")
 layout_mode = 0
 offset_left = 13.0
 offset_top = 72.0
-offset_right = 130.0
+offset_right = 133.0
 offset_bottom = 123.0
 theme_override_colors/font_color = Color(0.776471, 0.705882, 0.309804, 1)
 theme_override_font_sizes/font_size = 15
-text = "break the 
-stick"
+text = "no rolls next day"
 autowrap_mode = 3
 
 [node name="BuffLabel" type="Label" parent="TextureRect"]
@@ -569,7 +568,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.921569, 0.933333, 0.713726, 1)
 theme_override_font_sizes/font_size = 15
-text = "second buff part"
+text = "devil's deal +/- 50"
 horizontal_alignment = 1
 autowrap_mode = 3
 

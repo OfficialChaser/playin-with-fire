@@ -6,7 +6,8 @@ func set_rule_config(level : int = 1):
 	GameManager.max_hp += 100
 	GameManager.player_health *= 2
 	if level > 2:
-		GameManager.player_blood_damage += 1
+		#GameManager.player_blood_damage += 1
+		GameManager.bloodHalf = true
 
 func reset_rule_config():
 	GameManager.water_color = Color.BLUE

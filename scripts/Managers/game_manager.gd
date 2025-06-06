@@ -27,7 +27,7 @@ const start_fire_damage : int = 10
 const start_roll_tmrw = true
 
 #lightning fast
-const start_day_duration = 40
+const start_day_duration = 1
 
 # Bloody Stuff
 const start_player_health := 100
@@ -36,6 +36,7 @@ const start_player_blood_damage := 1
 const start_blood_enabled := false
 const start_max_hp := 100
 const start_hp_gain := 50
+const start_regen = 50
 
 # Darkness
 const start_darkness_enabled := false
@@ -54,7 +55,7 @@ var water_spawn_rate := start_water_spawn_rate
 var fly_enabled := start_fly
 
 # heal deal
-var sellSoul := true
+var sellSoul := false
 var fire_damage := start_fire_damage
 # gambling addict
 var roll_tmrw := start_roll_tmrw
@@ -69,6 +70,8 @@ var player_blood_damage := start_player_blood_damage
 var blood_enabled := start_blood_enabled
 var max_hp := start_max_hp
 var hp_gain := start_hp_gain
+var bloodHalf := false
+var regen = start_regen
 
 # Darkness
 var darkness_enabled := start_darkness_enabled
@@ -202,6 +205,8 @@ func reset_vars():
 	hose_knockback = start_hose_knockback
 	water_spawn_rate = start_water_spawn_rate
 	fly_enabled = start_fly
+	
+	regen = start_regen
 
 	# Bloody Stuff
 	player_health = start_player_health
@@ -210,6 +215,7 @@ func reset_vars():
 	blood_enabled = start_blood_enabled
 	max_hp = start_max_hp
 	hp_gain = start_hp_gain
+	bloodHalf = false
 
 	# Darkness
 	darkness_enabled = start_darkness_enabled

@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_e4ssr")
 rule_name = "Bloody Stuff"
-cool_label = "Blood Pools"
+cool_label = "double damage at half health"
 nerf_label = "Shoot blood"
 buff_label = "Extra Health"
 metadata/_custom_type_script = "uid://iklxa3lv08v3"
