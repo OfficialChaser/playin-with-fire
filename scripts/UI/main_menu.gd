@@ -5,7 +5,6 @@ const MAIN = preload("res://scenes/main.tscn")
 
 func _ready():
 	MusicManager.play_music("menu_music")
-	$ColorRect2/AnimationPlayer.play("stuffs")
 	$Pwf/AnimationPlayer.play("wiggle")
 
 func _on_button_pressed() -> void:

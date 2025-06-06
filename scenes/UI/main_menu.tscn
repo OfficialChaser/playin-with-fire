@@ -1,9 +1,49 @@
-[gd_scene load_steps=11 format=3 uid="uid://dws5etkbb3vq7"]
+[gd_scene load_steps=12 format=3 uid="uid://dws5etkbb3vq7"]
 
 [ext_resource type="Script" uid="uid://cikudbdf50735" path="res://scripts/UI/main_menu.gd" id="1_qwnig"]
+[ext_resource type="Texture2D" uid="uid://ctlj2yncvuj0g" path="res://assets/grass.png" id="2_e2p27"]
 [ext_resource type="Texture2D" uid="uid://gpik7cmu465r" path="res://assets/chillatdillat-Sheet.png" id="2_yonvy"]
 [ext_resource type="Texture2D" uid="uid://dep10symfqhjx" path="res://assets/title/pwf.png" id="3_5jstl"]
 [ext_resource type="Texture2D" path="res://assets/HUS.png" id="4_tfcbk"]
+
+[sub_resource type="Animation" id="Animation_tfcbk"]
+resource_name = "wiggle"
+length = 7.9
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 6, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0872665, -0.0872665, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_e2p27"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ngj32"]
+_data = {
+&"RESET": SubResource("Animation_e2p27"),
+&"wiggle": SubResource("Animation_tfcbk")
+}
 
 [sub_resource type="Animation" id="Animation_5jstl"]
 length = 0.001
@@ -56,45 +96,6 @@ _data = {
 &"stuffs": SubResource("Animation_yonvy")
 }
 
-[sub_resource type="Animation" id="Animation_tfcbk"]
-resource_name = "wiggle"
-length = 7.9
-loop_mode = 1
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2, 6, 8),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.0872665, -0.0872665, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_e2p27"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ngj32"]
-_data = {
-&"RESET": SubResource("Animation_e2p27"),
-&"wiggle": SubResource("Animation_tfcbk")
-}
-
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -104,38 +105,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qwnig")
 
-[node name="ColorRect4" type="Sprite2D" parent="."]
-position = Vector2(280, -241)
+[node name="Grass" type="Sprite2D" parent="."]
+position = Vector2(240, 180)
 scale = Vector2(5, 5)
-texture = ExtResource("2_yonvy")
-offset = Vector2(20.4, 24.4)
-hframes = 24
-
-[node name="ColorRect" type="Sprite2D" parent="."]
-position = Vector2(-40, 134)
-scale = Vector2(5, 5)
-texture = ExtResource("2_yonvy")
-offset = Vector2(20.4, 24.4)
-hframes = 24
-
-[node name="ColorRect3" type="Sprite2D" parent="."]
-position = Vector2(-40, -241)
-scale = Vector2(5, 5)
-texture = ExtResource("2_yonvy")
-offset = Vector2(20.4, 24.4)
-hframes = 24
-
-[node name="ColorRect2" type="Sprite2D" parent="."]
-position = Vector2(280, 134)
-scale = Vector2(5, 5)
-texture = ExtResource("2_yonvy")
-offset = Vector2(20.4, 24.4)
-hframes = 24
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect2"]
-libraries = {
-&"": SubResource("AnimationLibrary_tfcbk")
-}
+texture = ExtResource("2_e2p27")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -216,11 +189,6 @@ theme_override_colors/font_pressed_color = Color(0.662745, 0.396078, 0.203922, 1
 theme_override_font_sizes/font_size = 10
 text = "Back"
 
-[node name="Hus" type="Sprite2D" parent="."]
-position = Vector2(242, 138.5)
-scale = Vector2(2.5, 2.5)
-texture = ExtResource("4_tfcbk")
-
 [node name="Pwf" type="Sprite2D" parent="."]
 position = Vector2(237, 113.5)
 scale = Vector2(5, 5)
@@ -230,6 +198,47 @@ texture = ExtResource("3_5jstl")
 libraries = {
 &"": SubResource("AnimationLibrary_ngj32")
 }
+
+[node name="Node2D" type="Node2D" parent="."]
+visible = false
+
+[node name="ColorRect4" type="Sprite2D" parent="Node2D"]
+position = Vector2(280, -241)
+scale = Vector2(5, 5)
+texture = ExtResource("2_yonvy")
+offset = Vector2(20.4, 24.4)
+hframes = 24
+
+[node name="ColorRect" type="Sprite2D" parent="Node2D"]
+position = Vector2(-40, 134)
+scale = Vector2(5, 5)
+texture = ExtResource("2_yonvy")
+offset = Vector2(20.4, 24.4)
+hframes = 24
+
+[node name="ColorRect3" type="Sprite2D" parent="Node2D"]
+position = Vector2(-40, -241)
+scale = Vector2(5, 5)
+texture = ExtResource("2_yonvy")
+offset = Vector2(20.4, 24.4)
+hframes = 24
+
+[node name="ColorRect2" type="Sprite2D" parent="Node2D"]
+position = Vector2(280, 134)
+scale = Vector2(5, 5)
+texture = ExtResource("2_yonvy")
+offset = Vector2(20.4, 24.4)
+hframes = 24
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D/ColorRect2"]
+libraries = {
+&"": SubResource("AnimationLibrary_tfcbk")
+}
+
+[node name="Hus" type="Sprite2D" parent="Node2D"]
+position = Vector2(242, 138.5)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("4_tfcbk")
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
