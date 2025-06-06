@@ -21,7 +21,7 @@ func _process(_delta):
 		# hide house on tilemap
 		$"../../MidgroundTiles".set_cell(Vector2i(0, -1), -1)
 		
-func _unhandled_input(event: InputEvent):
+func _unhandled_input(_event: InputEvent):
 	if GameManager.game_over and faded:
 		if Input.is_action_just_pressed("spray") or Input.is_action_just_pressed("restart") or Input.is_action_just_pressed("pause"):
 				GameManager.restart_game()

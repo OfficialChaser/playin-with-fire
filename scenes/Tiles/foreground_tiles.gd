@@ -6,8 +6,6 @@ func _ready():
 	player = get_tree().get_first_node_in_group("player")
 
 func _process(_delta):
-	if GameManager.level2:
-		sellSoul()
 	
 	if !GameManager.darkness_enabled:
 		set_all_tiles(false)

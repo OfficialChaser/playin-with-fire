@@ -99,7 +99,6 @@ func ready_to_start(new_rule: bool = true):
 
 func reroll():
 	start = false
-	# anim.play("enter")
 	if rerolling or GameManager.rerolls < 1:
 		return
 	
