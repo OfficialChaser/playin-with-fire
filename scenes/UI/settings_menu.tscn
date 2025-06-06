@@ -41,6 +41,7 @@ theme_override_constants/separation = 30
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 15
 text = "Main Menu
 "
 
@@ -50,6 +51,7 @@ layout_mode = 2
 [node name="Volume_Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 15
 text = "Master Volume"
 
 [node name="Master Volume" type="HSlider" parent="MarginContainer/VBoxContainer/VBoxContainer"]
@@ -62,6 +64,7 @@ value = 1.0
 [node name="CheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_font_sizes/font_size = 15
 text = "Mute 
 "
 
@@ -71,6 +74,7 @@ layout_mode = 2
 [node name="Volume_Label2" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 15
 text = "Music Volume"
 
 [node name="Music Volume" type="HSlider" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
@@ -83,6 +87,7 @@ value = 1.0
 [node name="CheckBox2" type="CheckBox" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_font_sizes/font_size = 15
 text = "Mute 
 "
 
@@ -92,6 +97,7 @@ layout_mode = 2
 [node name="Volume_Label3" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 15
 text = "SFX Volume"
 
 [node name="SFX Volume" type="HSlider" parent="MarginContainer/VBoxContainer/VBoxContainer3"]
@@ -104,6 +110,7 @@ value = 1.0
 [node name="CheckBox3" type="CheckBox" parent="MarginContainer/VBoxContainer/VBoxContainer3"]
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_font_sizes/font_size = 15
 text = "Mute 
 "
 
