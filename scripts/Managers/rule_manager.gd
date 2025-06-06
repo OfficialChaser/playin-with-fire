@@ -2,12 +2,12 @@ extends Node
 
 var rule_paths : Array[String] = [
 	"res://misc/rules/double_trouble.tres", 
-	#"res://misc/rules/bloody_stuff.tres",
-	#"res://misc/rules/darkness.tres", 
-	#"res://misc/rules/lose_a_key.tres",
-	#"res://misc/rules/gambling_addict.tres",
-	#"res://misc/rules/heal_deal.tres",
-	#"res://misc/rules/lightning_fast.tres",
+	"res://misc/rules/bloody_stuff.tres",
+	"res://misc/rules/darkness.tres", 
+	"res://misc/rules/lose_a_key.tres",
+	"res://misc/rules/gambling_addict.tres",
+	"res://misc/rules/heal_deal.tres",
+	"res://misc/rules/lightning_fast.tres",
 ]
 
 var rules : Array[Rule] 

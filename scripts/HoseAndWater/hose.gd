@@ -40,6 +40,7 @@ func _process(delta):
 	spawn_interval = 1.0 / GameManager.water_spawn_rate
 
 func _unhandled_input(event):
+	# also called in pause_menu.gd and game_over.gd and main.gd
 	if event is InputEventKey:
 		GameManager.key_mode = KeyManager.keys_layout()
 		

@@ -11,8 +11,10 @@ func _process(_delta: float) -> void:
 			get_tree().paused = true
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if get_tree().paused:
-		if event.is_pressed() and not event.is_echo():
-			get_tree().paused = false
-			pause_menu.hide()
+#func _unhandled_input(event: InputEvent) -> void:
+	# also called in hose.gd and game_over.gd and pause_menu.gd
+	
+#	if get_tree().paused:
+#		if event.is_pressed() and not event.is_echo():
+#			get_tree().paused = false
+#			pause_menu.hide()

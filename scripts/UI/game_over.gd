@@ -22,6 +22,7 @@ func _process(_delta):
 		$"../../MidgroundTiles".set_cell(Vector2i(0, -1), -1)
 		
 func _unhandled_input(_event: InputEvent):
+	# also called in hose.gd and pause_menu.gd and main.gd
 	if GameManager.game_over and faded:
 		if Input.is_action_just_pressed("spray") or Input.is_action_just_pressed("restart") or Input.is_action_just_pressed("pause"):
 				GameManager.restart_game()
