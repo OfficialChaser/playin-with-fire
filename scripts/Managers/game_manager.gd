@@ -11,6 +11,8 @@ var difficulty_curve: Curve
 ## Game Starting stats - These can be used to reset the game stats after a rule change or reload
 var day := 1
 const start_fire_spawn_rate := 0.23
+const start_day_duration := 40.0 	# 45 was too long for first day
+# 40 you can still get bonus on first day
 
 const start_lightning_spawn_amt := 5
 const start_rerolls := 3
@@ -19,16 +21,19 @@ const start_player_damage := 2
 # Double Trouble
 const start_hose_knockback := 50.0
 const start_water_spawn_rate := 50.0
-const start_fly := false
+
+
 
 #heal deal
 const start_fire_damage : int = 10
 
 # gambling addict
 const start_roll_tmrw := true
+const start_deal := false
+
 
 #lightning fast
-const start_day_duration := 45.0
+
 
 # Bloody Stuff
 const start_player_health := 100
@@ -53,13 +58,16 @@ var player_damage := start_player_damage
 # Double Trouble
 var hose_knockback := start_hose_knockback
 var water_spawn_rate := start_water_spawn_rate
-var fly_enabled := start_fly
+
 
 # heal deal
-var sellSoul := false
+var regen_enabled := false
 var fire_damage := start_fire_damage
 # gambling addict
 var roll_tmrw := start_roll_tmrw
+
+# Gambling addict
+var deal_enabled := start_deal
 
 # Lightning fast
 var day_duration := start_day_duration
@@ -202,7 +210,7 @@ func reset_vars():
 	RuleManager.maxed_rules.clear()
 	
 	# Heal deal
-	sellSoul = false
+	regen_enabled = false
 	
 	# gambling addict
 	roll_tmrw = start_roll_tmrw
@@ -213,7 +221,7 @@ func reset_vars():
 	# Double Trouble
 	hose_knockback = start_hose_knockback
 	water_spawn_rate = start_water_spawn_rate
-	fly_enabled = start_fly
+	deal_enabled = start_deal
 	
 	regen = start_regen
 

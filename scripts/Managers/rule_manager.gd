@@ -53,6 +53,13 @@ func select_rule():
 	if rule_levels[current_rule] >= 4:
 		maxed_rules.append(current_rule)
 	used_rules.clear()
+	
+	# apply gambling_addict 3rd upgrade, devil's deal +/- 50hp
+	if GameManager.deal_enabled:
+		if randi_range(0, 1) == 1:
+			GameManager.player_health += 50
+		else:
+			GameManager.player_health -= 50
 
 func player_has_maxed_out():
 	var sorted_rules = rules.duplicate()

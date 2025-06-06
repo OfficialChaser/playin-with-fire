@@ -30,7 +30,7 @@ func _ready():
 func _process(delta):
 	if not GameManager.in_game:
 		return
-	if GameManager.sellSoul: # regen, couldn't bother to change variable name
+	if GameManager.regen_enabled: # regen, couldn't bother to change variable name
 		GameManager.player_health += delta * GameManager.regen
 		print_debug(delta * GameManager.regen)
 
