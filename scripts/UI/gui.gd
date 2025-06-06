@@ -19,7 +19,7 @@ func _ready():
 	update_timer_label(true)
 	blur_animation_player.play("RESET")
 	Transition.play("fade_out")
-	
+	day_timer = GameManager.day_duration
 	if GameManager.day > 1:
 		await GameManager.rule_selected
 	day_timer.start()
@@ -52,6 +52,9 @@ func update_rule_label():
 		rule_name.text = GameManager.current_rule.rule_name
 	else:
 		rule_name.text = ''
+
+func set_timer(f : float):
+	day_timer.time_left = f
 
 func _on_day_timer_timeout():
 	if GameManager.in_game and !GameManager.game_over:
