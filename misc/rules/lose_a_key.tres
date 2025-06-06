@@ -6,6 +6,6 @@
 script = ExtResource("1_hhauf")
 rule_name = "Lose a Key"
 cool_label = "Reverse Recoil"
-nerf_label = "Break the          "
+nerf_label = "Break the       "
 buff_label = "Double Move Speed"
 metadata/_custom_type_script = "uid://iklxa3lv08v3"
