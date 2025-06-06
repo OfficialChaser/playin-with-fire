@@ -2,6 +2,7 @@ extends Control
 
 const MAIN = preload("res://scenes/main.tscn")
 @onready var settings_menu: Control = $SettingsMenu
+@onready var pwf: Sprite2D = $Pwf
 
 func _ready():
 	MusicManager.play_music("menu_music")
@@ -15,6 +16,8 @@ func _on_button_pressed() -> void:
 
 func _on_button_2_pressed() -> void:
 	settings_menu.show()
+	pwf.hide()
 
 func _on_back_button_pressed() -> void:
 	settings_menu.hide()
+	pwf.show()
