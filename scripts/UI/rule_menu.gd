@@ -21,7 +21,7 @@ var rule : Rule
 var rerolling := false
 var enabled := false
 var selectable := false
-
+var selecting_rule := false
 func _ready():
 	$RerollButton/OutOfStock.visible = false
 	if RuleManager.player_has_maxed_out():
@@ -32,6 +32,7 @@ func _ready():
 		enabled = true
 		
 		await anim.animation_finished
+		selecting_rule = false
 		selectable = true
 
 func _process(_delta):
@@ -43,15 +44,16 @@ func _process(_delta):
 		if Input.is_action_just_pressed("reroll"):
 			if GameManager.rerolls == 0 or RuleManager.used_rules.size() == RuleManager.rules.size():
 				reroll()
-		elif Input.is_action_just_pressed('spray') and !reroll_button.is_hovered():
+		elif Input.is_action_just_pressed('spray') and !reroll_button.is_hovered() and !selecting_rule:
 			RuleManager.select_rule()
+			selecting_rule = true
 			anim.play("leave")
 			await anim.animation_finished
 			Transition.play("fade_in")
 			await Transition.animation_finished
 			ready_to_start()
 	
-	if GameManager.rerolls == 0 or RuleManager.used_rules.size() == RuleManager.rules.size():
+	if GameManager.rerolls == 0 or RuleManager.used_rules.size() == RuleManager.rules.size() or !GameManager.roll_tmrw:
 		reroll_button.disabled = true
 		$RerollButton/OutOfStock.visible = true
 
