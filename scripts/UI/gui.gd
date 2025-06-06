@@ -30,6 +30,7 @@ func _process(_delta):
 	update_health_label()
 	update_day_label()
 	update_rule_label()
+	
 
 func update_timer_label(override: bool = false):
 	if not GameManager.in_game and not override:
@@ -56,6 +57,12 @@ func update_rule_label():
 
 func set_timer(f : float):
 	day_timer.wait_time = f
+
+#func blur(b : bool):
+#	if b:
+#		blur_animation_player.play("blur_in")
+#	else:
+#		blur_animation_player.play("RESET")
 
 func _on_day_timer_timeout():
 	if GameManager.in_game and !GameManager.game_over:

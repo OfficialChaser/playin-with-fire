@@ -6,15 +6,21 @@ var confirmCONFIRM := false
 
 
 func _ready():
-	await get_tree().create_timer(5).timeout
+	$"../GUI".blur_animation_player.play("blur_out")
+	# has to have already been called before pause menu can be called
+	
+	await get_tree().create_timer(3).timeout # 3 seconds seems to be minimum pause wait possible (without fucking up lightning)
 	enabled = true
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause") and enabled and GameManager.in_game:
 		if !get_tree().paused:
-			$"../GUI/ColorRect/AnimationPlayer".play("blur_in")
+			$"../GUI".blur_animation_player.play("blur_out")
+			# can't play animations bcs they are paused
 			show()
 			get_tree().paused = true
+		else:
+			unpause()
 	if not Input.is_action_pressed("spray") and confirm:
 		confirmCONFIRM = true
 
@@ -31,12 +37,16 @@ func _unhandled_input(event: InputEvent) -> void:
 			else:
 				$Label.text = "shoot again\nto quit"
 				confirm = true
-		elif event.is_pressed() and not event.is_echo() and not event.is_action("pause"): # you wanna be able to unpause with pause button, but that doesn't work 
-			get_tree().paused = false
-			confirm = false
-			confirmCONFIRM = false
-			$"../GUI/ColorRect/AnimationPlayer".play("RESET")
-			hide()
+		elif event.is_pressed() and not event.is_echo(): # and not event.is_action("pause"): # redundant, as "pause" is handled
+			unpause()
+
+func unpause():
+	get_tree().paused = false
+	confirm = false
+	confirmCONFIRM = false
+	#$"../GUI".blur_animation_player.play("blur_in")
+	# can't play animations bcs they are paused
+	hide()
 
 
 func _on_button_pressed() -> void:	

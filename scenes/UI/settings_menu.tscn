@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bxxfuf00rlpl5"]
+[gd_scene load_steps=15 format=3 uid="uid://bxxfuf00rlpl5"]
 
 [ext_resource type="Texture2D" uid="uid://ctlj2yncvuj0g" path="res://assets/grass.png" id="1_dvq1v"]
 [ext_resource type="Script" uid="uid://bnc2dfhblhqub" path="res://scripts/UI/settings_menu.gd" id="1_yk8t3"]
@@ -6,6 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://cqujcyxam36wt" path="res://assets/rak-sak.png" id="4_t4w0s"]
 [ext_resource type="Texture2D" uid="uid://dxwg65jbh32o5" path="res://assets/handlefoc.png" id="4_tv14d"]
 [ext_resource type="Texture2D" uid="uid://bk05dfkg5rxgj" path="res://assets/handlex.png" id="5_lwg20"]
+[ext_resource type="AudioStream" uid="uid://f7i37ahemebn" path="res://sounds/SFX/confirm.wav" id="7_6jt7n"]
+[ext_resource type="AudioStream" uid="uid://cjph3f41whna7" path="res://sounds/SFX/deny.wav" id="8_878o3"]
+[ext_resource type="AudioStream" uid="uid://slouln1ao1e7" path="res://sounds/SFX/Fire Game Locked Interaction.wav" id="9_6jt7n"]
+[ext_resource type="AudioStream" uid="uid://bex68spxy5d4r" path="res://sounds/SFX/Fire Game Lightning.wav" id="10_878o3"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lwg20"]
 
@@ -61,7 +65,8 @@ theme_override_constants/separation = 30
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-focus_next = NodePath("../VBoxContainer3/CheckBox3")
+focus_neighbor_top = NodePath("../VBoxContainer3/CheckBox3")
+focus_next = NodePath("../VBoxContainer/Volume_Label")
 focus_previous = NodePath("../VBoxContainer/Master Volume")
 theme_override_colors/font_disabled_color = Color(0.921569, 0.933333, 0.713726, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.776471, 0.705882, 0.309804, 1)
@@ -113,8 +118,8 @@ theme_override_styles/slider = SubResource("StyleBoxTexture_lwg20")
 theme_override_styles/grabber_area = SubResource("StyleBoxTexture_lwg20")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_lwg20")
 max_value = 1.0
-step = 0.001
-value = 1.0
+step = 0.05
+value = 0.7
 
 [node name="CheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -173,8 +178,8 @@ theme_override_styles/slider = SubResource("StyleBoxTexture_lwg20")
 theme_override_styles/grabber_area = SubResource("StyleBoxTexture_lwg20")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_lwg20")
 max_value = 1.0
-step = 0.001
-value = 1.0
+step = 0.05
+value = 0.7
 
 [node name="CheckBox2" type="CheckBox" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
@@ -233,12 +238,13 @@ theme_override_styles/slider = SubResource("StyleBoxTexture_lwg20")
 theme_override_styles/grabber_area = SubResource("StyleBoxTexture_lwg20")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_lwg20")
 max_value = 1.0
-step = 0.001
-value = 1.0
+step = 0.05
+value = 0.7
 
 [node name="CheckBox3" type="CheckBox" parent="MarginContainer/VBoxContainer/VBoxContainer3"]
 layout_mode = 2
 size_flags_vertical = 4
+focus_neighbor_bottom = NodePath("../../Button")
 focus_next = NodePath("../../VBoxContainer/Master Volume")
 focus_previous = NodePath("../SFX Volume")
 theme_override_colors/font_disabled_color = Color(0.921569, 0.933333, 0.713726, 1)
@@ -270,6 +276,34 @@ theme_override_icons/checked = ExtResource("5_lwg20")
 theme_override_icons/unchecked = ExtResource("4_tv14d")
 text = "Mute 
 "
+
+[node name="SFX0" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(4.7175, 21.3675)
+scale = Vector2(0.7225, 0.7225)
+stream = ExtResource("8_878o3")
+volume_db = 4.0
+bus = &"SFX"
+
+[node name="SFX1" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(2.55, 11.55)
+scale = Vector2(0.85, 0.85)
+stream = ExtResource("7_6jt7n")
+volume_db = 4.0
+bus = &"SFX"
+
+[node name="SFX2" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(2.55, 11.55)
+scale = Vector2(0.85, 0.85)
+stream = ExtResource("9_6jt7n")
+volume_db = 4.0
+bus = &"SFX"
+
+[node name="SFX3" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(2.55, 11.55)
+scale = Vector2(0.85, 0.85)
+stream = ExtResource("10_878o3")
+volume_db = 4.0
+bus = &"SFX"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/VBoxContainer/Master Volume" to="." method="_on_master_volume_value_changed"]

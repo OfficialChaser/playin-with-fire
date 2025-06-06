@@ -3,6 +3,9 @@ extends Node
 signal rule_selected(rule : Rule)
 
 # Game vars
+var slider_speed := 1
+var slider_sound_skip := 0.1
+
 var in_game := true
 var game_over := false
 const TIME_CURVE = preload("res://misc/time_curve.tres")

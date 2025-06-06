@@ -5,6 +5,9 @@ const MAIN = preload("res://scenes/main.tscn")
 @onready var pwf: Sprite2D = $Pwf
 var settings = false
 
+@onready var top = $SettingsMenu/MarginContainer/VBoxContainer/top
+@onready var bottom = $SettingsMenu/MarginContainer/VBoxContainer/VBoxContainer3/bottom
+
 @onready var masterSlider = $"SettingsMenu/MarginContainer/VBoxContainer/VBoxContainer/Master Volume"
 @onready var musicSlider = $"SettingsMenu/MarginContainer/VBoxContainer/VBoxContainer2/Music Volume"
 @onready var SFXSlider = $"SettingsMenu/MarginContainer/VBoxContainer/VBoxContainer3/SFX Volume"
@@ -18,7 +21,7 @@ var settings = false
 @onready var playbtn = $PlayButton
 @onready var settsbtn = $Button2
 
-
+var focus
 
 func _ready():
 	MusicManager.play_music("menu_music")
@@ -33,21 +36,17 @@ func _process(delta: float) -> void:
 
 	var d = 0
 	if Input.is_action_pressed("look_right") or Input.is_action_pressed("move_right"):
-		d = delta
+		d = delta * GameManager.slider_speed # defaults to one
 	elif Input.is_action_pressed("look_left") or Input.is_action_pressed("move_left"):
-		d = -delta
+		d = -delta * GameManager.slider_speed # defaults to one
 	handle_ctrler(
-		Input.is_action_just_pressed("spray") and !Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT), 
-		Input.is_action_just_pressed("look_up") or Input.is_action_just_pressed("move_up"), 
-		Input.is_action_just_pressed("look_down") or Input.is_action_just_pressed("move_down"), 
+		Input.is_action_just_pressed("spray") and not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT), 
+		Input.is_action_pressed("look_up") or Input.is_action_pressed("move_up"), 
+		Input.is_action_pressed("look_down") or Input.is_action_pressed("move_down"), 
 		d )
 
 func handle_ctrler(spray, up, down, dir):
-	var focus = get_viewport().gui_get_focus_owner()
-	if up and focus == backbtn:
-		SFXBtn.grab_focus()
-	elif down and focus == SFXBtn:
-		backbtn.grab_focus()
+	focus = get_viewport().gui_get_focus_owner()
 	if spray:
 		if focus == backbtn or focus == settsbtn or focus == playbtn:
 			focus.emit_signal("pressed")

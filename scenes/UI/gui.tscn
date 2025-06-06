@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://fp7rg4p75r5e"]
+[gd_scene load_steps=16 format=3 uid="uid://fp7rg4p75r5e"]
 
 [ext_resource type="Script" uid="uid://csd8n5o6psd2j" path="res://scripts/UI/gui.gd" id="1_mfius"]
 [ext_resource type="Texture2D" uid="uid://crdbug67gbg07" path="res://assets/UI-land.png" id="2_fqfpr"]
@@ -42,10 +42,27 @@ tracks/0/keys = {
 "values": [0.0, 2.0]
 }
 
+[sub_resource type="Animation" id="Animation_lbamw"]
+resource_name = "blur_out"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/blur_strength")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.0, 0.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fqfpr"]
 _data = {
 &"RESET": SubResource("Animation_3tbu2"),
-&"blur_in": SubResource("Animation_dk0i5")
+&"blur_in": SubResource("Animation_dk0i5"),
+&"blur_out": SubResource("Animation_lbamw")
 }
 
 [sub_resource type="Animation" id="Animation_tk48h"]
