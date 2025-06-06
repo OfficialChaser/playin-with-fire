@@ -34,6 +34,10 @@ func _physics_process(delta):
 		hose.spray(false)
 		sprite_animation_player.play("idle")
 		return
+	if GameManager.regen_enabled: 
+		GameManager.player_health += delta * GameManager.regen
+		print_debug(delta * GameManager.regen)
+	print_debug(GameManager.regen_enabled)
 	if !knockback_enabled:
 		# lerping acceleration back to normal if knockback reset it
 		if acc < starting_acc:

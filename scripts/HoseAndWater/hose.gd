@@ -30,9 +30,7 @@ func _ready():
 func _process(delta):
 	if not GameManager.in_game:
 		return
-	if GameManager.regen_enabled: # regen, couldn't bother to change variable name
-		GameManager.player_health += delta * GameManager.regen
-		print_debug(delta * GameManager.regen)
+
 
 	handle_hose_rotation(delta)
 	manage_water_spawning(spraying, delta)

@@ -141,6 +141,16 @@ func day_completed(way: String = ""):
 	# reload scene with updated stuff
 	get_tree().reload_current_scene()
 	await rule_selected
+	
+	# apply gambling addict 3rd upgrade, devil's deal +/- 50hp
+	if GameManager.deal_enabled:
+		if randi_range(0, 1) == 1:
+			GameManager.player_health += 50
+		elif GameManager.player_health <= 50:
+			GameManager.player_health = 5
+		else:
+			GameManager.player_health -= 50
+			
 	in_game = true
 
 func restart_game():

@@ -1,13 +1,13 @@
 extends Node
 
 var rule_paths : Array[String] = [
-	"res://misc/rules/double_trouble.tres", 
-	"res://misc/rules/bloody_stuff.tres",
-	"res://misc/rules/darkness.tres", 
-	"res://misc/rules/lose_a_key.tres",
-	"res://misc/rules/gambling_addict.tres",
-	#"res://misc/rules/heal_deal.tres",
-	"res://misc/rules/lightning_fast.tres",
+	#"res://misc/rules/double_trouble.tres", 
+	#"res://misc/rules/bloody_stuff.tres",
+	#"res://misc/rules/darkness.tres", 
+	#"res://misc/rules/lose_a_key.tres",
+	#"res://misc/rules/gambling_addict.tres",
+	"res://misc/rules/heal_deal.tres",
+	#"res://misc/rules/lightning_fast.tres",
 ]
 
 var rules : Array[Rule] 
@@ -54,12 +54,7 @@ func select_rule():
 		maxed_rules.append(current_rule)
 	used_rules.clear()
 	
-	# apply gambling_addict 3rd upgrade, devil's deal +/- 50hp
-	if GameManager.deal_enabled:
-		if randi_range(0, 1) == 1:
-			GameManager.player_health += 50
-		else:
-			GameManager.player_health -= 50
+	
 
 func player_has_maxed_out():
 	var sorted_rules = rules.duplicate()
