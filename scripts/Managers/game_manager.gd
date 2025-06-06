@@ -182,7 +182,7 @@ func reset_vars():
 	# Heal deal
 	sellSoul = false
 	
-	# gambling addict
+	# gambling addictc
 	roll_tmrw = start_roll_tmrw
 	
 	#lightning fast

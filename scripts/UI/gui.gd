@@ -54,7 +54,7 @@ func update_rule_label():
 		rule_name.text = ''
 
 func set_timer(f : float):
-	day_timer.time_left = f
+	day_timer.wait_time = f
 
 func _on_day_timer_timeout():
 	if GameManager.in_game and !GameManager.game_over:
