@@ -122,7 +122,7 @@ func day_completed(way: String = ""):
 	in_game = false
 	
 	if way == "smokin' bonus":
-		GameManager.rerolls += 1
+		GameManager.rerolls += 2
 	
 	# reload scene with updated stuff
 	get_tree().reload_current_scene()
