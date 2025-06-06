@@ -188,5 +188,6 @@ bus = &"SFX"
 
 [node name="LockedSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_a06cl")
+bus = &"SFX"
 
 [connection signal="timeout" from="PlayerCollisionManager/KnockbackCooldown" to="PlayerCollisionManager" method="_on_knockback_cooldown_timeout"]
