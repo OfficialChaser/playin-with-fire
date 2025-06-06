@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ctlj2yncvuj0g" path="res://assets/grass.png" id="2_e2p27"]
 [ext_resource type="Texture2D" uid="uid://gpik7cmu465r" path="res://assets/chillatdillat-Sheet.png" id="2_yonvy"]
 [ext_resource type="Texture2D" uid="uid://dep10symfqhjx" path="res://assets/title/pwf.png" id="3_5jstl"]
-[ext_resource type="PackedScene" uid="uid://lctewwi67ceq" path="res://scenes/UI/settings_menu.tscn" id="5_e2p27"]
+[ext_resource type="PackedScene" path="res://scenes/UI/settings_menu.tscn" id="5_e2p27"]
 
 [sub_resource type="Animation" id="Animation_e2p27"]
 length = 0.001
