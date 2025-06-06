@@ -8,11 +8,18 @@ func _ready():
 	MusicManager.play_music("menu_music")
 	$Pwf/AnimationPlayer.play("wiggle")
 
-func _on_button_pressed() -> void:
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("spray"):
+		justGo()
+		
+func justGo():
 	Transition.play("fade_in")
 	await get_tree().create_timer(1).timeout
 	MusicManager.play_music("game_music")
 	get_tree().change_scene_to_packed(MAIN)
+
+func _on_button_pressed() -> void:
+	justGo()
 
 func _on_button_2_pressed() -> void:
 	settings_menu.show()
