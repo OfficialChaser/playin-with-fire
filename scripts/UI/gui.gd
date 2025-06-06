@@ -19,7 +19,7 @@ func _ready():
 	update_timer_label(true)
 	blur_animation_player.play("RESET")
 	Transition.play("fade_out")
-	day_timer = GameManager.day_duration
+	day_timer.wait_time = GameManager.day_duration
 	if GameManager.day > 1:
 		await GameManager.rule_selected
 	day_timer.start()
