@@ -5,7 +5,7 @@ const LIGHTNING_HIGHLIGHT = preload("res://scenes/Objects/lightning_highlight.ts
 
 @onready var fire_tiles: FireTiles = $"../FireTiles"
 func _ready() -> void:
-	if GameManager.day > 1:
+	if GameManager.day > 1 and !RuleManager.player_has_maxed_out():
 		await GameManager.rule_selected
 	var used_cells := {}
 	

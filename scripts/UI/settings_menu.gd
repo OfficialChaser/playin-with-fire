@@ -5,7 +5,6 @@ func _ready():
 
 func _on_master_volume_value_changed(value: float) -> void:
 	var bus_index = AudioServer.get_bus_index("Master")
-	print(bus_index)
 	value = linear_to_db(value)
 	AudioServer.set_bus_volume_db(bus_index,value)
 
@@ -33,3 +32,4 @@ func _on_check_box_3_toggled(toggled_on: bool) -> void:
 
 func _on_button_pressed() -> void:
 	hide()
+	get_parent().show_buttons()

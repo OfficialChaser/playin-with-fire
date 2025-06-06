@@ -19,9 +19,10 @@ func _ready():
 	update_timer_label(true)
 	blur_animation_player.play("RESET")
 	Transition.play("fade_out")
-	day_timer.wait_time = GameManager.day_duration
 	if GameManager.day > 1:
 		await GameManager.rule_selected
+		day_timer.wait_time = GameManager.day_duration
+	day_timer.wait_time = GameManager.day_duration
 	day_timer.start()
 
 func _process(_delta):
@@ -62,7 +63,6 @@ func _on_day_timer_timeout():
 
 func day_over_sequence(way: String = "time out"):
 	GameManager.in_game = false
-	print("test12")
 	day_timer.stop()
 	await get_tree().create_timer(0.5).timeout
 	blur_animation_player.play("blur_in")

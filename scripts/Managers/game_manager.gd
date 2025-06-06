@@ -10,7 +10,8 @@ var DIFFICULTY_CURVE = preload("res://misc/difficulty_curve.tres")
 var difficulty_curve: Curve
 ## Game Starting stats - These can be used to reset the game stats after a rule change or reload
 var day := 1
-const start_fire_spawn_rate := 0.08
+const start_fire_spawn_rate := 0.23
+
 const start_lightning_spawn_amt := 5
 const start_rerolls := 3
 const start_player_damage := 2
@@ -24,10 +25,10 @@ const start_fly := false
 const start_fire_damage : int = 10
 
 # gambling addict
-const start_roll_tmrw = true
+const start_roll_tmrw := true
 
 #lightning fast
-const start_day_duration = 1
+const start_day_duration := 45.0
 
 # Bloody Stuff
 const start_player_health := 100
@@ -166,8 +167,8 @@ func update_game_stats():
 		player_health += hp_gain
 	day += 1
 	
-	# figure out some sort of log or exp function here to get a better difficulty curve
 	fire_spawn_rate = get_spawn_rate()
+	day_duration = get_day_duration()
 	lightning_spawn_amt += 1
 	fire_spawn_rate = clamp(fire_spawn_rate, 0.01, 10000)
 	
@@ -175,11 +176,19 @@ func get_spawn_rate() -> float:
 	if DIFFICULTY_CURVE:
 		var day_clamped = clamp(day+1, 0, DIFFICULTY_CURVE.max_domain)
 		var difficulty : float = DIFFICULTY_CURVE.sample(day_clamped)
-		print(difficulty) # doesn't print
 		return difficulty
 	else:
 		push_warning("Spawn rate curve not set! Using fallback.")
 		return 0.5
+
+func get_day_duration():
+	if TIME_CURVE:
+		var day_clamped = clamp(day+1, 0, TIME_CURVE.max_domain)
+		var time : float = TIME_CURVE.sample(day_clamped)
+		return time
+	else:
+		push_warning("Time curve not set! Using fallback.")
+		return 30.0
 
 func reset_vars():
 	day = 1
@@ -195,7 +204,7 @@ func reset_vars():
 	# Heal deal
 	sellSoul = false
 	
-	# gambling addictc
+	# gambling addict
 	roll_tmrw = start_roll_tmrw
 	
 	#lightning fast

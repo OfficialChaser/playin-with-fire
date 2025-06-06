@@ -9,7 +9,7 @@ func _ready():
 	$Pwf/AnimationPlayer.play("wiggle")
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("spray"):
+	if Input.is_action_just_pressed("spray") and !Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		justGo()
 		
 func justGo():
@@ -23,3 +23,9 @@ func _on_button_pressed() -> void:
 
 func _on_button_2_pressed() -> void:
 	settings_menu.show()
+	$PlayButton.hide()
+	$Button2.hide()
+
+func show_buttons():
+	$PlayButton.show()
+	$Button2.show()

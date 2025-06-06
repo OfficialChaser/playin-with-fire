@@ -1,6 +1,6 @@
 extends Rule
 
-func set_rule_config(level : int = 1):
+func set_rule_config(_level : int = 1):
 	GameManager.hose_knockback *= 2
 	GameManager.water_spawn_rate *= 2
 

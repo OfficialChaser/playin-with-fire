@@ -55,11 +55,11 @@ func check_house():
 					fire_health.clear()
 
 func _on_cooldown_timer_timeout():
-	if fire_areas.size() < 15:
+	if fire_areas.size() < GameManager.fire_spawn_rate * 10:
 		cooldown_timer.wait_time = GameManager.fire_spawn_rate * 10
-	elif fire_areas.size() < 30:
+	elif fire_areas.size() < GameManager.fire_spawn_rate * 30:
 		cooldown_timer.wait_time = GameManager.fire_spawn_rate * 4
-	elif fire_areas.size() < 50:
+	elif fire_areas.size() < GameManager.fire_spawn_rate * 50:
 		cooldown_timer.wait_time = GameManager.fire_spawn_rate * 2
 	else:
 		cooldown_timer.wait_time = GameManager.fire_spawn_rate
