@@ -34,10 +34,13 @@ func set_rule_config(level : int = 1):
 	GameManager.used_keys.append(rng)
 	GameManager.player_move_speed *= 1.5
 	GameManager.keys[rng] = false
-	if level > 1:
-		GameManager.fly_enabled = true
+	if level > 2:
+		if GameManager.hose_knockback > 0:
+			GameManager.hose_knockback *= -1
+	else:
+		GameManager.hose_knockback *= 3
 
 func reset_rule_config():
 	for key in GameManager.keys:
 		GameManager.keys[key] = true
-	GameManager.fly = false
+	#GameManager.fly = false

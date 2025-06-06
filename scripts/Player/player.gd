@@ -22,6 +22,7 @@ var hose_knockback : int
 @onready var sprite_animation_player = $Sprite2D/AnimationPlayer
 var main_camera : MainCamera
 
+
 func _ready():
 	main_camera = get_tree().get_first_node_in_group("main_camera")
 	knockback_enabled = false
@@ -34,24 +35,25 @@ func _physics_process(delta):
 		hose.spray(false)
 		sprite_animation_player.play("idle")
 		return
+	
 	if GameManager.regen_enabled: 
 		GameManager.player_health += delta * GameManager.regen
 		print_debug(delta * GameManager.regen)
-	print_debug(GameManager.regen_enabled)
+		print_debug("regen test")	
+	
+
+	
 	if !knockback_enabled:
+		
 		# lerping acceleration back to normal if knockback reset it
 		if acc < starting_acc:
 			acc = lerp(acc, starting_acc, 0.01)
 		
-		# Handling Input
-		if Input.is_action_just_pressed('spray'):
-			hose.spray()
-			main_camera.apply_shake(hose_shake_strength, 10)
-		if Input.is_action_just_released('spray'):
-			hose.spray(false)
-		
-		
-	else:
+	# Handling Input
+	if Input.is_action_just_pressed('spray'):
+		hose.spray()
+		main_camera.apply_shake(hose_shake_strength, 10)
+	if Input.is_action_just_released('spray'):
 		hose.spray(false)
 	
 	handle_movement(delta)

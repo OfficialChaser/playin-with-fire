@@ -19,7 +19,8 @@ func _process(_delta: float) -> void:
 		confirmCONFIRM = true
 
 func _unhandled_input(event: InputEvent) -> void:
-	print_debug("confirm: " + str(confirm))
+	# print_debug("confirm: " + str(confirm))
+	
 	if get_tree().paused:
 		if !confirm and !confirmCONFIRM:
 			$Label.text = "Press any\nbutton to\nunpause"

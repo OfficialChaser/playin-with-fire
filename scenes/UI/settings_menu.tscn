@@ -1,17 +1,24 @@
-[gd_scene load_steps=8 format=3 uid="uid://bxxfuf00rlpl5"]
+[gd_scene load_steps=11 format=3 uid="uid://bxxfuf00rlpl5"]
 
 [ext_resource type="Texture2D" uid="uid://ctlj2yncvuj0g" path="res://assets/grass.png" id="1_dvq1v"]
 [ext_resource type="Script" uid="uid://bnc2dfhblhqub" path="res://scripts/UI/settings_menu.gd" id="1_yk8t3"]
 [ext_resource type="Texture2D" uid="uid://8g1ti701gb2u" path="res://assets/handle.png" id="3_son7u"]
 [ext_resource type="Texture2D" uid="uid://cqujcyxam36wt" path="res://assets/rak-sak.png" id="4_t4w0s"]
+[ext_resource type="Texture2D" uid="uid://dxwg65jbh32o5" path="res://assets/handlefoc.png" id="4_tv14d"]
 [ext_resource type="Texture2D" uid="uid://bk05dfkg5rxgj" path="res://assets/handlex.png" id="5_lwg20"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lwg20"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lwg20"]
 texture = ExtResource("4_t4w0s")
+texture_margin_left = 12.0
 texture_margin_top = 16.0
+texture_margin_right = 12.0
 texture_margin_bottom = 16.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tv14d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c5o1q"]
 
 [node name="Settings Menu" type="Control"]
 layout_mode = 3
@@ -54,8 +61,21 @@ theme_override_constants/separation = 30
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
+focus_next = NodePath("../VBoxContainer3/CheckBox3")
+focus_previous = NodePath("../VBoxContainer/Master Volume")
+theme_override_colors/font_disabled_color = Color(0.921569, 0.933333, 0.713726, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.776471, 0.705882, 0.309804, 1)
 theme_override_colors/font_hover_color = Color(0.776471, 0.705882, 0.309804, 1)
+theme_override_colors/icon_disabled_color = Color(0.921569, 0.933333, 0.713726, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.921569, 0.933333, 0.713726, 1)
+theme_override_colors/icon_hover_color = Color(0.921569, 0.933333, 0.713726, 1)
+theme_override_colors/icon_pressed_color = Color(0.921569, 0.933333, 0.713726, 1)
+theme_override_colors/icon_focus_color = Color(0.921569, 0.933333, 0.713726, 1)
+theme_override_colors/icon_normal_color = Color(0.921569, 0.933333, 0.713726, 1)
+theme_override_colors/font_outline_color = Color(0.921569, 0.933333, 0.713726, 1)
 theme_override_colors/font_color = Color(0.921569, 0.933333, 0.713726, 1)
+theme_override_colors/font_focus_color = Color(0.776471, 0.705882, 0.309804, 1)
+theme_override_colors/font_pressed_color = Color(0.776471, 0.705882, 0.309804, 1)
 theme_override_font_sizes/font_size = 25
 theme_override_styles/focus = SubResource("StyleBoxEmpty_lwg20")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_lwg20")
@@ -84,8 +104,10 @@ text = "Master Volume"
 [node name="Master Volume" type="HSlider" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
+focus_next = NodePath("../CheckBox")
+focus_previous = NodePath("../../VBoxContainer3/CheckBox3")
 theme_override_icons/grabber = ExtResource("3_son7u")
-theme_override_icons/grabber_highlight = ExtResource("3_son7u")
+theme_override_icons/grabber_highlight = ExtResource("4_tv14d")
 theme_override_icons/grabber_disabled = ExtResource("3_son7u")
 theme_override_styles/slider = SubResource("StyleBoxTexture_lwg20")
 theme_override_styles/grabber_area = SubResource("StyleBoxTexture_lwg20")
@@ -97,11 +119,35 @@ value = 1.0
 [node name="CheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
+focus_next = NodePath("../../VBoxContainer2/Music Volume")
+focus_previous = NodePath("../Master Volume")
+theme_override_colors/font_disabled_color = Color(0.921569, 0.933333, 0.713726, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.776471, 0.705882, 0.309804, 1)
 theme_override_colors/font_hover_color = Color(0.776471, 0.705882, 0.309804, 1)
+theme_override_colors/icon_disabled_color = Color(0.921569, 0.933333, 0.713726, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.921569, 0.933333, 0.713726, 1)
+theme_override_colors/icon_hover_color = Color(0.921569, 0.933333, 0.713726, 1)
+theme_override_colors/icon_pressed_color = Color(0.921569, 0.933333, 0.713726, 1)
+theme_override_colors/icon_focus_color = Color(0.921569, 0.933333, 0.713726, 1)
+theme_override_colors/icon_normal_color = Color(0.921569, 0.933333, 0.713726, 1)
+theme_override_colors/font_outline_color = Color(0.921569, 0.933333, 0.713726, 1)
 theme_override_colors/font_color = Color(0.921569, 0.933333, 0.713726, 1)
+theme_override_colors/font_focus_color = Color(0.776471, 0.705882, 0.309804, 1)
+theme_override_colors/font_pressed_color = Color(0.776471, 0.705882, 0.309804, 1)
 theme_override_font_sizes/font_size = 15
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tv14d")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_tv14d")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tv14d")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_tv14d")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_tv14d")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_tv14d")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_tv14d")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_tv14d")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_tv14d")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_tv14d")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_tv14d")
 theme_override_icons/checked = ExtResource("5_lwg20")
-theme_override_icons/unchecked = ExtResource("3_son7u")
+theme_override_icons/unchecked = ExtResource("4_tv14d")
 text = "Mute 
 "
 
@@ -118,8 +164,10 @@ text = "Music Volume"
 [node name="Music Volume" type="HSlider" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 4
+focus_next = NodePath("../CheckBox2")
+focus_previous = NodePath("../../VBoxContainer/CheckBox")
 theme_override_icons/grabber = ExtResource("3_son7u")
-theme_override_icons/grabber_highlight = ExtResource("3_son7u")
+theme_override_icons/grabber_highlight = ExtResource("4_tv14d")
 theme_override_icons/grabber_disabled = ExtResource("3_son7u")
 theme_override_styles/slider = SubResource("StyleBoxTexture_lwg20")
 theme_override_styles/grabber_area = SubResource("StyleBoxTexture_lwg20")
@@ -131,11 +179,35 @@ value = 1.0
 [node name="CheckBox2" type="CheckBox" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 4
+focus_next = NodePath("../../VBoxContainer3/SFX Volume")
+focus_previous = NodePath("../Music Volume")
+theme_override_colors/font_disabled_color = Color(0.921569, 0.933333, 0.713726, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.776471, 0.705882, 0.309804, 1)
 theme_override_colors/font_hover_color = Color(0.776471, 0.705882, 0.309804, 1)
+theme_override_colors/icon_disabled_color = Color(0.921569, 0.933333, 0.713726, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.921569, 0.933333, 0.713726, 1)
+theme_override_colors/icon_hover_color = Color(0.921569, 0.933333, 0.713726, 1)
+theme_override_colors/icon_pressed_color = Color(0.921569, 0.933333, 0.713726, 1)
+theme_override_colors/icon_focus_color = Color(0.921569, 0.933333, 0.713726, 1)
+theme_override_colors/icon_normal_color = Color(0.921569, 0.933333, 0.713726, 1)
+theme_override_colors/font_outline_color = Color(0.921569, 0.933333, 0.713726, 1)
 theme_override_colors/font_color = Color(0.921569, 0.933333, 0.713726, 1)
+theme_override_colors/font_focus_color = Color(0.776471, 0.705882, 0.309804, 1)
+theme_override_colors/font_pressed_color = Color(0.776471, 0.705882, 0.309804, 1)
 theme_override_font_sizes/font_size = 15
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tv14d")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_tv14d")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tv14d")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_tv14d")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_tv14d")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_tv14d")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_tv14d")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_tv14d")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_tv14d")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_tv14d")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_tv14d")
 theme_override_icons/checked = ExtResource("5_lwg20")
-theme_override_icons/unchecked = ExtResource("3_son7u")
+theme_override_icons/unchecked = ExtResource("4_tv14d")
 text = "Mute 
 "
 
@@ -152,8 +224,10 @@ text = "SFX Volume"
 [node name="SFX Volume" type="HSlider" parent="MarginContainer/VBoxContainer/VBoxContainer3"]
 layout_mode = 2
 size_flags_vertical = 4
+focus_next = NodePath("../CheckBox3")
+focus_previous = NodePath("../../VBoxContainer2/CheckBox2")
 theme_override_icons/grabber = ExtResource("3_son7u")
-theme_override_icons/grabber_highlight = ExtResource("3_son7u")
+theme_override_icons/grabber_highlight = ExtResource("4_tv14d")
 theme_override_icons/grabber_disabled = ExtResource("3_son7u")
 theme_override_styles/slider = SubResource("StyleBoxTexture_lwg20")
 theme_override_styles/grabber_area = SubResource("StyleBoxTexture_lwg20")
@@ -165,11 +239,35 @@ value = 1.0
 [node name="CheckBox3" type="CheckBox" parent="MarginContainer/VBoxContainer/VBoxContainer3"]
 layout_mode = 2
 size_flags_vertical = 4
+focus_next = NodePath("../../VBoxContainer/Master Volume")
+focus_previous = NodePath("../SFX Volume")
+theme_override_colors/font_disabled_color = Color(0.921569, 0.933333, 0.713726, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.776471, 0.705882, 0.309804, 1)
 theme_override_colors/font_hover_color = Color(0.776471, 0.705882, 0.309804, 1)
+theme_override_colors/icon_disabled_color = Color(0.921569, 0.933333, 0.713726, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.921569, 0.933333, 0.713726, 1)
+theme_override_colors/icon_hover_color = Color(0.921569, 0.933333, 0.713726, 1)
+theme_override_colors/icon_pressed_color = Color(0.921569, 0.933333, 0.713726, 1)
+theme_override_colors/icon_focus_color = Color(0.921569, 0.933333, 0.713726, 1)
+theme_override_colors/icon_normal_color = Color(0.921569, 0.933333, 0.713726, 1)
+theme_override_colors/font_outline_color = Color(0.921569, 0.933333, 0.713726, 1)
 theme_override_colors/font_color = Color(0.921569, 0.933333, 0.713726, 1)
+theme_override_colors/font_focus_color = Color(0.776471, 0.705882, 0.309804, 1)
+theme_override_colors/font_pressed_color = Color(0.776471, 0.705882, 0.309804, 1)
 theme_override_font_sizes/font_size = 15
+theme_override_styles/focus = SubResource("StyleBoxEmpty_c5o1q")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_c5o1q")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_c5o1q")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_c5o1q")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_c5o1q")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_c5o1q")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_c5o1q")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_c5o1q")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_c5o1q")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_c5o1q")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_c5o1q")
 theme_override_icons/checked = ExtResource("5_lwg20")
-theme_override_icons/unchecked = ExtResource("3_son7u")
+theme_override_icons/unchecked = ExtResource("4_tv14d")
 text = "Mute 
 "
 

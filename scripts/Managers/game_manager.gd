@@ -19,9 +19,8 @@ const start_rerolls := 3
 const start_player_damage := 2
 
 # Double Trouble
-const start_hose_knockback := 50.0
+const start_hose_knockback := 30.0 # used to be 50.0
 const start_water_spawn_rate := 50.0
-
 
 
 #heal deal
@@ -30,10 +29,6 @@ const start_fire_damage : int = 10
 # gambling addict
 const start_roll_tmrw := true
 const start_deal := false
-
-
-#lightning fast
-
 
 # Bloody Stuff
 const start_player_health := 100
@@ -146,7 +141,7 @@ func day_completed(way: String = ""):
 	if GameManager.deal_enabled:
 		if randi_range(0, 1) == 1:
 			GameManager.player_health += 50
-		elif GameManager.player_health <= 50:
+		elif GameManager.player_health < 55:
 			GameManager.player_health = 5
 		else:
 			GameManager.player_health -= 50

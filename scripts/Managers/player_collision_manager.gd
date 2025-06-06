@@ -3,6 +3,11 @@ extends Node
 # References
 var player : CharacterBody2D
 
+# fix insta death glitch
+var i_frame = false
+var i_frame_duration = 0.5
+var i_frame_timer = 0.0
+
 # Fire knockback variables
 var fire_knockback_force := 10000.0
 var knockback_dir
@@ -10,10 +15,18 @@ var knockback_dir
 
 func _ready():
 	player = get_parent()
+	i_frame_duration = 0.6
 
 func _physics_process(delta):
 	if not GameManager.in_game:
 		return
+	if i_frame:		# to fix issue of instant death loops with fire knockback
+		
+		i_frame_timer += delta
+		if i_frame_timer > i_frame_duration:
+			i_frame = false
+		print_debug(i_frame_timer)
+		
 	handle_fire_collision()
 	
 	# If player knockback enabled, apply knockback to player
@@ -22,7 +35,7 @@ func _physics_process(delta):
 
 func handle_fire_collision():
 	var collision = player.get_last_slide_collision()
-	if not collision or !knockback_cooldown.is_stopped():
+	if not collision or !knockback_cooldown.is_stopped() or i_frame:
 		return
 		
 	var collider = collision.get_collider()
@@ -40,6 +53,8 @@ func handle_fire_collision():
 		# Apply knockback
 		knockback_dir = (player.position - local_pos).normalized()
 		knockback_cooldown.start()
+		i_frame = true
+		i_frame_timer = 0.0
 		player.knockback_enabled = true
 		
 		# Camera effects
