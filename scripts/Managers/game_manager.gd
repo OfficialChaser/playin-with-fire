@@ -5,7 +5,8 @@ signal rule_selected(rule : Rule)
 # Game vars
 var in_game := true
 var game_over := false
-
+const DIFFICULTY_CURVE = preload("res://misc/difficulty_curve.tres")
+var difficulty_curve: Curve
 ## Game Starting stats - These can be used to reset the game stats after a rule change or reload
 var day := 1
 const start_fire_spawn_rate := 0.08
@@ -167,9 +168,14 @@ func update_game_stats():
 	fire_spawn_rate = clamp(fire_spawn_rate, 0.01, 10000)
 	
 func get_spawn_rate() -> float:
-	var A = 0.2
-	var B = 0.0626
-	return max(0.05, A - B * log(day + 1))
+	if DIFFICULTY_CURVE:
+		var day_clamped = clamp(day+1, 0, DIFFICULTY_CURVE.max_domain)
+		var difficulty : float = DIFFICULTY_CURVE.sample(day_clamped)
+		print(difficulty)
+		return difficulty
+	else:
+		push_warning("Spawn rate curve not set! Using fallback.")
+		return 100
 
 func reset_vars():
 	day = 1
