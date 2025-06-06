@@ -68,8 +68,6 @@ func get_new_rule():
 
 	reroll_label.text = "Rerolls: " + str(GameManager.rerolls)
 	
-	
-	
 	update_rule_card_ui()
 
 func update_rule_card_ui():
@@ -93,6 +91,8 @@ func ready_to_start(new_rule: bool = true):
 	start = true
 	enabled = false
 	Transition.play("fade_out")
+	if !GameManager.roll_tmrw:
+		GameManager.roll_tmrw = true
 	if new_rule:
 		GameManager.rule_selected.emit(RuleManager.current_rule) # they'll still stack tho
 	else:
