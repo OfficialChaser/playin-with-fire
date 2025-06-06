@@ -18,6 +18,9 @@ const start_hose_knockback := 50.0
 const start_water_spawn_rate := 50.0
 const start_fly := false
 
+#heal deal
+const start_fire_damage : int = 10
+
 # gambling addict
 const start_roll_tmrw = true
 
@@ -50,7 +53,7 @@ var fly_enabled := start_fly
 
 # heal deal
 var sellSoul := true
-
+var fire_damage := start_fire_damage
 # gambling addict
 var roll_tmrw := start_roll_tmrw
 
@@ -99,8 +102,8 @@ func _ready() -> void:
 
 
 func on_rule_selected(rule : Rule):
-	if current_rule:
-		current_rule.reset_rule_config()
+	#if current_rule:
+		#current_rule.reset_rule_config()
 	if rule:
 		current_rule = rule
 		current_rule.set_rule_config(RuleManager.rule_levels[current_rule])

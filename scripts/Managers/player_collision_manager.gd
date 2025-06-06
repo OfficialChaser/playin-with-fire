@@ -5,7 +5,6 @@ var player : CharacterBody2D
 
 # Fire knockback variables
 var fire_knockback_force := 10000.0
-var fire_damage := 10
 var knockback_dir
 @onready var knockback_cooldown = $KnockbackCooldown
 
@@ -48,7 +47,7 @@ func handle_fire_collision():
 		player.main_camera.play_red_tint_anim()
 		
 		# Add damage
-		GameManager.damage_player(fire_damage)
+		GameManager.damage_player(GameManager.fire_damage)
 
 
 
