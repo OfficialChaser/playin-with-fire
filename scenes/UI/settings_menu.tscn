@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bxxfuf00rlpl5"]
+[gd_scene load_steps=14 format=3 uid="uid://bxxfuf00rlpl5"]
 
 [ext_resource type="Texture2D" uid="uid://ctlj2yncvuj0g" path="res://assets/grass.png" id="1_dvq1v"]
 [ext_resource type="Script" uid="uid://bnc2dfhblhqub" path="res://scripts/UI/settings_menu.gd" id="1_yk8t3"]
@@ -9,7 +9,6 @@
 [ext_resource type="AudioStream" uid="uid://f7i37ahemebn" path="res://sounds/SFX/confirm.wav" id="7_6jt7n"]
 [ext_resource type="AudioStream" uid="uid://cjph3f41whna7" path="res://sounds/SFX/deny.wav" id="8_878o3"]
 [ext_resource type="AudioStream" uid="uid://slouln1ao1e7" path="res://sounds/SFX/Fire Game Locked Interaction.wav" id="9_6jt7n"]
-[ext_resource type="AudioStream" uid="uid://bex68spxy5d4r" path="res://sounds/SFX/Fire Game Lightning.wav" id="10_878o3"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lwg20"]
 
@@ -119,7 +118,7 @@ theme_override_styles/grabber_area = SubResource("StyleBoxTexture_lwg20")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_lwg20")
 max_value = 1.0
 step = 0.05
-value = 0.7
+value = 1.0
 
 [node name="CheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -179,7 +178,7 @@ theme_override_styles/grabber_area = SubResource("StyleBoxTexture_lwg20")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_lwg20")
 max_value = 1.0
 step = 0.05
-value = 0.7
+value = 1.0
 
 [node name="CheckBox2" type="CheckBox" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
@@ -239,7 +238,7 @@ theme_override_styles/grabber_area = SubResource("StyleBoxTexture_lwg20")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_lwg20")
 max_value = 1.0
 step = 0.05
-value = 0.7
+value = 1.0
 
 [node name="CheckBox3" type="CheckBox" parent="MarginContainer/VBoxContainer/VBoxContainer3"]
 layout_mode = 2
@@ -295,13 +294,6 @@ bus = &"SFX"
 position = Vector2(2.55, 11.55)
 scale = Vector2(0.85, 0.85)
 stream = ExtResource("9_6jt7n")
-volume_db = 4.0
-bus = &"SFX"
-
-[node name="SFX3" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(2.55, 11.55)
-scale = Vector2(0.85, 0.85)
-stream = ExtResource("10_878o3")
 volume_db = 4.0
 bus = &"SFX"
 

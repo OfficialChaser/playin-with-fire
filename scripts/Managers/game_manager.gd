@@ -155,8 +155,6 @@ func restart_game():
 	# Reset stats
 	reset_vars()
 	
-	keys = [true, true, true, true] # keys order is left right up down
-	
 	# Play transition
 	Transition.play("fade_in")
 	await get_tree().create_timer(1).timeout
@@ -207,6 +205,8 @@ func get_day_duration():
 		return 30.0
 
 func reset_vars():
+	keys = [true, true, true, true] # keys order is left right up down
+	
 	day = 1
 	fire_spawn_rate = start_fire_spawn_rate
 	player_damage  = start_player_damage

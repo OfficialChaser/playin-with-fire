@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://cgqtkixpnivjh"]
+[gd_scene load_steps=19 format=4 uid="uid://cgqtkixpnivjh"]
 
 [ext_resource type="PackedScene" uid="uid://ciigmew78bdo4" path="res://scenes/Player/player.tscn" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://15jwuaapa63q" path="res://scenes/Tiles/background_tiles.tscn" id="1_sugp2"]
@@ -43,8 +43,6 @@ custom_data_layer_1/type = 6
 custom_data_layer_2/name = "burning"
 custom_data_layer_2/type = 1
 sources/0 = SubResource("TileSetAtlasSource_tefeu")
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_muem4"]
 
 [node name="Main" type="Node2D"]
 
@@ -136,49 +134,17 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -111.0
-offset_top = -72.0
+offset_top = -44.0
 offset_right = 111.0
-offset_bottom = -21.0
+offset_bottom = 22.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.921569, 0.933333, 0.713726, 1)
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 20
 text = "Press any
 button to
 Unpause"
 horizontal_alignment = 1
-
-[node name="Button" type="Button" parent="CanvasLayer/PauseMenu"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -110.0
-offset_top = -199.0
-offset_right = 110.0
-offset_bottom = -111.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_hover_pressed_color = Color(0.776471, 0.705882, 0.309804, 1)
-theme_override_colors/font_hover_color = Color(0.776471, 0.705882, 0.309804, 1)
-theme_override_colors/font_color = Color(0.921569, 0.933333, 0.713726, 1)
-theme_override_colors/font_pressed_color = Color(0.776471, 0.705882, 0.309804, 1)
-theme_override_font_sizes/font_size = 50
-theme_override_styles/focus = SubResource("StyleBoxEmpty_muem4")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_muem4")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_muem4")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_muem4")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_muem4")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_muem4")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_muem4")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_muem4")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_muem4")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_muem4")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_muem4")
-text = "Quit	"
-alignment = 2
 
 [node name="GameOver" parent="CanvasLayer" instance=ExtResource("10_ya4ey")]
 visible = false
@@ -191,5 +157,3 @@ script = ExtResource("9_85g3d")
 
 [node name="KeyManager" type="Node" parent="."]
 script = ExtResource("13_trceg")
-
-[connection signal="pressed" from="CanvasLayer/PauseMenu/Button" to="CanvasLayer/PauseMenu" method="_on_button_pressed"]

@@ -72,6 +72,7 @@ func setts(hej : bool):
 
 func _on_button_pressed() -> void:
 	Transition.play("fade_in")
+	print("test")
 	await get_tree().create_timer(1).timeout
 	MusicManager.play_music("game_music")
 	get_tree().change_scene_to_packed(MAIN)
