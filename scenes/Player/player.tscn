@@ -183,7 +183,7 @@ one_shot = true
 
 [node name="HitSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_hvfru")
-volume_db = 4.0
+volume_db = 8.0
 bus = &"SFX"
 
 [node name="LockedSFX" type="AudioStreamPlayer2D" parent="."]
