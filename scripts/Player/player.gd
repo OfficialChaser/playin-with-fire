@@ -36,11 +36,6 @@ func _physics_process(delta):
 		sprite_animation_player.play("idle")
 		return
 	
-	if GameManager.regen_enabled: 
-		GameManager.player_health += delta * GameManager.regen
-		print_debug(delta * GameManager.regen)
-		print_debug("regen test")	
-	
 
 	
 	if !knockback_enabled:
