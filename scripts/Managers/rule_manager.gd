@@ -63,3 +63,9 @@ func player_has_maxed_out():
 	sorted_maxed.sort()
 
 	return sorted_rules.size() == sorted_maxed.size()
+
+func reset_rule_levels():
+	for rule in rules:
+		rule_levels[rule] = 1
+	used_rules.clear()
+	maxed_rules.clear()

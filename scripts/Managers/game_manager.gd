@@ -101,8 +101,8 @@ var current_rule : Rule = null
 
 # Input
 enum InputMode { CONTROLLER, WASD, ARROWS, HJKL, MOUSE } # we so we can show what key is removed in "remove key"
-var look_mode = InputMode.MOUSE
-var key_mode = InputMode.WASD
+var look_mode := InputMode.MOUSE
+var key_mode := InputMode.WASD
 
 
 # tiny change, look_mode is either MOUSE or CONTROLLER
@@ -210,12 +210,8 @@ func reset_vars():
 	day = 1
 	fire_spawn_rate = start_fire_spawn_rate
 	player_damage  = start_player_damage
-	lightning_spawn_amt = start_lightning_spawn_amt
 	rerolls = start_rerolls
 	current_rule = null
-	
-	# Rule Manager
-	RuleManager.maxed_rules.clear()
 	
 	# Heal deal
 	regen_enabled = false
@@ -223,15 +219,19 @@ func reset_vars():
 	# gambling addict
 	roll_tmrw = start_roll_tmrw
 	
-	#lightning fast
+	# Lightning fast
 	day_duration = start_day_duration
+	lightning_spawn_amt = start_lightning_spawn_amt
 	
 	# Double Trouble
 	hose_knockback = start_hose_knockback
 	water_spawn_rate = start_water_spawn_rate
 	deal_enabled = start_deal
 	
+	# Heal Deal
 	regen = start_regen
+	fire_damage = start_fire_damage
+	hp_gain = start_hp_gain
 
 	# Bloody Stuff
 	player_health = start_player_health
@@ -239,7 +239,6 @@ func reset_vars():
 	player_blood_damage = start_player_blood_damage
 	blood_enabled = start_blood_enabled
 	max_hp = start_max_hp
-	hp_gain = start_hp_gain
 	bloodHalf = false
 
 	# Darkness
@@ -250,3 +249,6 @@ func reset_vars():
 	# Lose a key
 	used_keys = []
 	player_move_speed = start_player_move_speed
+	
+	# Rule levels
+	RuleManager.reset_rule_levels()

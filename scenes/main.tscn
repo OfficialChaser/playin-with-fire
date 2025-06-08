@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cd2ttlh6t7sgg" path="res://scenes/Tiles/midground_tiles.tscn" id="2_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://duimloaabghuk" path="res://assets/placeholder_decoration_tiles.png" id="3_tbgi4"]
 [ext_resource type="Script" uid="uid://b2xxeikhodw4a" path="res://scripts/Tiles/midground_tiles.gd" id="4_tefeu"]
-[ext_resource type="Script" path="res://scripts/instructions.gd" id="5_jkv2x"]
+[ext_resource type="Script" uid="uid://2re31jvqb38a" path="res://scripts/instructions.gd" id="5_jkv2x"]
 [ext_resource type="PackedScene" uid="uid://bp5cxfy6eqq0x" path="res://scenes/Tiles/foreground_tiles.tscn" id="6_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://hn24gwwehgdg" path="res://scenes/main_camera.tscn" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://fp7rg4p75r5e" path="res://scenes/UI/gui.tscn" id="8_tipki"]

@@ -1,9 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bjv8yittm4a6l"]
+[gd_scene load_steps=11 format=3 uid="uid://bjv8yittm4a6l"]
 
 [ext_resource type="Shader" uid="uid://dnv5d7khiv3x5" path="res://misc/shaders/hit_flash.tres" id="1_b5usf"]
 [ext_resource type="Texture2D" uid="uid://c2arsfadqcngv" path="res://assets/fire-sheet.png" id="2_xaj34"]
 [ext_resource type="Script" uid="uid://dunm781e3pr6i" path="res://scripts/Fire/fire_damage_zone.gd" id="3_xaj34"]
-[ext_resource type="AudioStream" uid="uid://538i1p77xddh" path="res://sounds/SFX/Fire Game Burning.wav" id="4_v27jw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xaj34"]
 resource_local_to_scene = true
@@ -104,10 +103,3 @@ autoplay = "idle"
 libraries = {
 &"": SubResource("AnimationLibrary_140km")
 }
-
-[node name="FireSFX" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_v27jw")
-volume_db = 6.0
-autoplay = true
-max_distance = 300.0
-bus = &"SFX"

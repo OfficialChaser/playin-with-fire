@@ -5,8 +5,6 @@ const MAIN = preload("res://scenes/main.tscn")
 @onready var pwf: Sprite2D = $Pwf
 var settings = false
 
-@onready var top = $SettingsMenu/MarginContainer/VBoxContainer/top
-@onready var bottom = $SettingsMenu/MarginContainer/VBoxContainer/VBoxContainer3/bottom
 
 @onready var masterSlider = $"SettingsMenu/MarginContainer/VBoxContainer/VBoxContainer/Master Volume"
 @onready var musicSlider = $"SettingsMenu/MarginContainer/VBoxContainer/VBoxContainer2/Music Volume"
@@ -45,7 +43,7 @@ func _process(delta: float) -> void:
 		Input.is_action_pressed("look_down") or Input.is_action_pressed("move_down"), 
 		d )
 
-func handle_ctrler(spray, up, down, dir):
+func handle_ctrler(spray, _up, _down, dir):
 	focus = get_viewport().gui_get_focus_owner()
 	if spray:
 		if focus == backbtn or focus == settsbtn or focus == playbtn:
