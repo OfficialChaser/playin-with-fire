@@ -1,84 +1,55 @@
 extends Control
 
 const MAIN = preload("res://scenes/main.tscn")
+
+# Main menu nodes
+@onready var title_sprite = $TitleSprite
+@onready var buttons = $Buttons
+@onready var play_button = $Buttons/PlayButton
+
+# Settings nodes
 @onready var settings_menu: Control = $SettingsMenu
-@onready var pwf: Sprite2D = $Pwf
-var settings = false
 
 
-@onready var masterSlider = $"SettingsMenu/MarginContainer/VBoxContainer/VBoxContainer/Master Volume"
-@onready var musicSlider = $"SettingsMenu/MarginContainer/VBoxContainer/VBoxContainer2/Music Volume"
-@onready var SFXSlider = $"SettingsMenu/MarginContainer/VBoxContainer/VBoxContainer3/SFX Volume"
+var in_settings = false
 
-@onready var backbtn = $SettingsMenu/MarginContainer/VBoxContainer/Button
-
-@onready var masterBtn = $"SettingsMenu/MarginContainer/VBoxContainer/VBoxContainer/CheckBox"
-@onready var musicBtn = $"SettingsMenu/MarginContainer/VBoxContainer/VBoxContainer2/CheckBox2"
-@onready var SFXBtn = $"SettingsMenu/MarginContainer/VBoxContainer/VBoxContainer3/CheckBox3"
-
-@onready var playbtn = $PlayButton
-@onready var settsbtn = $Button2
-
-var focus
 
 func _ready():
 	MusicManager.play_music("menu_music")
-	$Pwf/AnimationPlayer.play("wiggle")
-	setts(false)
+	enable_settings(false)
 
-func _process(delta: float) -> void:
+func _process(_delta):
+	handle_ctrler()
 	
-	
-	if Input.is_action_just_pressed("reroll"):
-		setts(!settings)
-
-	var d = 0
-	if Input.is_action_pressed("look_right") or Input.is_action_pressed("move_right"):
-		d = delta * GameManager.slider_speed # defaults to one
-	elif Input.is_action_pressed("look_left") or Input.is_action_pressed("move_left"):
-		d = -delta * GameManager.slider_speed # defaults to one
-	handle_ctrler(
-		Input.is_action_just_pressed("spray") and not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT), 
-		Input.is_action_pressed("look_up") or Input.is_action_pressed("move_up"), 
-		Input.is_action_pressed("look_down") or Input.is_action_pressed("move_down"), 
-		d )
-
-func handle_ctrler(spray, _up, _down, dir):
-	focus = get_viewport().gui_get_focus_owner()
-	if spray:
-		if focus == backbtn or focus == settsbtn or focus == playbtn:
-			focus.emit_signal("pressed")
-		elif focus == masterBtn or focus == musicBtn or focus == SFXBtn:
+func handle_ctrler():
+	var focus = get_viewport().gui_get_focus_owner()
+	if Input.is_action_just_pressed("spray") and not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		if focus is CheckBox:
 			focus.button_pressed = !focus.button_pressed
-	if focus == masterSlider:
-		masterSlider.value += dir
-	elif focus == musicSlider:
-		musicSlider.value += dir
-	elif focus == SFXSlider:
-		SFXSlider.value += dir
-	
-func setts(hej : bool):
-	settings = hej
-	if hej:
-		settings_menu.show()
-		playbtn.hide()
-		settsbtn.hide()
-		masterSlider.grab_focus()
-	else:
-		settings_menu.hide()
-		playbtn.show()
-		settsbtn.show()
-		playbtn.grab_focus()
+			focus.emit_signal("toggled", focus.button_pressed)
+		elif focus is Button:
+			focus.emit_signal("pressed")
 
-func _on_button_pressed() -> void:
+		
+	
+func enable_settings(enabled : bool):
+	# Update what UI is showing
+	in_settings = enabled
+	settings_menu.visible = enabled
+	buttons.visible = !enabled
+	title_sprite.visible = !enabled
+	
+	if enabled:
+		settings_menu.grab_menu_button_focus()
+	else:
+		play_button.grab_focus()
+
+
+func _on_play_button_pressed():
 	Transition.play("fade_in")
-	print("test")
 	await get_tree().create_timer(1).timeout
 	MusicManager.play_music("game_music")
 	get_tree().change_scene_to_packed(MAIN)
 
-func _on_button_2_pressed() -> void:
-	setts(true)
-
-func show_buttons():
-	setts(false)
+func _on_settings_button_pressed():
+	enable_settings(true)

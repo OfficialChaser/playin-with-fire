@@ -6,7 +6,7 @@ const HJKL = [KEY_H, KEY_L, KEY_K, KEY_J]
 
 const KEYS = [["A", "D", "W", "S"], ["←", "→", "↑", "↓"], ["H", "L", "K", "J"]]
 
-func keys_layout():
+func keys_layout() -> GameManager.InputMode:
 	for key in WASD:
 		if Input.is_physical_key_pressed(key):
 			return GameManager.InputMode.WASD
