@@ -5,6 +5,7 @@ const MAIN = preload("res://scenes/main.tscn")
 # Main menu nodes
 @onready var title_sprite = $TitleSprite
 @onready var buttons = $Buttons
+@onready var play_button = $Buttons/PlayButton
 
 # Settings nodes
 @onready var settings_menu: Control = $SettingsMenu
@@ -17,26 +18,19 @@ func _ready():
 	MusicManager.play_music("menu_music")
 	enable_settings(false)
 
-'''func _process(delta: float) -> void:
-	handle_ctrler(
-		Input.is_action_just_pressed("spray") and not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT), 
-		Input.is_action_pressed("look_up") or Input.is_action_pressed("move_up"), 
-		Input.is_action_pressed("look_down") or Input.is_action_pressed("move_down"), 
-		d )'''
-
-'''func handle_ctrler(spray, _up, _down, dir):
+func _process(_delta):
+	handle_ctrler()
+	
+func handle_ctrler():
 	var focus = get_viewport().gui_get_focus_owner()
-	if spray:
-		if focus == backbtn or focus == settsbtn or focus == playbtn:
-			focus.emit_signal("pressed")
-		elif focus == masterBtn or focus == musicBtn or focus == SFXBtn:
+	if Input.is_action_just_pressed("spray") and not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		if focus is CheckBox:
 			focus.button_pressed = !focus.button_pressed
-	if focus == masterSlider:
-		masterSlider.value += dir
-	elif focus == musicSlider:
-		musicSlider.value += dir
-	elif focus == SFXSlider:
-		SFXSlider.value += dir'''
+			focus.emit_signal("toggled", focus.button_pressed)
+		elif focus is Button:
+			focus.emit_signal("pressed")
+
+		
 	
 func enable_settings(enabled : bool):
 	# Update what UI is showing
@@ -46,7 +40,9 @@ func enable_settings(enabled : bool):
 	title_sprite.visible = !enabled
 	
 	if enabled:
-		pass
+		settings_menu.grab_menu_button_focus()
+	else:
+		play_button.grab_focus()
 
 
 func _on_play_button_pressed():
