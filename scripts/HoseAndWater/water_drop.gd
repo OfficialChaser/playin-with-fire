@@ -11,7 +11,7 @@ var damage := 20.0
 
 # Appearance + Lifetime vars
 @export var opacity_decay_rate := 1.0
-@export var lifetime := 1.0
+@export var lifetime := 1.5
 
 # Onreadys
 @onready var sprite_2d = $Sprite2D

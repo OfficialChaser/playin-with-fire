@@ -57,6 +57,7 @@ process_material = SubResource("ParticleProcessMaterial_btntx")
 stream = ExtResource("2_of41q")
 volume_db = 3.0
 autoplay = true
+bus = &"SFX"
 script = ExtResource("3_yiq52")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

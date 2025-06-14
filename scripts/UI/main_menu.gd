@@ -17,6 +17,9 @@ var in_settings = false
 func _ready():
 	MusicManager.play_music("menu_music")
 	enable_settings(false)
+	if GameManager.game_loaded:
+		Transition.play("fade_out")
+	GameManager.game_loaded = true
 
 func _process(_delta):
 	handle_ctrler()
@@ -29,8 +32,6 @@ func handle_ctrler():
 			focus.emit_signal("toggled", focus.button_pressed)
 		elif focus is Button:
 			focus.emit_signal("pressed")
-
-		
 	
 func enable_settings(enabled : bool):
 	# Update what UI is showing

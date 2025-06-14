@@ -2,6 +2,9 @@ extends Node
 
 signal rule_selected(rule : Rule)
 
+# Game Loaded vars
+var game_loaded := false
+
 # Game vars
 var slider_speed := 1
 var slider_sound_skip := 0.1
@@ -69,6 +72,7 @@ var deal_enabled := start_deal
 
 # Lightning fast
 var day_duration := start_day_duration
+var shortened_day := false
 
 # Bloody Stuff
 var player_health := start_player_health
@@ -140,6 +144,10 @@ func day_completed(way: String = ""):
 	get_tree().reload_current_scene()
 	await rule_selected
 	
+	# Check to shorten day if it is selected
+	if shortened_day:
+		day_duration -= day_duration * 0.3
+	
 	# apply gambling addict 3rd upgrade, devil's deal +/- 50hp
 	if GameManager.deal_enabled:
 		if randi_range(0, 1) == 1:
@@ -161,8 +169,6 @@ func restart_game():
 	
 	# Reload scene and reset game vars
 	get_tree().reload_current_scene()
-	game_over = false
-	in_game = true
 	
 	# Play animation
 	Transition.play("fade_out")
@@ -205,6 +211,8 @@ func get_day_duration():
 		return 30.0
 
 func reset_vars():
+	game_over = false
+	in_game = true
 	keys = [true, true, true, true] # keys order is left right up down
 	
 	day = 1
@@ -222,6 +230,7 @@ func reset_vars():
 	# Lightning fast
 	day_duration = start_day_duration
 	lightning_spawn_amt = start_lightning_spawn_amt
+	shortened_day = false
 	
 	# Double Trouble
 	hose_knockback = start_hose_knockback

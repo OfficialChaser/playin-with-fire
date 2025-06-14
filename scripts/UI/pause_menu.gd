@@ -2,66 +2,49 @@ extends Control
 
 var enabled := false
 var confirm := false
-var confirmCONFIRM := false
 var cool := true #cooldown but bool
 # ↑ just here so you don't flip in and out when pause is "held"
 
 func _ready():
-	$"../GUI".blur_animation_player.play("blur_out")
-	# has to have already been called before pause menu can be called
+	visible = false
+	
 	if GameManager.day > 1:
 		await GameManager.rule_selected
-	await get_tree().create_timer(3).timeout # 3 seconds seems to be minimum pause wait possible (without fucking up lightning)
+	await get_tree().create_timer(3).timeout
 	enabled = true
 
 func _process(_delta: float) -> void:
-	if GameManager.in_game:
-		if Input.is_action_just_pressed("pause"):
-			if !get_tree().paused and enabled and cool:
-				$"../GUI".blur_animation_player.play("blur_out")
-				# can't play animations bcs they are paused
-				show()
-				get_tree().paused = true
-		else:
-			cool = true
-				
-
-	if not Input.is_action_pressed("spray") and confirm:
-		confirmCONFIRM = true
-
-func _unhandled_input(event: InputEvent) -> void:
-	# also called in hose.gd and game_over.gd and main.gd
-	# print_debug("confirm: " + str(confirm))
+	if not GameManager.in_game:
+		return
+		
+	if Input.is_action_just_pressed("pause"):
+		if !get_tree().paused and enabled:
+			show()
+			get_tree().paused = true
+			if GameManager.key_mode == GameManager.InputMode.CONTROLLER:
+				$PausePanel/ResumeButton.grab_focus()
+	handle_ctrler()
 	
-	if get_tree().paused:
-		'''if !confirm and !confirmCONFIRM:
-			$Label.text = "Press any\nbutton to\nunpause"
-		if event.is_action_pressed("spray") and not event.is_echo():
-			if confirmCONFIRM:
-				$Label.text = "quitting"
-				get_tree().quit()
-			else:
-				$Label.text = "shoot again\nto quit"
-				confirm = true'''
-		if event.is_pressed() and not event.is_echo(): # and not event.is_action("pause"): # redundant, as "pause" is handled somewhere else (can't figure out where though)
-			unpause()
+func handle_ctrler():
+	var focus = get_viewport().gui_get_focus_owner()
+	if Input.is_action_just_pressed("spray") and not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		if focus is Button:
+			focus.emit_signal("pressed")
 
 func unpause():
 	get_tree().paused = false
 	confirm = false
-	confirmCONFIRM = false
-	cool = false
-	# just here so you don't flip in and out when pause is "held"
-	#$"../GUI".blur_animation_player.play("blur_in")
-	# isn't needed as we are using the fact that animations get paused for our gain here
-	# instead of a blur_in animation, we use a blur_out one
 	hide()
+	
+func _on_resume_button_pressed():
+	unpause()
 
-
-# Not working rn
-'''func _on_button_pressed() -> void:
+func _on_exit_button_pressed() -> void:
 	GameManager.end_game()
 	GameManager.reset_vars()
+	get_tree().paused = false
+	MusicManager.play_music()
+	enabled = false
 	Transition.play("fade_in")
 	await get_tree().create_timer(1).timeout
-	get_tree().change_scene_to_file("res://scenes/UI/main_menu.tscn")'''
+	get_tree().change_scene_to_file("res://scenes/UI/main_menu.tscn")
