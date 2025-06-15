@@ -17,7 +17,7 @@ var rules : Array[Rule]
 var used_rules := []
 var maxed_rules := []
 
-var rule_levels = {} # Resource rule : int level
+var rule_levels: Dictionary[Rule, int] = {}
 
 var current_rule : Rule
 

@@ -31,7 +31,7 @@ func _physics_process(delta):
 	if paused:
 		return
 		
-	if not GameManager.in_game:
+	if not GameManager.stats.in_game:
 		hose.spray(false)
 		sprite_animation_player.play("idle")
 		return
@@ -55,38 +55,42 @@ func _physics_process(delta):
 	move_and_slide()
 	handle_animations()
 
-
-func get_inputVector():
+# Eventually i want to put this logic somewhere in another script like controls.gd or smthn
+func get_input_vector() -> Vector2:
 	var v = Vector2.ZERO
-	# keys order is left right up down
+	var keys = GameManager.stats.keys  # keys order: left, right, up, down
 	
-	# 	x axis part
-	if (GameManager.keys[0] and GameManager.keys[1]): # right and left keys are on
+	# X axis
+	if keys[0] and keys[1]:
 		v.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
-	elif (GameManager.keys[0]): #	left key is on, so right must be off
-		v.x = - Input.get_action_strength("move_left")
-	elif (GameManager.keys[1]): #	right key is on, so left must be off
+	elif keys[0]:
+		v.x = -Input.get_action_strength("move_left")
+	elif keys[1]:
 		v.x = Input.get_action_strength("move_right")
 	
-	#	y axis part
-	if (GameManager.keys[2] and GameManager.keys[3]): # up and down keys are on
+	# Y axis
+	if keys[2] and keys[3]:
 		v.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
-	elif (GameManager.keys[2]): #	up key is on, so down must be off
-		v.y = - Input.get_action_strength("move_up") 
-	elif (GameManager.keys[3]): #	down key is on, so up must be off
+	elif keys[2]:
+		v.y = -Input.get_action_strength("move_up")
+	elif keys[3]:
 		v.y = Input.get_action_strength("move_down")
 	
-	if !GameManager.keys[0] and Input.get_action_strength("move_left") or !GameManager.keys[1] and Input.get_action_strength("move_right"):
-		if !$LockedSFX.playing:
+	# Locked key feedback (shake + sound)
+	if (not keys[0] and Input.get_action_strength("move_left") > 0) or (not keys[1] and Input.get_action_strength("move_right") > 0):
+		if not $LockedSFX.playing:
 			main_camera.apply_shake(1, 5)
 			$LockedSFX.play()
-	if !GameManager.keys[2] and Input.get_action_strength("move_up") or !GameManager.keys[3] and Input.get_action_strength("move_down"):
-		if !$LockedSFX.playing:
+	if (not keys[2] and Input.get_action_strength("move_up") > 0) or (not keys[3] and Input.get_action_strength("move_down") > 0):
+		if not $LockedSFX.playing:
 			main_camera.apply_shake(1, 5)
 			$LockedSFX.play()
+	
+	# Normalize vector only if non-zero length
+	if v.length() > 0:
+		return v.normalized()
+	return v
 
-	# normalise the vector no matter what
-	return v.normalized()
 
 func handle_movement(delta):
 	var mouse_pos = get_global_mouse_position()
@@ -96,11 +100,11 @@ func handle_movement(delta):
 	 	Input.get_action_strength("look_down") - Input.get_action_strength("look_up")
 	).normalized()
 	
-	var input_vector = get_inputVector()
+	var input_vector = get_input_vector()
 	
 	if hose.spraying:
 		var spray_direction = controller
-		if GameManager.look_mode == GameManager.InputMode.MOUSE:
+		if GameManager.stats.look_mode == GameManager.InputMode.MOUSE:
 			spray_direction = (global_position - mouse_pos).normalized()
 			
 		
@@ -120,11 +124,11 @@ func handle_movement(delta):
 			) * hose_jitter_magnitude * hose_jitter_power
 			
 		velocity = velocity.move_toward(
-			(combined_direction * GameManager.hose_knockback) + jitter, 
+			(combined_direction * GameManager.stats.hose_knockback) + jitter, 
 			6 * hose_jitter_power * delta
 			)
 	else:
-		velocity = lerp(velocity, input_vector * GameManager.player_move_speed, acc)
+		velocity = lerp(velocity, input_vector * GameManager.stats.player_move_speed, acc)
 
 	move_and_slide()
 

@@ -18,7 +18,7 @@ func _ready():
 	i_frame_duration = 0.6
 
 func _physics_process(delta):
-	if not GameManager.in_game:
+	if not GameManager.stats.in_game:
 		return
 	if i_frame:		# to fix issue of instant death loops with fire knockback
 		
@@ -62,7 +62,7 @@ func handle_fire_collision():
 		player.main_camera.play_red_tint_anim()
 		
 		# Add damage
-		GameManager.damage_player(GameManager.fire_damage)
+		GameManager.damage_player(GameManager.stats.fire_damage)
 
 
 

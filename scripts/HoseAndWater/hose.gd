@@ -8,7 +8,7 @@ var spray_time := 0.0
 var drops_spawned := 0
 
 # Spray time stats
-var spawn_interval := 1.0 / GameManager.water_spawn_rate
+var spawn_interval := 1.0 / float(GameManager.stats["water_spawn_rate"])
 var spawn_accumulator := 0.0
 
 # KBM + Controller vars
@@ -28,7 +28,7 @@ func _ready():
 	player = get_tree().get_first_node_in_group("player")
 
 func _process(delta):
-	if not GameManager.in_game:
+	if not GameManager.stats.in_game:
 		return
 
 
@@ -37,16 +37,16 @@ func _process(delta):
 	
 	spray_time = clamp(spray_time, min_spray_time, max_spray_time)
 	
-	spawn_interval = 1.0 / GameManager.water_spawn_rate
+	spawn_interval = 1.0 / GameManager.stats.water_spawn_rate
 
 func _unhandled_input(event):
 	# also called in pause_menu.gd and game_over.gd and main.gd
 	if event is InputEventKey:
-		GameManager.key_mode = KeyManager.keys_layout()
+		GameManager.stats.key_mode = KeyManager.keys_layout()
 		
 		
 	elif event is InputEventJoypadMotion:
-		GameManager.key_mode = GameManager.InputMode.CONTROLLER
+		GameManager.stats.key_mode = GameManager.InputMode.CONTROLLER
 	
 
 func handle_hose_rotation(delta):
@@ -58,12 +58,12 @@ func handle_hose_rotation(delta):
 	# Track last aim direction and input mode
 	if controller.length_squared() > 0.01:
 		last_aim_direction = controller
-		GameManager.look_mode = GameManager.InputMode.CONTROLLER
+		GameManager.stats.look_mode = GameManager.InputMode.CONTROLLER
 	elif Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) or Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
-		GameManager.look_mode = GameManager.InputMode.MOUSE
+		GameManager.stats.look_mode = GameManager.InputMode.MOUSE
 
 
-	if GameManager.look_mode == GameManager.InputMode.CONTROLLER:
+	if GameManager.stats.look_mode == GameManager.InputMode.CONTROLLER:
 		var target_pos = player.global_position + last_aim_direction
 		var target_angle = (target_pos - global_position).angle()
 		rotation = lerp_angle(rotation, target_angle, 8 * delta)
@@ -96,7 +96,7 @@ func spawn_water_drop():
 	drop.lifetime = spray_time
 	get_tree().current_scene.add_child(drop)
 	
-	if GameManager.blood_enabled:
+	if GameManager.stats.blood_enabled:
 		drops_spawned += 1
 		if drops_spawned > 20:
 			GameManager.damage_player(GameManager.player_blood_damage)

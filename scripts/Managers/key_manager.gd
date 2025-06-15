@@ -16,4 +16,4 @@ func keys_layout() -> GameManager.InputMode:
 	for key in HJKL:
 		if Input.is_physical_key_pressed(key):
 			return GameManager.InputMode.HJKL
-	return GameManager.key_mode
+	return GameManager.stats.key_mode

@@ -8,13 +8,13 @@ var cool := true #cooldown but bool
 func _ready():
 	visible = false
 	
-	if GameManager.day > 1:
+	if GameManager.stats.day > 1:
 		await GameManager.rule_selected
 	await get_tree().create_timer(3).timeout
 	enabled = true
 
 func _process(_delta: float) -> void:
-	if not GameManager.in_game:
+	if not GameManager.stats.in_game:
 		return
 		
 	if Input.is_action_just_pressed("pause"):

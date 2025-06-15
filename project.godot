@@ -22,6 +22,7 @@ config/icon="uid://bsuhy268klumw"
 [autoload]
 
 GameManager="*res://scripts/Managers/game_manager.gd"
+GameStats="*res://scripts/Managers/game_stats.gd"
 RuleManager="*res://scripts/Managers/rule_manager.gd"
 MusicManager="*res://scenes/Audio/music_manager.tscn"
 KeyManager="*res://scripts/Managers/key_manager.gd"
