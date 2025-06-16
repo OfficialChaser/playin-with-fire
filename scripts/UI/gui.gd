@@ -18,10 +18,11 @@ class_name GUI
 func _ready():
 	update_timer_label(true)
 	blur_animation_player.play("RESET")
-	Transition.play("fade_out")
+	
+	
 	if GameStats.has_selected_first_rule:
 		await GameManager.rule_selected
-		day_timer.wait_time = GameStats.day_duration
+		
 	day_timer.wait_time = GameStats.day_duration
 	day_timer.start()
 
@@ -30,7 +31,6 @@ func _process(_delta):
 	update_health_label()
 	update_day_label()
 	update_rule_label()
-	
 
 func update_timer_label(override: bool = false):
 	if not GameManager.in_game and not override:
@@ -50,7 +50,7 @@ func update_day_label():
 	day_label.text = "Day " + str(GameStats.day)
 
 func update_rule_label():
-	if GameManager.current_rule:
+	if GameStats.current_rule:
 		rule_name.text = GameStats.current_rule.rule_name
 	else:
 		rule_name.text = ''
@@ -59,7 +59,7 @@ func set_timer(f : float):
 	day_timer.wait_time = f
 
 func _on_day_timer_timeout():
-	if GameManager.in_game and !GameManager.game_over:
+	if GameManager.actively_playing:
 		day_over_sequence()
 
 func day_over_sequence(day_result: String = "time out"):
@@ -81,5 +81,3 @@ func day_over_sequence(day_result: String = "time out"):
 	
 	await Transition.animation_finished
 	GameManager.day_completed(day_result)
-
-# Callback Functions

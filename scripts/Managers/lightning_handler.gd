@@ -29,7 +29,7 @@ func spawn_lightning(used_cells: Dictionary):
 	new_lightning_highlight.global_position = new_pos
 	add_child(new_lightning_highlight)
 	
-	await get_tree().create_timer(GameManager.lightning_delay_time).timeout
+	await get_tree().create_timer(GameStats.lightning_delay_time).timeout
 	
 	# Instantiate lightning
 	var new_lightning = LIGHTNING.instantiate()

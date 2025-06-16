@@ -14,7 +14,7 @@ func _process(_delta):
 		
 		# Placeholder
 		await get_tree().create_timer(2).timeout
-		day_label.text = "You survived until day " + str(GameManager.day)
+		day_label.text = "You survived until day " + str(GameStats.day)
 		MusicManager.play_music()
 		$AnimationPlayer.play("fade_in")
 		faded = true

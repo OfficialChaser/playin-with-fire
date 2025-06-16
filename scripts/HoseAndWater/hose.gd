@@ -28,7 +28,7 @@ func _ready():
 	player = get_tree().get_first_node_in_group("player")
 
 func _process(delta):
-	if not GameManager.in_game:
+	if not GameManager.actively_playing:
 		return
 
 
@@ -37,16 +37,16 @@ func _process(delta):
 	
 	spray_time = clamp(spray_time, min_spray_time, max_spray_time)
 	
-	spawn_interval = 1.0 / GameManager.water_spawn_rate
+	spawn_interval = 1.0 / GameStats.water_spawn_rate
 
 func _unhandled_input(event):
 	# also called in pause_menu.gd and game_over.gd and main.gd
 	if event is InputEventKey:
-		GameManager.key_mode = KeyManager.keys_layout()
+		GameStats.key_mode = InputManager.detect_key_layout()
 		
 		
 	elif event is InputEventJoypadMotion:
-		GameManager.key_mode = GameManager.InputMode.CONTROLLER
+		GameStats.key_mode = GameManager.InputMode.CONTROLLER
 	
 
 func handle_hose_rotation(delta):
@@ -58,12 +58,12 @@ func handle_hose_rotation(delta):
 	# Track last aim direction and input mode
 	if controller.length_squared() > 0.01:
 		last_aim_direction = controller
-		GameManager.look_mode = GameManager.InputMode.CONTROLLER
+		GameStats.look_mode = InputManager.InputMode.CONTROLLER
 	elif Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) or Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
-		GameManager.look_mode = GameManager.InputMode.MOUSE
+		GameStats.look_mode = InputManager.InputMode.MOUSE
 
 
-	if GameManager.look_mode == GameManager.InputMode.CONTROLLER:
+	if GameStats.look_mode == InputManager.InputMode.CONTROLLER:
 		var target_pos = player.global_position + last_aim_direction
 		var target_angle = (target_pos - global_position).angle()
 		rotation = lerp_angle(rotation, target_angle, 8 * delta)
@@ -96,7 +96,7 @@ func spawn_water_drop():
 	drop.lifetime = spray_time
 	get_tree().current_scene.add_child(drop)
 	
-	if GameManager.blood_enabled:
+	if GameStats.blood_enabled:
 		drops_spawned += 1
 		if drops_spawned > 20:
 			GameManager.damage_player(GameManager.player_blood_damage)

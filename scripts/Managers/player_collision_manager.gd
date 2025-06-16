@@ -25,7 +25,6 @@ func _physics_process(delta):
 		i_frame_timer += delta
 		if i_frame_timer > i_frame_duration:
 			i_frame = false
-		print_debug(i_frame_timer)
 		
 	handle_fire_collision()
 	
@@ -62,7 +61,7 @@ func handle_fire_collision():
 		player.main_camera.play_red_tint_anim()
 		
 		# Add damage
-		GameManager.damage_player(GameManager.fire_damage)
+		GameStats.damage_player(GameStats.fire_damage)
 
 
 

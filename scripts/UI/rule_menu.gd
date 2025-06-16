@@ -66,7 +66,7 @@ func get_new_rule():
 		mod = " III"
 	rule_label.text = rule.rule_name + mod
 
-	reroll_label.text = "Rerolls: " + str(GameManager.rerolls)
+	reroll_label.text = "Rerolls: " + str(GameStats.rerolls)
 	
 	update_rule_card_ui()
 

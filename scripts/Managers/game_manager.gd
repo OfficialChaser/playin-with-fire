@@ -5,14 +5,27 @@ signal rule_selected(rule : Rule)
 
 # Game States
 var game_loaded := false
-var in_game := false
-var game_over := false:
-	set(_game_over):
-		if _game_over:
+
+var _in_game := false
+var in_game: 
+	set(value):
+		_in_game = value
+	get: 
+		return _in_game
+
+var _game_over := false
+var game_over: 
+	set(value):
+		_game_over = value
+		if value:
 			in_game = false
-var actively_playing : bool:
+	get:
+		return _game_over
+
+var actively_playing: 
 	get:
 		return in_game and not game_over
+
 
 # Input Modes
 enum InputMode { CONTROLLER, WASD, ARROWS, HJKL, MOUSE }
@@ -21,17 +34,19 @@ func _ready():
 	connect("rule_selected", _on_rule_selected)
 
 func day_completed(day_result: String = ""):
-	in_game = false
+	in_game = false  # Already changed in GUI, but a good safeholder
 	GameStats.process_day_end(day_result)
 	
 	get_tree().reload_current_scene()
 	
+	Transition.play("fade_out")
 	await rule_selected
 	
 	in_game = true
 
 func restart_game():
 	# Make a way to reset all stats
+	
 	RuleManager.reset_rule_levels()
 
 	Transition.play("fade_in")
@@ -40,7 +55,7 @@ func restart_game():
 	get_tree().reload_current_scene()
 	Transition.play("fade_out")
 	MusicManager.play_music("game_music")
-
+	
 func end_game():
 	game_over = true
 

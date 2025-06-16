@@ -2,7 +2,6 @@ extends Rule
 
 var rng
 
-
 func set_rule_text(rule_menu : RuleMenu, _level : int = 1):
 	var keyboard = rule_menu.keyboard
 	
@@ -20,7 +19,7 @@ func set_rule_text(rule_menu : RuleMenu, _level : int = 1):
 		keyboard.frame = 12 + rng
 		thing = "stick"
 	else:
-		var km : int = KeyManager.keys_layout()
+		var km : int = InputManager.detect_key_layout()
 		keyboard.frame = (km-1)*4 + rng
 		thing = "key"
 
