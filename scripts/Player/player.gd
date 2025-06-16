@@ -31,7 +31,7 @@ func _physics_process(delta):
 	if paused:
 		return
 		
-	if not GameManager.stats.in_game:
+	if not GameManager.in_game:
 		hose.spray(false)
 		sprite_animation_player.play("idle")
 		return
@@ -58,7 +58,7 @@ func _physics_process(delta):
 # Eventually i want to put this logic somewhere in another script like controls.gd or smthn
 func get_input_vector() -> Vector2:
 	var v = Vector2.ZERO
-	var keys = GameManager.stats.keys  # keys order: left, right, up, down
+	var keys = GameManager.keys  # keys order: left, right, up, down
 	
 	# X axis
 	if keys[0] and keys[1]:
@@ -104,7 +104,7 @@ func handle_movement(delta):
 	
 	if hose.spraying:
 		var spray_direction = controller
-		if GameManager.stats.look_mode == GameManager.InputMode.MOUSE:
+		if GameManager.look_mode == GameManager.InputMode.MOUSE:
 			spray_direction = (global_position - mouse_pos).normalized()
 			
 		
@@ -124,11 +124,11 @@ func handle_movement(delta):
 			) * hose_jitter_magnitude * hose_jitter_power
 			
 		velocity = velocity.move_toward(
-			(combined_direction * GameManager.stats.hose_knockback) + jitter, 
+			(combined_direction * GameManager.hose_knockback) + jitter, 
 			6 * hose_jitter_power * delta
 			)
 	else:
-		velocity = lerp(velocity, input_vector * GameManager.stats.player_move_speed, acc)
+		velocity = lerp(velocity, input_vector * GameManager.player_move_speed, acc)
 
 	move_and_slide()
 

@@ -8,7 +8,7 @@ func _ready():
 	visible = false
 
 func _process(_delta):
-	if GameManager.stats.game_over and not started_anim:
+	if GameManager.game_over and not started_anim:
 		visible = true
 		started_anim = true
 		
@@ -23,7 +23,7 @@ func _process(_delta):
 		
 func _unhandled_input(_event: InputEvent):
 	# also called in hose.gd and pause_menu.gd and main.gd
-	if GameManager.stats.game_over and faded:
+	if GameManager.game_over and faded:
 		if Input.is_action_just_pressed("spray") or Input.is_action_just_pressed("restart") or Input.is_action_just_pressed("pause"):
 				GameManager.restart_game()
 

@@ -18,9 +18,9 @@ var damage := 20.0
 var fire_tiles
 
 func _ready():
-	modulate = GameManager.stats.water_color
+	modulate = GameManager.water_color
 	damage = starting_damage
-	velocity = Vector2.RIGHT.rotated(rotation + deg_to_rad(randf_range(-1, 1) * GameManager.stats.spread)) * speed
+	velocity = Vector2.RIGHT.rotated(rotation + deg_to_rad(randf_range(-1, 1) * GameManager.spread)) * speed
 	
 	# PREWARM: Touch tile data so HTML5 loads it early - this still doesnt really work exactly right
 	fire_tiles = get_node("/root/Main/FireTiles")
@@ -67,7 +67,7 @@ func _on_body_entered(body):
 					continue
 				
 				# If it is a fire tile, add the damage to it
-				if GameManager.stats.player_health <= float(GameManager.stats.max_hp) / 2:
+				if GameManager.player_health <= float(GameManager.max_hp) / 2:
 					damage *= 2
 				if tiles.get_cell_tile_data(cell_coord).get_custom_data("fire"):
 					tiles.update_cell_health(cell_coord, damage)

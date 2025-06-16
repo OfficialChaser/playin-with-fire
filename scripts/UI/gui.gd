@@ -19,10 +19,10 @@ func _ready():
 	update_timer_label(true)
 	blur_animation_player.play("RESET")
 	Transition.play("fade_out")
-	if GameManager.stats.day > 1:
+	if GameStats.has_selected_first_rule:
 		await GameManager.rule_selected
-		day_timer.wait_time = GameManager.stats.day_duration
-	day_timer.wait_time = GameManager.stats.day_duration
+		day_timer.wait_time = GameStats.day_duration
+	day_timer.wait_time = GameStats.day_duration
 	day_timer.start()
 
 func _process(_delta):
@@ -33,7 +33,7 @@ func _process(_delta):
 	
 
 func update_timer_label(override: bool = false):
-	if not GameManager.stats.in_game and not override:
+	if not GameManager.in_game and not override:
 		return
 	# Get the time left in seconds
 	var time_left = day_timer.time_left
@@ -44,45 +44,42 @@ func update_timer_label(override: bool = false):
 	timer_label.text = str(minutes) + ":" + str(seconds).pad_zeros(2)
 
 func update_health_label():
-	hp_label.text = "HP: " + str(GameManager.stats.player_health)
+	hp_label.text = "HP: " + str(GameStats.player_health)
 
 func update_day_label():
-	day_label.text = "Day " + str(GameManager.stats.day)
+	day_label.text = "Day " + str(GameStats.day)
 
 func update_rule_label():
-	if GameManager.stats.current_rule:
-		rule_name.text = GameManager.stats.current_rule.rule_name
+	if GameManager.current_rule:
+		rule_name.text = GameStats.current_rule.rule_name
 	else:
 		rule_name.text = ''
 
 func set_timer(f : float):
 	day_timer.wait_time = f
 
-#func blur(b : bool):
-#	if b:
-#		blur_animation_player.play("blur_in")
-#	else:
-#		blur_animation_player.play("RESET")
-
 func _on_day_timer_timeout():
-	if GameManager.stats.in_game and !GameManager.stats.game_over:
+	if GameManager.in_game and !GameManager.game_over:
 		day_over_sequence()
 
-func day_over_sequence(way: String = "time out"):
-	GameManager.stats.in_game = false
+func day_over_sequence(day_result: String = "time out"):
+	GameManager.in_game = false
 	day_timer.stop()
 	await get_tree().create_timer(0.5).timeout
 	blur_animation_player.play("blur_in")
-	day_success_animation_player.play(way)
-	if way == "time out":
+	day_success_animation_player.play(day_result)
+	
+	if day_result == "time out":
 		reg_win_sfx.play()
-	elif way == "smokin' bonus":
+	elif day_result == "smokin' bonus":
 		smokin_win_sfx.play()
 	
 	
 	await get_tree().create_timer(5).timeout
-	day_success_animation_player.play("RESET")
+	day_success_animation_player.play("RESET") # Could replace with a fade anim
 	Transition.play("fade_in")
 	
 	await Transition.animation_finished
-	GameManager.day_completed(way)
+	GameManager.day_completed(day_result)
+
+# Callback Functions

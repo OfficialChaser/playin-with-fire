@@ -1,7 +1,14 @@
-extends Resource
+extends Node
 
-# === Core Game State ===
+# === Curve Preloads ===
+const TIME_CURVE = preload("res://misc/time_curve.tres")
+const DIFFICULTY_CURVE = preload("res://misc/difficulty_curve.tres")
+
+# === Overarching stats ===
 var day: int = 1
+var has_selected_first_rule: bool:
+	get:
+		return day > 1
 var rerolls: int = 3
 var current_rule: Rule = null
 
@@ -46,7 +53,7 @@ var used_keys: Array = []
 var keys: Array = [true, true, true, true]  # left, right, up, down
 
 # === Input Modes ===
-var look_mode: int = 4  # InputMode.MOUSE
+var look_mode: int = 0  # InputMode.MOUSE
 var key_mode: int = 1   # InputMode.WASD
 
 # Curve Value Functions
@@ -74,3 +81,32 @@ func damage_player(damage: int):
 		if player_health <= 0:
 			player_health = 0
 			GameManager.end_game()
+
+func heal_player(health: int):
+	if GameManager.game_over:
+		return
+		
+	player_health = min(health, max_hp)
+
+func process_day_end(day_result: String):
+	heal_player(player_health + hp_gain)
+
+	day += 1
+	fire_spawn_rate = get_spawn_rate(DIFFICULTY_CURVE)
+	day_duration = get_day_duration(TIME_CURVE)
+	lightning_spawn_amt += 1
+	
+	if day_result == "smokin' bonus":
+		rerolls += 2
+		
+	if shortened_day:
+		day_duration -= GameStats.day_duration * 0.3
+	
+	# Weird gambling addict thing i need to fix eventually
+	'''if GameStats.deal_enabled:
+		if randi_range(0, 1) == 1:
+			player_health += 50
+		elif player_health < 55:
+			player_health = 5
+		else:
+			player_health -= 50'''

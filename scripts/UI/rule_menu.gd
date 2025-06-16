@@ -26,7 +26,7 @@ func _ready():
 	$RerollButton/OutOfStock.visible = false
 	if RuleManager.player_has_maxed_out():
 		ready_to_start(false)
-	elif GameManager.stats.day > 1:
+	elif GameStats.has_selected_first_rule:
 		title_label.text = "[wave amp=60 freq=5]Today's Forecast[/wave]"
 		get_new_rule()
 		enabled = true
@@ -66,7 +66,7 @@ func get_new_rule():
 		mod = " III"
 	rule_label.text = rule.rule_name + mod
 
-	reroll_label.text = "Rerolls: " + str(GameManager.stats.rerolls)
+	reroll_label.text = "Rerolls: " + str(GameManager.rerolls)
 	
 	update_rule_card_ui()
 

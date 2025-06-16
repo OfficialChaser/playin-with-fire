@@ -33,7 +33,7 @@ func _ready():
 	# None of the tile textures need to be seen
 	visible = false
 	
-	cooldown_timer.wait_time = GameManager.stats.fire_spawn_rate
+	cooldown_timer.wait_time = GameStats.fire_spawn_rate
 	
 	player = get_tree().get_first_node_in_group("player")
 
@@ -55,10 +55,10 @@ func check_house():
 					fire_health.clear()
 
 func _on_cooldown_timer_timeout():
-	if !GameManager.stats.in_game:
+	if !GameManager.in_game:
 		return
 	
-	manage_spawn_rate(GameManager.stats.fire_spawn_rate)
+	manage_spawn_rate(GameStats.fire_spawn_rate)
 	add_fire()
 
 func manage_spawn_rate(spawn_rate: float):
@@ -116,7 +116,7 @@ func update_cell_health(coord_pair: Vector2i, damage: float):
 		return
 	
 	# Apply damage
-	if GameManager.stats.in_game:
+	if GameManager.in_game:
 		fire_health[coord_pair] -= damage
 	
 	

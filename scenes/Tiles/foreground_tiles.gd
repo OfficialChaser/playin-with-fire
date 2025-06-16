@@ -7,7 +7,7 @@ func _ready():
 
 func _process(_delta):
 	
-	if !GameManager.stats.darkness_enabled:
+	if !GameStats.darkness_enabled:
 		set_all_tiles(false)
 		return
 	set_all_tiles(true)

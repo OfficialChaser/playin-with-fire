@@ -5,11 +5,11 @@ const LIGHTNING_HIGHLIGHT = preload("res://scenes/Objects/lightning_highlight.ts
 
 @onready var fire_tiles: FireTiles = $"../FireTiles"
 func _ready() -> void:
-	if GameManager.stats.day > 1 and !RuleManager.player_has_maxed_out():
+	if GameStats.has_selected_first_rule and !RuleManager.player_has_maxed_out():
 		await GameManager.rule_selected
 	var used_cells := {}
 	
-	for i in range(GameManager.stats.lightning_spawn_amt):
+	for i in range(GameStats.lightning_spawn_amt):
 		await get_tree().create_timer(0.1).timeout
 		spawn_lightning(used_cells)
 
@@ -29,7 +29,7 @@ func spawn_lightning(used_cells: Dictionary):
 	new_lightning_highlight.global_position = new_pos
 	add_child(new_lightning_highlight)
 	
-	await get_tree().create_timer(GameManager.stats.lightning_delay_time).timeout
+	await get_tree().create_timer(GameManager.lightning_delay_time).timeout
 	
 	# Instantiate lightning
 	var new_lightning = LIGHTNING.instantiate()
