@@ -23,6 +23,18 @@ var using_controller: bool:
 var key_mode: InputMode = InputMode.WASD
 var look_mode: InputMode = InputMode.MOUSE
 
+## === Controller Variables ===
+var last_controller_look_direction: Vector2 = Vector2.RIGHT
+
+func _input(event):
+	if event is InputEventKey or event is InputEventMouse:
+		key_mode = detect_key_layout()
+		look_mode = InputMode.MOUSE
+		
+	elif event is InputEventJoypadMotion:
+		key_mode = InputMode.CONTROLLER
+		look_mode = InputMode.CONTROLLER
+
 func detect_key_layout() -> InputMode:
 	for key in WASD:
 		if Input.is_physical_key_pressed(key):
@@ -35,11 +47,17 @@ func detect_key_layout() -> InputMode:
 			return InputMode.HJKL
 	return key_mode
 
-func _unhandled_input(event):
-	if event is InputEventKey:
-		key_mode = detect_key_layout()
-		look_mode = InputMode.MOUSE
+func get_controller_look_direction() -> Vector2:
+	if not using_controller:
+		push_warning("Don't call this function if the input mode isn't controller!")
+		return Vector2.ZERO
 		
-	elif event is InputEventJoypadMotion:
-		key_mode = InputMode.CONTROLLER
-		look_mode = InputMode.CONTROLLER
+	var new_look_direction = Vector2(
+		Input.get_action_strength("look_right") - Input.get_action_strength("look_left"),
+		Input.get_action_strength("look_down") - Input.get_action_strength("look_up")
+	).normalized()
+	
+	if new_look_direction.length_squared() > 0.01:
+		last_controller_look_direction = new_look_direction
+	
+	return last_controller_look_direction

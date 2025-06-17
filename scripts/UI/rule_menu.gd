@@ -42,7 +42,7 @@ func _process(_delta):
 	visible = true
 	if !rerolling and selectable:
 		if Input.is_action_just_pressed("reroll"):
-			if !GameManager.rerolls == 0 \
+			if !GameStats.rerolls == 0 \
 			and not RuleManager.used_rules.size() == RuleManager.rules.size():
 				reroll()
 		elif Input.is_action_just_pressed('spray') and !reroll_button.is_hovered() and !selecting_rule:
@@ -108,7 +108,7 @@ func reroll():
 		return
 	
 	GameStats.rerolls -= 1
-	GameStats.rerolls = max(GameStats.rerolls, 0, 10)
+	GameStats.rerolls = max(0, GameStats.rerolls)
 	rerolling = true
 	get_new_rule()
 	

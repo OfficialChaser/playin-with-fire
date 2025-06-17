@@ -1,5 +1,8 @@
 extends Node2D
 
+# Constants
+const ROTATION_SPEED: float = 7.0
+
 # Spray vars
 var spraying := false
 var spray_time := 0.0
@@ -11,8 +14,8 @@ var drops_spawned := 0
 var spawn_interval := 1.0 / GameStats.water_spawn_rate
 var spawn_accumulator := 0.0
 
-# KBM + Controller vars
-var last_aim_direction: Vector2 = Vector2.RIGHT
+# Controller vars
+var last_aim_direction := Vector2.RIGHT
 
 # Onreadys
 @onready var sprite = $Sprite2D
@@ -30,43 +33,29 @@ func _ready():
 func _process(delta):
 	if not GameManager.actively_playing:
 		return
-
-
+	
 	handle_hose_rotation(delta)
-	manage_water_spawning(spraying, delta)
+	manage_water_spawning(delta)
 	
 	spray_time = clamp(spray_time, min_spray_time, max_spray_time)
 	
 	spawn_interval = 1.0 / GameStats.water_spawn_rate
 
 func handle_hose_rotation(delta):
-	var controller = Vector2(
-		Input.get_action_strength("look_right") - Input.get_action_strength("look_left"),
-		Input.get_action_strength("look_down") - Input.get_action_strength("look_up")
-	).normalized()
-
-	# Track last aim direction and input mode
-	if controller.length_squared() > 0.01:
-		last_aim_direction = controller
-		GameStats.look_mode = InputManager.InputMode.CONTROLLER
-	elif Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) or Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
-		GameStats.look_mode = InputManager.InputMode.MOUSE
-
-
-	if InputManager.look_mode == InputManager.InputMode.CONTROLLER:
-		var target_pos = player.global_position + last_aim_direction
+	if InputManager.using_controller:
+		var target_pos = player.global_position + InputManager.get_controller_look_direction()
 		var target_angle = (target_pos - global_position).angle()
-		rotation = lerp_angle(rotation, target_angle, 8 * delta)
+		rotation = lerp_angle(rotation, target_angle, 1.0 - exp(-ROTATION_SPEED * delta))
 	else:
 		rotation = (get_global_mouse_position() - global_position).angle()
 
-## Turn spraying on or off depending on the parameteras
+
 func spray(status: bool = true):
 	spraying = status
 	hose_sfx.playing = status
 
-func manage_water_spawning(_spraying: bool, delta: float):
-	if _spraying:
+func manage_water_spawning(delta: float):
+	if spraying:
 		spray_time += delta
 		spawn_accumulator += delta
 

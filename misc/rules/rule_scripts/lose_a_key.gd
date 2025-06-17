@@ -15,7 +15,7 @@ func set_rule_text(rule_menu : RuleMenu, _level : int = 1):
 			choices.append(i)
 	rng = choices.pick_random()
 	
-	if GameStats.look_mode == InputManager.InputMode.CONTROLLER:
+	if InputManager.using_controller:
 		keyboard.frame = 12 + rng
 		thing = "stick"
 	else:
