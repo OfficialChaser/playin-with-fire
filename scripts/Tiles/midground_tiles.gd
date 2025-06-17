@@ -6,9 +6,6 @@ var tree_coverage : Dictionary = {} # Covered Tiles : Coords
 var tree_fires : Dictionary = {}  # Covered Tiles : Coords
 
 func _ready() -> void:
-	#if GameManager.fly_enabled:
-	#	tree_coverage.clear()
-	#	return
 	for coords in get_used_cells():
 		var tile_data = get_cell_tile_data(coords)
 		if tile_data and tile_data.get_custom_data("tree"):

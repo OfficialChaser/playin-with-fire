@@ -4,7 +4,7 @@ extends Node
 const TIME_CURVE = preload("res://misc/time_curve.tres")
 const DIFFICULTY_CURVE = preload("res://misc/difficulty_curve.tres")
 
-# === Overarching stats ===
+# === General Stats ===
 var day: int = 1
 var has_selected_first_rule: bool:
 	get:
@@ -51,10 +51,6 @@ var spread: int = 10
 var player_move_speed: float = 75.0
 var used_keys: Array = []
 var keys: Array = [true, true, true, true]  # left, right, up, down
-
-# === Input Modes ===
-var look_mode: int = 0  # InputMode.MOUSE
-var key_mode: int = 1   # InputMode.WASD
 
 # Curve Value Functions
 func get_spawn_rate(difficulty_curve: Curve) -> float:

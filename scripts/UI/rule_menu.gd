@@ -42,7 +42,8 @@ func _process(_delta):
 	visible = true
 	if !rerolling and selectable:
 		if Input.is_action_just_pressed("reroll"):
-			if !GameManager.rerolls == 0 and not RuleManager.used_rules.size() == RuleManager.rules.size():
+			if !GameManager.rerolls == 0 \
+			and not RuleManager.used_rules.size() == RuleManager.rules.size():
 				reroll()
 		elif Input.is_action_just_pressed('spray') and !reroll_button.is_hovered() and !selecting_rule:
 			RuleManager.select_rule()
@@ -53,7 +54,9 @@ func _process(_delta):
 			await Transition.animation_finished
 			ready_to_start()
 	
-	if GameManager.rerolls == 0 or RuleManager.used_rules.size() == RuleManager.rules.size() or !GameManager.roll_tmrw:
+	if GameStats.rerolls == 0 \
+	or RuleManager.used_rules.size() == RuleManager.rules.size() \
+	or not GameStats.roll_tmrw:
 		reroll_button.disabled = true
 		$RerollButton/OutOfStock.visible = true
 
@@ -91,21 +94,21 @@ func ready_to_start(new_rule: bool = true):
 	start = true
 	enabled = false
 	Transition.play("fade_out")
-	if !GameManager.roll_tmrw:
-		GameManager.roll_tmrw = true
+	if !GameStats.roll_tmrw:
+		GameStats.roll_tmrw = true
 	if new_rule:
-		GameManager.rule_selected.emit(RuleManager.current_rule) # they'll still stack tho
+		GameManager.rule_selected.emit(RuleManager.current_rule)
 	else:
 		RuleManager.current_rule = null
 		GameManager.rule_selected.emit(RuleManager.current_rule)
 
 func reroll():
 	start = false
-	if rerolling or GameManager.rerolls < 1:
+	if rerolling or GameStats.rerolls < 1:
 		return
 	
-	GameManager.rerolls -= 1
-	GameManager.rerolls = clamp(GameManager.rerolls, 0, 10)
+	GameStats.rerolls -= 1
+	GameStats.rerolls = max(GameStats.rerolls, 0, 10)
 	rerolling = true
 	get_new_rule()
 	

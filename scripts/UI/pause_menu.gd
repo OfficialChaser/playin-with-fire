@@ -21,7 +21,7 @@ func _process(_delta: float) -> void:
 		if !get_tree().paused and enabled:
 			show()
 			get_tree().paused = true
-			if GameManager.key_mode == GameManager.InputMode.CONTROLLER:
+			if InputManager.key_mode == InputManager.InputMode.CONTROLLER:
 				$PausePanel/ResumeButton.grab_focus()
 	handle_ctrler()
 	

@@ -11,11 +11,11 @@ func set_rule_text(rule_menu : RuleMenu, _level : int = 1):
 	var thing
 	var choices = []
 	for i in range(3):
-		if !GameManager.used_keys.has(i):
+		if !GameStats.used_keys.has(i):
 			choices.append(i)
 	rng = choices.pick_random()
 	
-	if GameManager.look_mode == GameManager.InputMode.CONTROLLER:
+	if GameStats.look_mode == InputManager.InputMode.CONTROLLER:
 		keyboard.frame = 12 + rng
 		thing = "stick"
 	else:
@@ -30,16 +30,11 @@ func set_rule_text(rule_menu : RuleMenu, _level : int = 1):
 		rule_menu.cool_label = cool_label
 
 func set_rule_config(level : int = 1):
-	GameManager.used_keys.append(rng)
-	GameManager.player_move_speed *= 1.5
-	GameManager.keys[rng] = false
+	GameStats.used_keys.append(rng)
+	GameStats.player_move_speed *= 1.5
+	GameStats.keys[rng] = false
 	if level > 2:
-		if GameManager.hose_knockback > 0:
-			GameManager.hose_knockback *= -1
+		if GameStats.hose_knockback > 0:
+			GameStats.hose_knockback *= -1
 	else:
-		GameManager.hose_knockback *= 3
-
-func reset_rule_config():
-	for key in GameManager.keys:
-		GameManager.keys[key] = true
-	#GameManager.fly = false
+		GameStats.hose_knockback *= 3

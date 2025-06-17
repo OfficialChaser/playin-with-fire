@@ -39,16 +39,6 @@ func _process(delta):
 	
 	spawn_interval = 1.0 / GameStats.water_spawn_rate
 
-func _unhandled_input(event):
-	# also called in pause_menu.gd and game_over.gd and main.gd
-	if event is InputEventKey:
-		GameStats.key_mode = InputManager.detect_key_layout()
-		
-		
-	elif event is InputEventJoypadMotion:
-		GameStats.key_mode = GameManager.InputMode.CONTROLLER
-	
-
 func handle_hose_rotation(delta):
 	var controller = Vector2(
 		Input.get_action_strength("look_right") - Input.get_action_strength("look_left"),
@@ -63,7 +53,7 @@ func handle_hose_rotation(delta):
 		GameStats.look_mode = InputManager.InputMode.MOUSE
 
 
-	if GameStats.look_mode == InputManager.InputMode.CONTROLLER:
+	if InputManager.look_mode == InputManager.InputMode.CONTROLLER:
 		var target_pos = player.global_position + last_aim_direction
 		var target_angle = (target_pos - global_position).angle()
 		rotation = lerp_angle(rotation, target_angle, 8 * delta)
@@ -99,5 +89,5 @@ func spawn_water_drop():
 	if GameStats.blood_enabled:
 		drops_spawned += 1
 		if drops_spawned > 20:
-			GameManager.damage_player(GameManager.player_blood_damage)
+			GameStats.damage_player(GameStats.player_blood_damage)
 			drops_spawned = 0

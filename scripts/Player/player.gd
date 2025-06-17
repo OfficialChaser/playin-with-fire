@@ -100,7 +100,7 @@ func handle_movement(delta):
 	var input_vector = get_input_vector()
 	if hose.spraying:
 		var spray_direction = controller
-		if GameStats.look_mode == InputManager.InputMode.MOUSE:
+		if InputManager.look_mode == InputManager.InputMode.MOUSE:
 			spray_direction = (global_position - mouse_pos).normalized()
 			
 		

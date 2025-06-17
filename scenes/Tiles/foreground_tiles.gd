@@ -21,11 +21,11 @@ func set_all_tiles(on: bool):
 	
 	for coords in get_used_cells():
 		var dist = map_to_local(coords).distance_to(player.global_position)
-		if dist < GameManager.darkness_radius:
+		if dist < GameStats.darkness_radius:
 			set_cell(coords, 0, Vector2i(0, 0))
-		elif dist < GameManager.darkness_radius * 1.5:
+		elif dist < GameStats.darkness_radius * 1.5:
 			set_cell(coords, 0, Vector2i(2, 0))
-		elif dist < GameManager.darkness_radius * 1.75:
+		elif dist < GameStats.darkness_radius * 1.75:
 			set_cell(coords, 0, Vector2i(3, 0))
 		else:
 			set_cell(coords, 0, Vector2i(4, 0))
