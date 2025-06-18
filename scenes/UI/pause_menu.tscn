@@ -9,7 +9,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_feath"]
 
-[node name="PauseMenu" type="Control"]
+[node name="PauseMenu" type="Control" groups=["menu"]]
 process_mode = 3
 z_index = 2
 layout_mode = 3

@@ -31,6 +31,7 @@ var actively_playing:
 enum InputMode { CONTROLLER, WASD, ARROWS, HJKL, MOUSE }
 
 func _ready():
+	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_HIDDEN)
 	connect("rule_selected", _on_rule_selected)
 
 func day_completed(day_result: String = ""):

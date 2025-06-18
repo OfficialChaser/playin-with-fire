@@ -23,13 +23,10 @@ func _process(_delta: float) -> void:
 			get_tree().paused = true
 			if InputManager.key_mode == InputManager.InputMode.CONTROLLER:
 				$PausePanel/ResumeButton.grab_focus()
-	handle_ctrler()
-	
-func handle_ctrler():
-	var focus = get_viewport().gui_get_focus_owner()
-	if Input.is_action_just_pressed("spray") and not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		if focus is Button:
-			focus.emit_signal("pressed")
+		
+	if InputManager.using_controller and visible:
+		print("holaaa")
+		InputManager.handle_controller_ui_navigation()
 
 func unpause():
 	get_tree().paused = false

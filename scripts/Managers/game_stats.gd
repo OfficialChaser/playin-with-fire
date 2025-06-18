@@ -1,10 +1,10 @@
 extends Node
 
-# === Curve Preloads ===
+## === Curve Preloads ===
 const TIME_CURVE = preload("res://misc/time_curve.tres")
 const DIFFICULTY_CURVE = preload("res://misc/difficulty_curve.tres")
 
-# === General Stats ===
+## === General Stats ===
 var day: int = 1
 var has_selected_first_rule: bool:
 	get:
@@ -12,7 +12,7 @@ var has_selected_first_rule: bool:
 var rerolls: int = 3
 var current_rule: Rule = null
 
-# === Fire & Day System ===
+## === Fire & Day System ===
 var fire_spawn_rate: float = 0.23
 var fire_damage: int = 10
 var day_duration: float = 40.0
@@ -20,7 +20,7 @@ var lightning_spawn_amt: int = 5
 var lightning_delay_time: float = 0.6
 var shortened_day: bool = false
 
-# === Player HP ===
+## === Player HP ===
 var player_health: int = 100
 var player_damage: int = 2
 var max_hp: int = 100
@@ -28,26 +28,26 @@ var hp_gain: int = 50
 var regen: int = 50
 var regen_enabled: bool = false
 
-# === Water / Hose Mechanics (Double Trouble) ===
+## === Water / Hose Mechanics (Double Trouble) ===
 var hose_knockback: float = 30.0
 var water_spawn_rate: float = 50.0
 
-# === Blood Mode ===
+## === Blood Mode ===
 var water_color: Color = Color("3f5886")
 var blood_enabled: bool = false
 var player_blood_damage: int = 1
 var blood_half: bool = false
 
-# === Gambling Addict ===
+## === Gambling Addict ===
 var roll_tmrw: bool = true
 var deal_enabled: bool = false
 
-# === Darkness ===
+## === Darkness ===
 var darkness_enabled: bool = false
 var darkness_radius: float = 120.0
 var spread: int = 10
 
-# === Movement / Keys ===
+## === Movement / Keys ===
 var player_move_speed: float = 75.0
 var used_keys: Array = []
 var keys: Array = [true, true, true, true]  # left, right, up, down

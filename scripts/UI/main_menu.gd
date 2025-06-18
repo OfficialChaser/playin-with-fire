@@ -22,17 +22,10 @@ func _ready():
 	GameManager.game_loaded = true
 
 func _process(_delta):
-	handle_ctrler()
-	
-func handle_ctrler():
-	var focus = get_viewport().gui_get_focus_owner()
-	if Input.is_action_just_pressed("spray") and not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		if focus is CheckBox:
-			focus.button_pressed = !focus.button_pressed
-			focus.emit_signal("toggled", focus.button_pressed)
-		elif focus is Button:
-			focus.emit_signal("pressed")
-	
+	# Could delete this if you keep track of game state
+	if InputManager.using_controller:
+		InputManager.handle_controller_ui_navigation()
+
 func enable_settings(enabled : bool):
 	# Update what UI is showing
 	in_settings = enabled

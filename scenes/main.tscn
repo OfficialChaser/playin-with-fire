@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://cgqtkixpnivjh"]
+[gd_scene load_steps=19 format=4 uid="uid://cgqtkixpnivjh"]
 
 [ext_resource type="Script" uid="uid://crvpjog3ju7ll" path="res://scripts/main.gd" id="1_jkv2x"]
 [ext_resource type="PackedScene" uid="uid://ciigmew78bdo4" path="res://scenes/Player/player.tscn" id="1_o5qli"]
@@ -13,8 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://fp7rg4p75r5e" path="res://scenes/UI/gui.tscn" id="8_tipki"]
 [ext_resource type="Script" uid="uid://ca4a07lb1b3xr" path="res://scripts/Managers/lightning_handler.gd" id="9_85g3d"]
 [ext_resource type="PackedScene" uid="uid://bnp363jw03g5" path="res://scenes/UI/game_over.tscn" id="10_ya4ey"]
-[ext_resource type="PackedScene" uid="uid://bk7cvfu0hrbbw" path="res://scenes/UI/rule_menu.tscn" id="11_eb6dy"]
+[ext_resource type="PackedScene" uid="uid://bk7cvfu0hrbbw" path="res://scenes/rule_menu.tscn" id="11_eb6dy"]
 [ext_resource type="PackedScene" uid="uid://c5cocy2v3fmjh" path="res://scenes/UI/pause_menu.tscn" id="11_jkv2x"]
+[ext_resource type="PackedScene" uid="uid://we7xdfv4yuhh" path="res://scenes/cursor.tscn" id="16_jbj1t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tefeu"]
 texture = ExtResource("3_tbgi4")
@@ -111,3 +112,5 @@ visible = false
 
 [node name="LightningManager" type="Node2D" parent="."]
 script = ExtResource("9_85g3d")
+
+[node name="Cursor" parent="." instance=ExtResource("16_jbj1t")]

@@ -1,26 +1,27 @@
-[gd_scene load_steps=24 format=3 uid="uid://bk7cvfu0hrbbw"]
+[gd_scene load_steps=25 format=3 uid="uid://bk7cvfu0hrbbw"]
 
-[ext_resource type="Script" uid="uid://baabppi4ibmx6" path="res://scripts/UI/rule_menu.gd" id="1_nor5v"]
-[ext_resource type="Texture2D" uid="uid://ct6t6t22r5vud" path="res://assets/UI-card.png" id="2_3sxuk"]
-[ext_resource type="Texture2D" uid="uid://b376tuqktxpxr" path="res://assets/keys/keys.png" id="2_a8mxd"]
-[ext_resource type="Texture2D" uid="uid://dh051np355qo7" path="res://assets/box-stuff/box-sheet.png" id="3_les7v"]
-[ext_resource type="Texture2D" uid="uid://erdl401aiquc" path="res://assets/box-stuff/box.png" id="4_3sxuk"]
-[ext_resource type="Texture2D" uid="uid://khohx8coffin" path="res://assets/UI-square.png" id="4_5v2b7"]
-[ext_resource type="Script" uid="uid://ca02yf3j6tyeb" path="res://scenes/UI/keys_display.gd" id="4_kkbxc"]
-[ext_resource type="Texture2D" uid="uid://cc7t1pgb2fpl0" path="res://assets/UI-square1.png" id="5_glo0s"]
-[ext_resource type="Texture2D" uid="uid://imhvho842g6d" path="res://assets/UI-square2.png" id="6_kkbxc"]
-[ext_resource type="AudioStream" uid="uid://dmc6g1watn3g8" path="res://sounds/SFX/Fire Game Walking Squish.wav" id="6_u37f6"]
+[ext_resource type="Script" uid="uid://baabppi4ibmx6" path="res://scripts/UI/rule_menu.gd" id="1_arw7k"]
+[ext_resource type="Texture2D" uid="uid://ct6t6t22r5vud" path="res://assets/UI-card.png" id="2_4ouvc"]
+[ext_resource type="Texture2D" uid="uid://b376tuqktxpxr" path="res://assets/keys/keys.png" id="3_54umn"]
+[ext_resource type="Script" uid="uid://ca02yf3j6tyeb" path="res://scenes/UI/keys_display.gd" id="4_l6ew1"]
+[ext_resource type="Texture2D" uid="uid://khohx8coffin" path="res://assets/UI-square.png" id="5_h8knm"]
+[ext_resource type="Texture2D" uid="uid://imhvho842g6d" path="res://assets/UI-square2.png" id="6_p6g4s"]
+[ext_resource type="Texture2D" uid="uid://cc7t1pgb2fpl0" path="res://assets/UI-square1.png" id="7_02kvc"]
+[ext_resource type="Texture2D" uid="uid://dh051np355qo7" path="res://assets/box-stuff/box-sheet.png" id="8_krwoy"]
+[ext_resource type="Texture2D" uid="uid://erdl401aiquc" path="res://assets/box-stuff/box.png" id="9_uy8nu"]
+[ext_resource type="AudioStream" uid="uid://dmc6g1watn3g8" path="res://sounds/SFX/Fire Game Walking Squish.wav" id="10_758nn"]
+[ext_resource type="PackedScene" uid="uid://we7xdfv4yuhh" path="res://scenes/cursor.tscn" id="11_4ol5r"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_od04r"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ej8j0"]
-texture = ExtResource("4_5v2b7")
+texture = ExtResource("5_h8knm")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_glo0s"]
-texture = ExtResource("6_kkbxc")
+texture = ExtResource("6_p6g4s")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kkbxc"]
-texture = ExtResource("5_glo0s")
+texture = ExtResource("7_02kvc")
 
 [sub_resource type="Animation" id="Animation_a8mxd"]
 length = 0.001
@@ -430,14 +431,14 @@ _data = {
 &"leave": SubResource("Animation_ph6hy")
 }
 
-[node name="RuleMenu" type="Control"]
+[node name="RuleMenu" type="Control" groups=["menu"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_nor5v")
+script = ExtResource("1_arw7k")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -502,7 +503,7 @@ offset_bottom = 81.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(138, 78)
-texture = ExtResource("2_3sxuk")
+texture = ExtResource("2_4ouvc")
 
 [node name="NerfLabel" type="Label" parent="TextureRect"]
 layout_mode = 0
@@ -574,11 +575,11 @@ autowrap_mode = 3
 
 [node name="Keys" type="Sprite2D" parent="TextureRect"]
 position = Vector2(76, 105)
-texture = ExtResource("2_a8mxd")
+texture = ExtResource("3_54umn")
 hframes = 16
 frame = 12
 region_rect = Rect2(1, 0, 1, 0)
-script = ExtResource("4_kkbxc")
+script = ExtResource("4_l6ew1")
 
 [node name="RerollButton" type="Button" parent="."]
 layout_mode = 1
@@ -660,7 +661,7 @@ libraries = {
 [node name="greg" type="Sprite2D" parent="."]
 position = Vector2(240, 180)
 scale = Vector2(10, 10)
-texture = ExtResource("3_les7v")
+texture = ExtResource("8_krwoy")
 hframes = 38
 region_rect = Rect2(1, 0, 1, 0)
 
@@ -671,10 +672,12 @@ libraries = {
 
 [node name="box" type="Sprite2D" parent="greg"]
 position = Vector2(3.5, -6)
-texture = ExtResource("4_3sxuk")
+texture = ExtResource("9_uy8nu")
 
 [node name="WalkingSFX" type="AudioStreamPlayer" parent="greg"]
-stream = ExtResource("6_u37f6")
+stream = ExtResource("10_758nn")
 bus = &"SFX"
+
+[node name="Cursor" parent="." instance=ExtResource("11_4ol5r")]
 
 [connection signal="pressed" from="RerollButton" to="." method="_on_reroll_button_pressed"]

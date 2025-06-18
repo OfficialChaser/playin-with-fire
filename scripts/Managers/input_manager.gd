@@ -1,5 +1,8 @@
 extends Node
 
+## === Signals ===
+signal changed_input_method(new_method)
+
 ## === General Enums ===
 enum InputMode { CONTROLLER, WASD, ARROWS, HJKL, MOUSE }
 
@@ -27,13 +30,24 @@ var look_mode: InputMode = InputMode.MOUSE
 var last_controller_look_direction: Vector2 = Vector2.RIGHT
 
 func _input(event):
-	if event is InputEventKey or event is InputEventMouse:
+	var prev_key_mode = key_mode
+	if event is InputEventKey:
 		key_mode = detect_key_layout()
 		look_mode = InputMode.MOUSE
 		
-	elif event is InputEventJoypadMotion:
+	if event is InputEventMouse:
+		look_mode = InputMode.MOUSE
+		if key_mode == InputMode.CONTROLLER:
+			key_mode = InputMode.WASD
+		
+	if event is InputEventJoypadMotion:
 		key_mode = InputMode.CONTROLLER
 		look_mode = InputMode.CONTROLLER
+	
+	# Emit signal on changed input mode
+	if prev_key_mode != key_mode:
+		print(key_mode)
+		changed_input_method.emit(key_mode)
 
 func detect_key_layout() -> InputMode:
 	for key in WASD:
@@ -45,7 +59,20 @@ func detect_key_layout() -> InputMode:
 	for key in HJKL:
 		if Input.is_physical_key_pressed(key):
 			return InputMode.HJKL
+	# WASD is the default
 	return key_mode
+
+func handle_controller_ui_navigation():
+	if not using_controller:
+		push_warning("Don't call this function if the input mode isn't controller!")
+		
+	var focus = get_viewport().gui_get_focus_owner()
+	if Input.is_action_just_pressed("spray") and not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		if focus is CheckBox:
+			focus.button_pressed = !focus.button_pressed
+			focus.emit_signal("toggled", focus.button_pressed)
+		elif focus is Button:
+			focus.emit_signal("pressed")
 
 func get_controller_look_direction() -> Vector2:
 	if not using_controller:
