@@ -1,51 +1,30 @@
 # Major Jam 7
 
-A Godot 4.6 game project built in the `MajorJam7` workspace.
-
-## Overview
-
-This repository contains a Godot game project with the main scene configured in `project.godot`. The game uses autoloaded manager scripts to coordinate rules, input, game state, audio, and transitions.
-
-## Engine
-
-- Godot Engine: 4.6
-- Project file: `project.godot`
-- Main scene: configured in `project.godot` via `run/main_scene`
+A Godot 4.6 game made in one week for [Major Jam 7](https://itch.io/jam/major-jam-7) by a team of 4: OfficialChaser, Gobbe, DevCabbage, and CrazedPianist.
 
 ## Running the Game
 
-1. Open Godot.
-2. Select the project folder: `c:\Users\chase\OneDrive\Documents\Godot Games\MajorJam7`
+1. Open Godot 4.6.
+2. Import the project folder.
 3. Run the project from the editor.
 
 ## Controls
 
-- Move: `WASD` or arrow keys
-- Spray / action: `Space` or left mouse button
-- Restart: `R`
-- Pause: `P` or `C`
-- Gamepad support is configured via standard joystick axes and buttons
+- **Move:** WASD or arrow keys
+- **Spray / action:** Space or left mouse button
+- **Restart:** R
+- **Pause:** P or C
+- Gamepad is also supported
 
 ## Project Structure
 
-- `assets/` - sprites, tiles, fonts, sound imports, and other media
-- `scenes/` - Godot scenes for UI, player, fire, water, tiles, and audio
-- `scripts/` - game logic and managers
-- `sounds/` - sound assets and imports
-- `misc/` - curves, shaders, rules, and utility resources
+- `assets/` -- sprites, tiles, fonts, sounds, and other media
+- `scenes/` -- UI, player, fire, water, tiles, and audio scenes
+- `scripts/` -- game logic and managers
+- `sounds/` -- sound assets
+- `misc/` -- curves, shaders, rules, and utility resources
 
-## Useful Files
+## Notable Files
 
-- `project.godot` - Godot project configuration and input mappings
-- `scripts/main.gd` - start logic for the main scene
-- `scripts/Managers/game_manager.gd` - game state and flow control
-- `assets/fire_fx_v1.0/readme.TXT` - included fire effect documentation
-
-## Notes
-
-- Input mappings include keyboard, mouse, and gamepad controls.
-- The game is set to a viewport size of `480x360` with viewport stretching enabled.
-
-## License
-
-No license file is included in this repository. Add a `LICENSE` file if you want to specify usage terms.
+- `scripts/main.gd` -- start logic for the main scene
+- `scripts/Managers/game_manager.gd` -- game state and flow control
