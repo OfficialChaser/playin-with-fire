@@ -1,4 +1,4 @@
-# Major Jam 7
+# Playin' With Fire
 
 A Godot 4.6 game made in one week for [Major Jam 7](https://itch.io/jam/major-jam-7-wild) by a team of 4: OfficialChaser, Gobbe, DevCabbage, and CrazedPianist.
 
